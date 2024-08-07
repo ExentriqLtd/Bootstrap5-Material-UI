@@ -1,0 +1,19 @@
+.accordion {
+    .accordion-header {
+      background-color: $accordion-bg;
+      border-color: $accordion-border-color;
+    }
+  
+    .accordion-button {
+      color: $accordion-color;
+  
+      &:not(.collapsed) {
+        background-color: $accordion-btn-active-bg;
+        border-color: $accordion-btn-focus-border-color;
+      }
+    }
+  
+    .accordion-body {
+      background-color: lighten($accordion-bg, 5%);
+    }
+  }

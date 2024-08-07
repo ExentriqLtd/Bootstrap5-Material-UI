@@ -1,0 +1,8 @@
+{
+    "ignore": [
+      "dist/*",
+      "react-component/build/*",
+      "node_modules/*",
+      "public/react-docs/*"
+    ]
+  }
