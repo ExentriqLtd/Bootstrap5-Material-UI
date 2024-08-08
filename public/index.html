@@ -13,12 +13,18 @@
     <link href="assets/css/doc.css?v=0.0.0" rel="stylesheet">
   </head>
   <body>
-    <main id="content">
-      <script>var _doc_route = {root_path:"",path:"index",name_section:"",name_chapter:"Home"};</script><ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="buttons.html">Buttons</a></li>
-</ul>
-      <main class="eq-ui-main">
+    <div class="container-fluid">
+      <script>var _doc_route = {root_path:"",path:"index",name_section:"",name_chapter:"Home"};</script>
+      <div class="row" id="content">
+        <div class="col-12 col-sm-3"><div class="sidebarContainer">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="buttons.html">Buttons</a></li>
+    </ul>
+</div>
+
+        </div>
+        <div class="col-12 col-sm-9">
 <div class="jumbotron home">
     <div class="container">
         <div class="row">
@@ -62,7 +68,8 @@
     </div>
 </div>
 </div><script src="../dist/bootstrap.bundle.min.js"></script>
-      </main>
-    </main>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
