@@ -25,3 +25,7 @@
 * npm run build-pug
 * cd react-component/
 * npm run build
+
+
+** Errori
+* Se segnala un errore sul file style.css già esistente, cancellare il symlink da react-component/src/styles.css e ripetere l'azione.
