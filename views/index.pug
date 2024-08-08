@@ -1,0 +1,14 @@
+- var doc_route = {root_path:"",path:"index",name_section:"",name_chapter:"Home"}
+
+doctype html
+html
+    head
+        include _head.pug
+    body
+        nav
+        ul
+            li: a(href="/") Home
+            li: a(href="/about") About
+            li: a(href="/contact") Contact
+        main
+            include _layout_default.pug

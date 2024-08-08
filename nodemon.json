@@ -1,8 +1,9 @@
 {
-    "ignore": [
-      "dist/*",
-      "react-component/build/*",
-      "node_modules/*",
-      "public/react-docs/*"
-    ]
-  }
+  "ignore": [
+    "dist/*",
+    "react-component/build/*",
+    "node_modules/*",
+    "public/*"
+  ],
+  "ext": "js,json,scss,pug,html"
+}
