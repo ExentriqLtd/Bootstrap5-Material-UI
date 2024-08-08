@@ -11,11 +11,12 @@
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node scripts/prebuild.js && react-scripts start",
+    "start": "node scripts/prebuild.js && react-scripts start && node scripts/postbuild.js",
     "build": "node scripts/prebuild.js && react-scripts build && node scripts/postbuild.js",
     "test": "node scripts/prebuild.js && react-scripts test",
     "eject": "node scripts/prebuild.js && react-scripts eject"
