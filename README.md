@@ -10,14 +10,18 @@
 * npm install
 * cd ..
 
-**Avvia server di sviluppo, fai la build del css e anche del progetto react.**
-* npm start
+**Avvia server di sviluppo e genera la documentazione su cui lavorare e fai la build del css.**
+* npm run start-pug
+
+**Avvia server di sviluppo + genera la documentazione + fai la build del css + genera la versione react della documentazione.**
+* npm run start-all
 
 **Se necessario, avvia anche server di sviluppo su React**
 * cd react-component/
 * npm run start
 
-**Fai la build del css e del progetto react per il rilascio**
+**Fai la build del css, della documentazione, e del progetto react per il rilascio**
 * npm run build-css-autoprefixer
+* npm run build-pug
 * cd react-component/
 * npm run build
