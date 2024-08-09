@@ -1,8 +1,8 @@
 script var _doc_route = {root_path:"#{doc_route.root_path}",path:"#{doc_route.path}",name_section:"#{doc_route.name_section}",name_chapter:"#{doc_route.name_chapter}"};
-div#content(class="row")
-    div(class="col-12 col-sm-3")
+div#content(class="row d-flex")
+    div(class="sidebar-wrapper px-0")
         include modules/_sidebar.html
-    div(class="col-12 col-sm-9")
+    div(class="content-text-area container-fluid")
         case doc_route.path
             when "index"
                 include modules/index.html

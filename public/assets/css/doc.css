@@ -1,0 +1,19 @@
+.sidebar-wrapper{
+    width: 300px; /* Adjust width as needed */
+    overflow-y: auto;
+}
+
+.list-group {
+    height: 100%;
+    max-height: calc(100vh - 56px); /* Full viewport height minus header height */
+    overflow-y: auto;
+}
+
+.content-text-area{
+    flex: 1;
+}
+
+
+.sidebar-wrapper{
+    background-color: var(--bs-gray-200);
+}
