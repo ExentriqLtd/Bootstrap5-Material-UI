@@ -4,7 +4,9 @@ doctype html
 html
     head
         include _head.pug
-    body
+    body(class="vh-100 d-flex flex-column")
         include modules/_header.html 
-        div(class="container-fluid")
+        include modules/_sidebar.html
+        div(class="container-fluid flex-fill")
             include _layout_default.pug
+    include modules/scripts.html
