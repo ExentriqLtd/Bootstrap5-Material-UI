@@ -11,18 +11,35 @@ Tutti i componenti sono scritti in HTML + SCSS, documentati tramite Pug e compil
 
 ## 🚀 Avvio in sviluppo
 
-Per avviare il server di sviluppo, compilare SCSS e generare la documentazione:
+Per avviare il server di sviluppo, compilare SCSS e generare la documentazione con monitoraggio automatico:
 
-npm run build-pug
 npm run start-pug
 
 Questo comando:
 - Compila gli SCSS in dist/styles.css
 - Applica Autoprefixer
-- Genera le pagine HTML statiche da views/page.pug + moduli views/modules/*.html
+- Genera tutte le pagine HTML statiche da views/page.pug + moduli views/modules/*.html
+- Monitora automaticamente i file .html (grazie all’opzione --watch inclusa)
 - Avvia un server statico sulla porta 8000 con hot reload
 
-I file HTML vengono creati nella cartella public/.
+## 🛠️ Build manuale
+
+Se vuoi eseguire i vari passaggi manualmente:
+
+### 1. Compilare SCSS e applicare Autoprefixer
+npm run build-css-autoprefixer
+
+### 2. Generare le pagine HTML (documentazione)
+npm run build-pug
+
+Puoi anche usare:
+npm run build-pug -- --watch
+
+In modalità watch, lo script:
+- compila tutte le pagine inizialmente
+- rigenera la pagina se un file in views/modules/ viene modificato
+- crea la nuova pagina se un file .html viene aggiunto
+- rimuove il file HTML da /public se il relativo modulo viene eliminato
 
 ## 📁 Struttura del progetto
 
@@ -48,5 +65,5 @@ I file HTML vengono creati nella cartella public/.
 
 ## ✅ Requisiti
 
-- Node.js >= 16
+- Node.js >= 18
 - npm >= 8
