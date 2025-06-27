@@ -1,47 +1,47 @@
 # Exentriq Bootstrap 5 UI
 
-Progetto di documentazione e sviluppo per componenti Bootstrap 5 con stile personalizzato Exentriq.  
-Tutti i componenti sono scritti in HTML + SCSS, documentati tramite Pug e compilati come pagine statiche.
+Documentation and development project for Bootstrap 5 components with custom Exentriq styling.  
+All components are written in HTML + SCSS, documented via Pug, and compiled as static pages.
 
-## ⚙️ Installazione
+## ⚙️ Installation
 
-1. Clona il repository
-2. Installa le dipendenze:
+1. Clone the repository  
+2. Install dependencies:  
    npm install
 
-## 🚀 Avvio in sviluppo
+## 🚀 Development Startup
 
-Per avviare il server di sviluppo, compilare SCSS e generare la documentazione con monitoraggio automatico:
+To start the development server, compile SCSS, and generate documentation with automatic watching:
 
 npm run start-pug
 
-Questo comando:
-- Compila gli SCSS in dist/styles.css
-- Applica Autoprefixer
-- Genera tutte le pagine HTML statiche da views/page.pug + moduli views/modules/*.html
-- Monitora automaticamente i file .html (grazie all’opzione --watch inclusa)
-- Avvia un server statico sulla porta 8000 con hot reload
+This command:  
+- Compiles SCSS into dist/styles.css  
+- Applies Autoprefixer  
+- Generates all static HTML pages from views/page.pug + views/modules/*.html modules  
+- Automatically watches .html files (thanks to the included --watch option)  
+- Starts a static server on port 8000 with hot reload
 
-## 🛠️ Build manuale
+## 🛠️ Manual Build
 
-Se vuoi eseguire i vari passaggi manualmente:
+To run individual steps manually:
 
-### 1. Compilare SCSS e applicare Autoprefixer
+### 1. Compile SCSS and apply Autoprefixer  
 npm run build-css-autoprefixer
 
-### 2. Generare le pagine HTML (documentazione)
+### 2. Generate HTML pages (documentation)  
 npm run build-pug
 
-Puoi anche usare:
+You can also use:  
 npm run build-pug -- --watch
 
-In modalità watch, lo script:
-- compila tutte le pagine inizialmente
-- rigenera la pagina se un file in views/modules/ viene modificato
-- crea la nuova pagina se un file .html viene aggiunto
-- rimuove il file HTML da /public se il relativo modulo viene eliminato
+In watch mode, the script:  
+- Compiles all pages initially  
+- Regenerates a page if a file in views/modules/ changes  
+- Creates a new page if a .html file is added  
+- Removes the HTML file from /public if the related module is deleted
 
-## 📁 Struttura del progetto
+## 📁 Project Structure
 
 ```
 ├── dist/                    # Output CSS
@@ -58,12 +58,12 @@ In modalità watch, lo script:
 └── package.json
 ```
 
-## ❗️Note e errori comuni
+## ❗️Notes and Common Errors
 
-- Se il file dist/styles.css non viene rigenerato, assicurati di aver installato sass (npm install sass).
-- Se il browser mostra contenuti errati durante la navigazione (es. index.html anche su buttons.html), assicurati che build-pug.js generi correttamente le pagine nella cartella public/.
+- If dist/styles.css is not regenerated, make sure you have installed sass (npm install sass).  
+- If the browser shows wrong content while navigating (e.g., index.html even on buttons.html), make sure build-pug.js correctly generates the pages inside the public/ folder.
 
-## ✅ Requisiti
+## ✅ Requirements
 
-- Node.js >= 18
+- Node.js >= 18  
 - npm >= 8
