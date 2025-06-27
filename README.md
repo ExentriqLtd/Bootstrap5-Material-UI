@@ -1,31 +1,52 @@
-# Progetto Bootstrap 5 e React
+# Exentriq Bootstrap 5 UI
 
-## Installazione e Utilizzo
+Progetto di documentazione e sviluppo per componenti Bootstrap 5 con stile personalizzato Exentriq.  
+Tutti i componenti sono scritti in HTML + SCSS, documentati tramite Pug e compilati come pagine statiche.
 
-### Bootstrap 5
+## ⚙️ Installazione
 
-**Installa le dipendenze**
-* npm install
-* cd react-component/
-* npm install
-* cd ..
+1. Clona il repository
+2. Installa le dipendenze:
+   npm install
 
-**Avvia server di sviluppo e genera la documentazione su cui lavorare e fai la build del css.**
-* npm run start-pug
+## 🚀 Avvio in sviluppo
 
-**Avvia server di sviluppo + genera la documentazione + fai la build del css + genera la versione react della documentazione.**
-* npm run start-all
+Per avviare il server di sviluppo, compilare SCSS e generare la documentazione:
 
-**Se necessario, avvia anche server di sviluppo su React**
-* cd react-component/
-* npm run start
+npm run build-pug
+npm run start-pug
 
-**Fai la build del css, della documentazione, e del progetto react per il rilascio**
-* npm run build-css-autoprefixer
-* npm run build-pug
-* cd react-component/
-* npm run build
+Questo comando:
+- Compila gli SCSS in dist/styles.css
+- Applica Autoprefixer
+- Genera le pagine HTML statiche da views/page.pug + moduli views/modules/*.html
+- Avvia un server statico sulla porta 8000 con hot reload
 
+I file HTML vengono creati nella cartella public/.
 
-** Errori
-* Se segnala un errore sul file style.css già esistente, cancellare il symlink da react-component/src/styles.css e ripetere l'azione.
+## 📁 Struttura del progetto
+
+```
+├── dist/                    # Output CSS
+├── public/                 # Pagine HTML compilate
+├── scss/                   # SCSS principali
+├── views/
+│   ├── modules/            # Moduli HTML da iniettare
+│   ├── page.pug            # Template base unico
+│   ├── _head.pug, etc.
+├── scripts/
+│   └── build-pug.js        # Script di compilazione
+├── server.js               # Server di sviluppo statico
+├── nodemon.json            # Configurazione server
+└── package.json
+```
+
+## ❗️Note e errori comuni
+
+- Se il file dist/styles.css non viene rigenerato, assicurati di aver installato sass (npm install sass).
+- Se il browser mostra contenuti errati durante la navigazione (es. index.html anche su buttons.html), assicurati che build-pug.js generi correttamente le pagine nella cartella public/.
+
+## ✅ Requisiti
+
+- Node.js >= 16
+- npm >= 8

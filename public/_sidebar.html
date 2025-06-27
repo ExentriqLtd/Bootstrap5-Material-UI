@@ -119,9 +119,71 @@
 		</div>
 	</div>
 </nav>
-        <div class="content-wrapper mt-4"><div>
-    Index html
-</div>
+        <div class="content-wrapper mt-4"><div class="accordion d-flex flex-column h-100 p-3 bg-white border-end" id="sidebarAccordion" style="min-height: 100vh;">
+    <!-- Getting Started -->
+    <div class="accordion-item border-0">
+      <h6 class="text-muted text-uppercase fw-bold small mb-2">Getting Started</h6>
+      <ul class="nav nav-pills flex-column mb-3 ps-2">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Introduction</a>
+        </li>
+        <li class="nav-item">
+          <a href="install.html" class="nav-link">Installation</a>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Components -->
+    <div class="accordion-item border-0">
+      <h6 class="accordion-header text-uppercase fw-bold small" id="componentsHeading">
+        <button class="accordion-button collapsed py-2 px-0 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#componentsCollapse" aria-expanded="false" aria-controls="componentsCollapse">
+          Components
+        </button>
+      </h6>
+      <div id="componentsCollapse" class="accordion-collapse collapse" aria-labelledby="componentsHeading" data-bs-parent="#sidebarAccordion">
+        <div class="accordion-body px-2 py-2">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a href="buttons.html" class="nav-link">Buttons</a>
+            </li>
+            <li class="nav-item">
+              <a href="modals.html" class="nav-link">Modals</a>
+            </li>
+            <li class="nav-item">
+              <a href="alerts.html" class="nav-link">Alerts</a>
+            </li>
+            <li class="nav-item">
+              <a href="cards.html" class="nav-link">Cards</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Utilities -->
+    <div class="accordion-item border-0">
+      <h6 class="accordion-header text-uppercase fw-bold small" id="utilitiesHeading">
+        <button class="accordion-button collapsed py-2 px-0 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#utilitiesCollapse" aria-expanded="false" aria-controls="utilitiesCollapse">
+          Utilities
+        </button>
+      </h6>
+      <div id="utilitiesCollapse" class="accordion-collapse collapse" aria-labelledby="utilitiesHeading" data-bs-parent="#sidebarAccordion">
+        <div class="accordion-body px-2 py-2">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a href="colors.html" class="nav-link">Colors</a>
+            </li>
+            <li class="nav-item">
+              <a href="spacing.html" class="nav-link">Spacing</a>
+            </li>
+            <li class="nav-item">
+              <a href="typography.html" class="nav-link">Typography</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
         </div>
       </main>
     </div>

@@ -7,13 +7,9 @@
     "build-css": "sass --load-path=node_modules scss/styles.scss dist/styles.css",
     "autoprefixer": "postcss dist/styles.css --use autoprefixer -o dist/styles.css",
     "build-css-autoprefixer": "npm run build-css && npm run autoprefixer",
-    "build-react": "cd react-component && npm run build",
-    "watch-css-react": "nodemon -e scss -x \"npm run build-css-autoprefixer && cd react-component && npm run build\" --config nodemon.json",
-    "watch-css-pug": "nodemon -e scss,pug,html -x \"npm run build-css-autoprefixer && npm run build-pug\" --config nodemon.json",
     "build-pug": "node scripts/build-pug.js",
     "start-server": "PORT=8000 nodemon server.js --config nodemon.json",
-    "start-pug": "concurrently \"npm run watch-css-pug\" \"npm run start-server\"",
-    "start-all": "concurrently \"npm run watch-css-react\" \"npm run watch-css-pug\" \"npm run start-server\""
+    "start-pug": "concurrently \"npm run build-css-autoprefixer && npm run build-pug -- --watch\" \"npm run start-server\""
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +26,8 @@
   },
   "devDependencies": {
     "concurrently": "^6.5.1",
+    "livereload": "^0.9.3",
+    "connect-livereload": "^0.6.1",
     "nodemon": "^2.0.22"
   }
 }

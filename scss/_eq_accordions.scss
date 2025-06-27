@@ -16,4 +16,8 @@
     .accordion-body {
       background-color: lighten($accordion-bg, 5%);
     }
-  }
+}
+
+.eq-ui-card {
+	@extend .card
+}

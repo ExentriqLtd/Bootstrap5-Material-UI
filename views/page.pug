@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    include _head.pug
+  body(class="vh-100 d-flex flex-column")
+    div.row.h-100
+      aside.col-12.col-md-3.col-lg-2.bg-white.border-end.p-0
+        include modules/_sidebar.html
+      main.col
+        include modules/_header.html
+        div.content-wrapper.mt-4
+          != doc_route.content || '<!-- Missing HTML content -->'

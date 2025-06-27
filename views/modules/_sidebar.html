@@ -1,65 +1,65 @@
-<div class="eq-sidebar-nav">
-    <div class="eq-sidebar-wrapper">
-        <a class="toggleDocSidebar" href="#">Toggle</a>
-        <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse" data-bs-target="#menu1" aria-expanded="false" aria-controls="menu1">
-                Menu 1
-            </a>
-            <div id="menu1" class="collapse show">
-                <a href="/" class="list-group-item list-group-item-action bg-light pl-4">Home</a>
-                <a href="buttons.html" class="list-group-item list-group-item-action bg-light pl-4">Buttons</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 1-3</a>
-            </div>
-        
-            <a href="#" class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse" data-bs-target="#menu2" aria-expanded="false" aria-controls="menu2">
-                Menu 2
-            </a>
-            <div id="menu2" class="collapse show">
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 2-1</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 2-2</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 2-3</a>
-            </div>
-        
-            <a href="#" class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse" data-bs-target="#menu3" aria-expanded="false" aria-controls="menu3">
-                Menu 3
-            </a>
-            <div id="menu3" class="collapse show">
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-1</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-2</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-3</a>
-            </div>
-            <a href="#" class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse" data-bs-target="#menu3" aria-expanded="false" aria-controls="menu3">
-                Menu 4
-            </a>
-            <div id="menu3" class="collapse show">
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-1</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-2</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-3</a>
-            </div>
-            <a href="#" class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse" data-bs-target="#menu3" aria-expanded="false" aria-controls="menu3">
-                Menu 5
-            </a>
-            <div id="menu3" class="collapse show">
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-1</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-2</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-3</a>
-            </div>
-            <a href="#" class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse" data-bs-target="#menu3" aria-expanded="false" aria-controls="menu3">
-                Menu 6
-            </a>
-            <div id="menu3" class="collapse show">
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-1</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-2</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-3</a>
-            </div>
-            <a href="#" class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse" data-bs-target="#menu3" aria-expanded="false" aria-controls="menu3">
-                Menu 7
-            </a>
-            <div id="menu3" class="collapse show">
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-1</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-2</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light pl-4">Submenu 3-3</a>
-            </div>
-        </div>
+<div class="accordion d-flex flex-column h-100 p-3 bg-white border-end" id="sidebarAccordion" style="min-height: 100vh;">
+    <!-- Getting Started -->
+    <div class="accordion-item border-0">
+      <h6 class="text-muted text-uppercase fw-bold small mb-2">Getting Started</h6>
+      <ul class="nav nav-pills flex-column mb-3 ps-2">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Introduction</a>
+        </li>
+        <li class="nav-item">
+          <a href="install.html" class="nav-link">Installation</a>
+        </li>
+      </ul>
     </div>
-</div>
+  
+    <!-- Components -->
+    <div class="accordion-item border-0">
+      <h6 class="accordion-header text-uppercase fw-bold small" id="componentsHeading">
+        <button class="accordion-button collapsed py-2 px-0 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#componentsCollapse" aria-expanded="false" aria-controls="componentsCollapse">
+          Components
+        </button>
+      </h6>
+      <div id="componentsCollapse" class="accordion-collapse collapse" aria-labelledby="componentsHeading" data-bs-parent="#sidebarAccordion">
+        <div class="accordion-body px-2 py-2">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a href="buttons.html" class="nav-link">Buttons</a>
+            </li>
+            <li class="nav-item">
+              <a href="modals.html" class="nav-link">Modals</a>
+            </li>
+            <li class="nav-item">
+              <a href="alerts.html" class="nav-link">Alerts</a>
+            </li>
+            <li class="nav-item">
+              <a href="cards.html" class="nav-link">Cards</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Utilities -->
+    <div class="accordion-item border-0">
+      <h6 class="accordion-header text-uppercase fw-bold small" id="utilitiesHeading">
+        <button class="accordion-button collapsed py-2 px-0 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#utilitiesCollapse" aria-expanded="false" aria-controls="utilitiesCollapse">
+          Utilities
+        </button>
+      </h6>
+      <div id="utilitiesCollapse" class="accordion-collapse collapse" aria-labelledby="utilitiesHeading" data-bs-parent="#sidebarAccordion">
+        <div class="accordion-body px-2 py-2">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a href="colors.html" class="nav-link">Colors</a>
+            </li>
+            <li class="nav-item">
+              <a href="spacing.html" class="nav-link">Spacing</a>
+            </li>
+            <li class="nav-item">
+              <a href="typography.html" class="nav-link">Typography</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

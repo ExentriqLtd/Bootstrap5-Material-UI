@@ -1,9 +1,7 @@
 {
   "ignore": [
     "dist/*",
-    "react-component/build/*",
-    "node_modules/*",
-    "public/*"
+    "node_modules/*"
   ],
   "ext": "js,json,scss,pug,html"
 }

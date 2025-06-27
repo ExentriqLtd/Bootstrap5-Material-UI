@@ -1,34 +1,37 @@
 const express = require('express');
 const path = require('path');
+const livereload = require('livereload');
+const connectLivereload = require('connect-livereload');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-// Configura Pug come motore di visualizzazione
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+// LiveReload setup
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join(__dirname, 'public'));
+app.use(connectLivereload());
 
-// Servire file statici dalla cartella public e dist
+// Static file serving
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware per estrarre i parametri di query
-app.use((req, res, next) => {
-  res.locals.query = req.query;
-  next();
-});
-
-// Route principale per servire index.pug
+// Redirect root to index
 app.get('/', (req, res) => {
-  res.render('index', { title: 'My App', query: req.query });
+  res.redirect('/index.html');
 });
 
-// Serve index.html for any other route
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
+// Serve static HTML
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', req.path));
+});
 
-// Avvia il server
+// LiveReload browser refresh
+liveReloadServer.server.once('connection', () => {
+  setTimeout(() => {
+    liveReloadServer.refresh('/');
+  }, 100);
+});
+
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
