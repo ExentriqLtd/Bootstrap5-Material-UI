@@ -1,6 +1,8 @@
 // Sovrascrivi le variabili di Bootstrap prima di importare i componenti
-@import "./eq_variables";
+@import "./mixins";
 @import "./eq_colors";
+@import "./eq_variables";
+
 
 @import "../node_modules/bootstrap/scss/mixins/banner";
 
@@ -53,7 +55,10 @@
 // Utilities
 @import "../node_modules/bootstrap/scss/utilities/api";
 
+
+
 // Aggiungi i tuoi stili personalizzati
+@import "./global";
 @import "./eq_accordions";
 @import "./eq_navbar";
 @import "./eq_button";
