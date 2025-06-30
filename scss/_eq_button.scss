@@ -97,10 +97,9 @@
     min-width: 56px;
     height: 56px;
     padding: 0;
-    i {
-      line-height: 56px;
-      width: inherit;
-    }
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   // MINI FAB

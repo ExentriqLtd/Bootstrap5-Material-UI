@@ -84,9 +84,6 @@ p.lead {
 body {
     height: 100%;
 
-    visibility: hidden;
-	@include eq-ui-transition(visibility);
-
 	background-color: #fff;
 
 	/* Fix for webkit rendering */
