@@ -4,3 +4,5 @@ Bootstrap5-Material-UI.code-workspace
 package-lock.json
 public
 /public
+/public/
+dist
