@@ -1,3 +1,5 @@
+// FAB button
+
 .btn.eq-ui-btn-fab {
     border-radius: 50%;
     width: 56px;
@@ -7,4 +9,135 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+
+.btn.eq-ui-btn-fab.eq-ui-btn-mini-fab {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+}
+
+.btn.eq-ui-btn-flat {
+    box-shadow: none;
+}
+
+// FAB action positioning
+.eq-ui-btn-fab-action {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    padding-top: 16px;
+    margin-bottom: 0;
+    z-index: 60;
+
+    a {
+        z-index: 1;
+    }
+}
+
+// Base button styles
+.btn {
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    min-width: 64px;
+    padding: 0 12px;
+    height: 36px;
+    line-height: 36px;
+}
+
+.btn-default {
+    &:hover {
+        color: #424242;
+        background-color: rgba(158, 158, 158, 0.2);
+    }
+}
+
+// Primary button styles
+.btn-primary {
+    color: #fff;
+    border: none;
+    box-shadow:
+        0 2px 5px 0 rgba(0, 0, 0, 0.16),
+        0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+    &:hover {
+        box-shadow:
+            0 5px 11px 0 rgba(0, 0, 0, 0.18),
+            0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        color: #fff;
+    }
+
+    &:active {
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        color: #fff !important;
+    }
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        opacity: 1;
+        color: #9f9f9f;
+        background-color: #dfdfdf;
+
+        &:hover,
+        &:focus,
+        &.focus,
+        &:active,
+        &.active {
+            opacity: 1;
+            color: #9f9f9f;
+            background-color: #dfdfdf;
+            box-shadow: none;
+        }
+    }
+}
+
+
+.waves-effect {
+    .waves-ripple {
+        position: absolute;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.2);
+        background: radial-gradient(rgba(0, 0, 0, 0.2) 0,
+                rgba(0, 0, 0, 0.3) 40%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.5) 60%,
+                rgba(255, 255, 255, 0) 70%);
+        transition: all 0.5s ease-out;
+        transition-property: transform, opacity;
+        transform: scale(0) translate(0, 0);
+        pointer-events: none;
+    }
+
+    &.waves-light {
+        .waves-ripple {
+            background: rgba(255, 255, 255, 0.4);
+            background: radial-gradient(rgba(255, 255, 255, 0.2) 0,
+                    rgba(255, 255, 255, 0.3) 40%,
+                    rgba(255, 255, 255, 0.4) 50%,
+                    rgba(255, 255, 255, 0.5) 60%,
+                    rgba(255, 255, 255, 0) 70%);
+        }
+    }
+
+    &.waves-classic {
+        .waves-ripple {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        &.waves-light {
+            .waves-ripple {
+                background: rgba(255, 255, 255, 0.4);
+            }
+        }
+    }
 }
