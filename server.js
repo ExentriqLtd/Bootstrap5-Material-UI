@@ -21,8 +21,15 @@ app.get('/', (req, res) => {
 });
 
 // Serve static HTML
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', req.path));
+// Serve static HTML
+app.get('*', (req, res, next) => {
+  if (req.path.includes('.well-known')) {
+    return res.status(404).end(); // ignora silenziosamente
+  }
+  const filePath = path.join(__dirname, 'public', req.path);
+  res.sendFile(filePath, (err) => {
+    if (err) next(); // fallback se il file non esiste
+  });
 });
 
 // LiveReload browser refresh

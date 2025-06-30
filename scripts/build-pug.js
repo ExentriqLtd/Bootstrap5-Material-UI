@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const pug = require('pug');
-const chokidar = require('chokidar');
+const watch = require('node-watch');
+const { exec } = require('child_process');
 
 const modulesDir = path.resolve(__dirname, '../views/modules');
 const templatePath = path.resolve(__dirname, '../views/page.pug');
@@ -51,24 +52,42 @@ function buildAllPages() {
   files.forEach(compilePage);
 }
 
+function rebuildAll() {
+  console.log('🔄 Ricompilazione completa...');
+  exec('npm run build-css-autoprefixer', (err, stdout, stderr) => {
+    if (err) {
+      console.error(`❌ Errore compilazione CSS:\n${stderr}`);
+      return;
+    }
+    console.log(stdout);
+    buildAllPages();
+  });
+}
+
+console.log('[START] build-pug.js avviato con argomenti:', process.argv);
+console.log('[DEBUG] cwd:', path.resolve(__dirname, '..'));
+
 if (process.argv.includes('--watch')) {
-  buildAllPages();
+  // Prima compilazione
+  rebuildAll();
 
-  chokidar.watch(modulesDir, { ignoreInitial: true })
-    .on('add', (filePath) => {
-      const file = path.basename(filePath);
-      if (file.endsWith('.html')) compilePage(file);
-    })
-    .on('change', (filePath) => {
-      const file = path.basename(filePath);
-      if (file.endsWith('.html')) compilePage(file);
-    })
-    .on('unlink', (filePath) => {
-      const file = path.basename(filePath);
-      if (file.endsWith('.html')) removePage(file);
-    });
+  console.log('👀 Watch mode attivo con node-watch');
 
-  console.log('👀 Watch mode attivo. In ascolto su views/modules/');
+  // Watch HTML in views/modules
+  watch(modulesDir, { recursive: true, filter: /\.html$/ }, (evt, name) => {
+    console.log(`[WATCH] Evento ${evt} su ${name}`);
+    if (evt === 'remove') {
+      removePage(name);
+    } else {
+      rebuildAll();
+    }
+  });
+
+  // Watch PUG in views
+  watch(path.resolve(__dirname, '../views'), { recursive: true, filter: /\.pug$/ }, (evt, name) => {
+    console.log(`[WATCH] Evento ${evt} su ${name}`);
+    rebuildAll();
+  });
 } else {
   buildAllPages();
 }

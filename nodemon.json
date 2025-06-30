@@ -1,6 +1,7 @@
 {
   "ignore": [
     "dist/*",
+    "public/*",
     "node_modules/*"
   ],
   "ext": "js,json,scss,pug,html"
