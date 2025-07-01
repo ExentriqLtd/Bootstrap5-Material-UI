@@ -1,0 +1,1 @@
+window.EqUI = window.EqUI || {};

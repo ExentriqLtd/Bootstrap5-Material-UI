@@ -1,6 +1,6 @@
-// js/script1.js
-import $ from 'jquery';
+import { $ } from ".";
 
-$(document).ready(function () {
-  console.log("readey!");
-});
+  $(document).ready(function () {
+    console.log("readey!");
+
+  });
