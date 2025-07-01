@@ -1,70 +1,70 @@
 import { $ } from ".";
-var EqUI = window.EqUI 
+var EqUI = window.EqUI;
 
-
+(function () {
     EqUI.buttons = {};
 
     // Init
-    EqUI.buttons.init = function(_this) {
+    EqUI.buttons.init = function (_this) {
 
         // Global vars
         EqUI.buttons.element = $('.btn');
         EqUI.buttons.fab_action_id = 'eq-ui-btn-fab-action';
-        EqUI.buttons.fab_action_element = _this ? _this : $('.'+EqUI.buttons.fab_action_id);
+        EqUI.buttons.fab_action_element = _this ? _this : $('.' + EqUI.buttons.fab_action_id);
 
         // Tooltip FAB
         $("a.eq-ui-btn-fab-with-tooltip").hover(
-          function() {
-            $(this).siblings().addClass( "view-tooltip" );
-          }, function() {
-            $(this).siblings().removeClass( "view-tooltip" );
-          }
+            function () {
+                $(this).siblings().addClass("view-tooltip");
+            }, function () {
+                $(this).siblings().removeClass("view-tooltip");
+            }
         );
 
         // Events for FAB Action Button
-        if(EqUI.site.isTouch){
-            EqUI.buttons.fab_action_element.on('click', function(e) {
+        if (EqUI.site.isTouch) {
+            EqUI.buttons.fab_action_element.on('click', function (e) {
                 EqUI.buttons.toggleFAB($(this));
             });
 
-            $('html').on('touchstart', function(e) {
+            $('html').on('touchstart', function (e) {
                 var element = $(e.target);
-                if (!element.hasClass(EqUI.buttons.fab_action_id) && element.parents('.'+EqUI.buttons.fab_action_id).length !== 1) {
+                if (!element.hasClass(EqUI.buttons.fab_action_id) && element.parents('.' + EqUI.buttons.fab_action_id).length !== 1) {
                     EqUI.buttons.fab_action_element.closeFAB();
                 }
             });
         } else {
-            EqUI.buttons.fab_action_element.on('mouseenter', function(e) {
+            EqUI.buttons.fab_action_element.on('mouseenter', function (e) {
                 EqUI.buttons.toggleFAB($(this));
             });
 
-            EqUI.buttons.fab_action_element.on('mouseleave', function(e) {
+            EqUI.buttons.fab_action_element.on('mouseleave', function (e) {
                 EqUI.buttons.toggleFAB($(this));
             });
         }
 
         // Extend fab functions
         $.fn.extend({
-            toggleFAB: function() {
+            toggleFAB: function () {
                 EqUI.buttons.toggleFAB($(this));
             },
-            openFAB: function() {
+            openFAB: function () {
                 EqUI.buttons.toggleFAB($(this), false);
             },
-            closeFAB: function() {
+            closeFAB: function () {
                 EqUI.buttons.toggleFAB($(this), true);
             }
         });
     };
 
     // Update
-    EqUI.buttons.update = function() {
-        
+    EqUI.buttons.update = function () {
+
     };
 
     // Toggle FAB
-    EqUI.buttons.toggleFAB = function(element, isClose) {
-        if(!element.hasClass(EqUI.buttons.fab_action_id)){
+    EqUI.buttons.toggleFAB = function (element, isClose) {
+        if (!element.hasClass(EqUI.buttons.fab_action_id)) {
             return;
         }
 
@@ -80,32 +80,32 @@ var EqUI = window.EqUI
 
         // End animation event
         function animationEnd() {
-            if(!element.hasClass('active')){
-                $('.'+EqUI.buttons.fab_action_id+' ul').css('height', '0');
+            if (!element.hasClass('active')) {
+                $('.' + EqUI.buttons.fab_action_id + ' ul').css('height', '0');
             }
         }
 
         // Add animation class
-        if(!element.hasClass('active') && (isClose === false || isClose === 'none')){
+        if (!element.hasClass('active') && (isClose === false || isClose === 'none')) {
             // SHOW
-            $('.'+EqUI.buttons.fab_action_id+' ul').css('height', 'auto');
+            $('.' + EqUI.buttons.fab_action_id + ' ul').css('height', 'auto');
             element.addClass("active");
 
             // Set start position
             element.find('ul li').velocity(
-                { opacity: "0", scaleY: ".4", scaleX: ".4", translateY: "40px"},
+                { opacity: "0", scaleY: ".4", scaleX: ".4", translateY: "40px" },
                 { duration: 0 }
             );
 
             // Set animations show
             element.find('ul li').reverse().each(function (index) {
                 $(this).velocity(
-                    { opacity: "1", scaleX: "1", scaleY: "1", translateY: "0"},
+                    { opacity: "1", scaleX: "1", scaleY: "1", translateY: "0" },
                     { duration: animationDuration, delay: time }
                 );
                 time += animationDelay;
             });
-        } else if((isClose === true || isClose === 'none')) {
+        } else if ((isClose === true || isClose === 'none')) {
             // HIDE
             element.removeClass("active");
 
@@ -123,8 +123,8 @@ var EqUI = window.EqUI
                 }
 
                 $(this).velocity(
-                    { opacity: "0", scaleX: ".4", scaleY: ".4", translateY: "40px"},
-                    { duration: animationDuration, delay: time, complete: onAnimationEnd}
+                    { opacity: "0", scaleX: ".4", scaleY: ".4", translateY: "40px" },
+                    { duration: animationDuration, delay: time, complete: onAnimationEnd }
                 );
                 time += animationDelay;
             });
@@ -133,22 +133,22 @@ var EqUI = window.EqUI
 
     // READY & OBSERVE
     if (EqUI.mutationObserver === null) {
-      // ...
+        // ...
     } else {
-      // .EqUIObserve(selector, onAdded, onRemoved)
-      $(document).EqUIObserve('.eq-ui-btn-fab-action', function () {
-        EqUI.buttons.init($(this));
-      })
+        // .EqUIObserve(selector, onAdded, onRemoved)
+        $(document).EqUIObserve('.eq-ui-btn-fab-action', function () {
+            EqUI.buttons.init($(this));
+        })
     }
 
-    $(document).ready(function() {
-      if (EqUI.mutationObserver === null) {
-        // Init
-        EqUI.buttons.init();
-      }
+    $(document).ready(function () {
+        if (EqUI.mutationObserver === null) {
+            // Init
+            EqUI.buttons.init();
+        }
 
-      // Update
-      EqUI.buttons.update();
+        // Update
+        EqUI.buttons.update();
     });
 
-
+})();
