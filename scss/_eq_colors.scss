@@ -510,7 +510,7 @@ $eq_colors: (
 // usage: eq_color("name_of_color", "type_of_color")
 // to avoid to repeating map-get($colors, ...)
 
-@function eq_eq_color($color, $type) {
+@function eq_color($color, $type) {
   
     @if map-has-key($eq_colors, $color) {
         $curr_color: map-get($eq_colors, $color);

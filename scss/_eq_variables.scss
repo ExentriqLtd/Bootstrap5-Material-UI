@@ -16,18 +16,18 @@ $eq-ui-gutter-width: 32px !default;
 //$eq-ui-secondary-color: #FF4081 !default;
 
 /*** Colors ***/
-$eq-ui-primary-color: eq_eq_color("eq-deep-blue", "500") !default;
+$eq-ui-primary-color: eq_color("eq-deep-blue", "500") !default;
 $eq-ui-primary-color-light: lighten($eq-ui-primary-color, 15%) !default;
 $eq-ui-primary-color-dark: darken($eq-ui-primary-color, 15%) !default;
 
-$eq-ui-secondary-color: eq_eq_color("eq-green-turquoise", "500") !default;
+$eq-ui-secondary-color: eq_color("eq-green-turquoise", "500") !default;
 
-$eq-ui-success-color: eq_eq_color("green", "500") !default;
-$eq-ui-info-color: eq_eq_color("light-blue", "200") !default;
-$eq-ui-warning-color: eq_eq_color("amber", "500") !default;
-$eq-ui-error-color: eq_eq_color("red", "500") !default;
+$eq-ui-success-color: eq_color("green", "500") !default;
+$eq-ui-info-color: eq_color("light-blue", "200") !default;
+$eq-ui-warning-color: eq_color("amber", "500") !default;
+$eq-ui-error-color: eq_color("red", "500") !default;
 
-$eq-ui-body-bg:	eq_eq_color("eq-medium-grey", "50") !default;
+$eq-ui-body-bg:	eq_color("eq-medium-grey", "50") !default;
 $eq-ui-text-color:	rgba(0, 0, 0, 0.87) !default;
 
 $eq-ui-link-color: $eq-ui-primary-color !default;
@@ -77,15 +77,15 @@ $eq-ui-button-large-line-height: $eq-ui-button-line-height + 12 !default;
 
 /*** Side Nav ***/
 $eq-ui-side-nav-width: 240px !default;
-$eq-ui-side-nav-font-color: eq_eq_color("eq-medium-grey", "500") !default;
-$eq-ui-side-nav-bg-color: eq_eq_color("shades", "white") !default;
-$eq-ui-side-nav-line-color: eq_eq_color("eq-medium-grey", "100") !default;
-$eq-ui-side-nav-link-bg-color: eq_eq_color("eq-medium-grey", "50") !default;
+$eq-ui-side-nav-font-color: eq_color("eq-medium-grey", "500") !default;
+$eq-ui-side-nav-bg-color: eq_color("shades", "white") !default;
+$eq-ui-side-nav-line-color: eq_color("eq-medium-grey", "100") !default;
+$eq-ui-side-nav-link-bg-color: eq_color("eq-medium-grey", "50") !default;
 $eq-ui-side-nav-menu-padding-left: 16px !default;
 
 /*** Tool bar ***/
 $eq-ui-tool-bar-height: 52px !default;
-$eq-ui-tool-bar-font-color: eq_eq_color("eq-medium-grey", "500") !default;
+$eq-ui-tool-bar-font-color: eq_color("eq-medium-grey", "500") !default;
 $eq-ui-tool-bar-bg-color: #ffffff !default;
 
 /*** System bar ***/
@@ -103,10 +103,10 @@ $table-striped-color: #f2f2f2 !default;
 /*** List ***/
 $eq-ui-list-bg-color: #fff !default;
 $eq-ui-list-active-color: $eq-ui-secondary-color !default;
-$eq-ui-list-hover-bg-color: eq_eq_color("eq-medium-grey", "50") !default;
+$eq-ui-list-hover-bg-color: eq_color("eq-medium-grey", "50") !default;
 $eq-ui-list-line-color: $eq-ui-side-nav-line-color !default;
 $eq-ui-list-primary-line-text-color: $eq-ui-text-color !default;
-$eq-ui-list-secondary-line-text-color: eq_eq_color("eq-medium-grey", "500") !default;
+$eq-ui-list-secondary-line-text-color: eq_color("eq-medium-grey", "500") !default;
 
 /*** Collapsible ***/
 $collapsible-height: 3rem !default;
@@ -133,7 +133,7 @@ $dropdown-color: $eq-ui-text-color !default;
 $dropdown-item-height: 48px;
 
 /*** Forms ***/
-$input-border-color: eq_eq_color("grey", "500") !default;
+$input-border-color: eq_color("grey", "500") !default;
 $input-bg-color: #fff !default;
 $input-error-color: $eq-ui-error-color !default;
 $input-success-color: $eq-ui-success-color !default;
@@ -349,9 +349,9 @@ $border-radius-small:       $eq-ui-border-radius-base !default;
 -------------------------------------------------------------------------------------------------- **/
 $btn-font-weight:			normal !default;
 
-$btn-default-color:			eq_eq_color("grey", "800") !default;
-$btn-default-bg:			eq_eq_color("grey", "100") !default;
-$btn-default-border:		eq_eq_color("grey", "100") !default;
+$btn-default-color:			eq_color("grey", "800") !default;
+$btn-default-bg:			eq_color("grey", "100") !default;
+$btn-default-border:		eq_color("grey", "100") !default;
 
 $btn-primary-color:			#fff !default;
 $btn-primary-bg:			$eq-ui-button-color !default;

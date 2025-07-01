@@ -8,3 +8,6 @@ $.fn.velocity = Velocity;
 
 import './observe.js';
 import './buttons.js';
+import './collapsible.js';
+import './site.js';
+import './side-nav.js';

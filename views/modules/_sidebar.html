@@ -1,65 +1,385 @@
-<div class="accordion d-flex flex-column h-100 p-3 bg-white border-end" id="sidebarAccordion" style="min-height: 100vh;">
-    <!-- Getting Started -->
-    <div class="accordion-item border-0">
-      <h6 class="text-muted text-uppercase fw-bold small mb-2">Getting Started</h6>
-      <ul class="nav nav-pills flex-column mb-3 ps-2">
-        <li class="nav-item">
-          <a href="index.html" class="nav-link">Introduction</a>
-        </li>
-        <li class="nav-item">
-          <a href="install.html" class="nav-link">Installation</a>
-        </li>
-      </ul>
-    </div>
-  
-    <!-- Components -->
-    <div class="accordion-item border-0">
-      <h6 class="accordion-header text-uppercase fw-bold small" id="componentsHeading">
-        <button class="accordion-button collapsed py-2 px-0 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#componentsCollapse" aria-expanded="false" aria-controls="componentsCollapse">
-          Components
-        </button>
-      </h6>
-      <div id="componentsCollapse" class="accordion-collapse collapse" aria-labelledby="componentsHeading" data-bs-parent="#sidebarAccordion">
-        <div class="accordion-body px-2 py-2">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a href="buttons.html" class="nav-link">Buttons</a>
-            </li>
-            <li class="nav-item">
-              <a href="modals.html" class="nav-link">Modals</a>
-            </li>
-            <li class="nav-item">
-              <a href="alerts.html" class="nav-link">Alerts</a>
-            </li>
-            <li class="nav-item">
-              <a href="cards.html" class="nav-link">Cards</a>
-            </li>
-          </ul>
+
+<!-- Side nav -->
+<div class="eq-ui-side-nav">
+
+    <div class="eq-ui-side-nav-wrapper">
+
+        <div class="brand">
+            <div class="eq-ui-side-nav-toggle"><i class="material-icons mdi mdi-menu icon icon-left icon-24">menu</i></div>
+            <img src="https://bootstrap-material-ui.exentriq.com/assets/img/doc/exentriq_logo.svg" alt="Exentriq logo">
         </div>
-      </div>
-    </div>
-  
-    <!-- Utilities -->
-    <div class="accordion-item border-0">
-      <h6 class="accordion-header text-uppercase fw-bold small" id="utilitiesHeading">
-        <button class="accordion-button collapsed py-2 px-0 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#utilitiesCollapse" aria-expanded="false" aria-controls="utilitiesCollapse">
-          Utilities
-        </button>
-      </h6>
-      <div id="utilitiesCollapse" class="accordion-collapse collapse" aria-labelledby="utilitiesHeading" data-bs-parent="#sidebarAccordion">
-        <div class="accordion-body px-2 py-2">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a href="colors.html" class="nav-link">Colors</a>
-            </li>
-            <li class="nav-item">
-              <a href="spacing.html" class="nav-link">Spacing</a>
-            </li>
-            <li class="nav-item">
-              <a href="typography.html" class="nav-link">Typography</a>
-            </li>
-          </ul>
+
+        <div class="eq-ui-side-nav-content-wrapper">
+            <nav>
+
+                <!-- Search -->
+                <div id="doc-eq-ui-side-nav-search-autocomplete" class="eq-ui-search">
+                    <input type="text" placeholder="Search">
+                    <i class="eq-ui-search-icon-left mdi mdi-magnify icon icon-left"></i>
+                    <i class="eq-ui-search-clear mdi mdi-close icon icon-right icon-18"></i>
+                </div>
+
+                <!-- Collapsible Menu -->
+                <ul class="eq-ui-collapsible" data-collapsible="accordion">
+
+                    <li>
+                        <div class="eq-ui-collapsible-header eq-ui-waves">
+                            <a id="collapsible-nav-index" href="./">
+                                <i class="mdi mdi-home icon icon-left icon-24"></i>
+                                Home
+                            </a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="eq-ui-collapsible-header eq-ui-waves">
+                            <a id="collapsible-nav-getting-started" target="_blank" href="https://github.com/ExentriqLtd/Bootstrap-Material-UI/blob/master/README.md">
+                                <i class="mdi mdi-settings icon icon-left icon-24"></i>
+                                <i class="mdi mdi-open-in-new icon icon-right icon-18"></i>
+                                Getting Started
+                            </a>
+                        </div>
+                    </li>
+
+                  <li>
+                    <div class="eq-ui-collapsible-header eq-ui-waves">
+                      <a id="collapsible-nav-css">
+                        <i class="material-icons icon icon-left icon-24">aspect_ratio</i>
+                        Layout
+                      </a>
+                    </div>
+                    <div class="eq-ui-collapsible-body">
+                      <a id="collapsible-nav-css-grid" href="./grid.html">Responsive Grid</a>
+                      <a id="collapsible-nav-css-grid" href="./spacing-methods.html">Spacing Methods</a>
+                      <a id="collapsible-nav-css-typography" href="./typography.html">Typography</a>
+                      <a id="collapsible-nav-css-color" href="./color.html">Colors</a>
+                      <a id="collapsible-nav-css-icons" href="./icons.html">Icons</a>
+                      <a id="collapsible-nav-css-helpers" href="./helpers.html">Helpers</a>
+                    </div>
+                  </li>
+
+
+                    <li>
+                        <div class="eq-ui-collapsible-header eq-ui-waves">
+                            <a id="collapsible-nav-components">
+                                <i class="mdi mdi-puzzle icon icon-left icon-24"></i>
+                                Components
+                            </a>
+                        </div>
+                        <div class="eq-ui-collapsible-body">
+                            <a id="collapsible-nav-components-buttons" href="./buttons.html">Buttons</a>
+                            <a id="collapsible-nav-components-cards" href="./cards.html">Cards</a>
+                            <a id="collapsible-nav-components-list" href="./list.html">List</a>
+                            <a id="collapsible-nav-components-table" href="./table.html">Table</a>
+                            <a id="collapsible-nav-components-sticky-table" href="./sticky-table.html">Sticky Table</a>
+                            <a id="collapsible-nav-components-forms" href="./forms.html">Forms</a>
+                            <a id="collapsible-nav-components-form-validation" href="./form-validation.html">Form Validation</a>
+                            <a id="collapsible-nav-components-badges" href="./badges.html">Badges</a>
+                            <a id="collapsible-nav-components-loader" href="./loader.html">Loader</a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="eq-ui-collapsible-header eq-ui-waves">
+                            <a id="collapsible-nav-java-script">
+                                <i class="mdi mdi-layers icon icon-left icon-24"></i>
+                                JavaScript
+                            </a>
+                        </div>
+                        <div class="eq-ui-collapsible-body">
+                            <a id="collapsible-nav-java-script-collapsible" href="./collapsible.html">Collapsible</a>
+                            <a id="collapsible-nav-java-script-dropdown" href="./dropdown.html">Dropdown</a>
+                            <a id="collapsible-nav-java-script-modals" href="./modals.html">Modals</a>
+                            <a id="collapsible-nav-java-script-tabs" href="./tabs.html">Tabs</a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="eq-ui-collapsible-header eq-ui-waves">
+                            <a id="collapsible-nav-download" class="download-in-git-hub-href" href="https://github.com/ExentriqLtd/Bootstrap-Material-UI/archive/master.zip">
+                                <i class="mdi mdi-download icon icon-left icon-24"></i>
+                                Download
+                            </a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="eq-ui-collapsible-header eq-ui-waves">
+                            <a id="collapsible-nav-showcase" href="./showcase.html">
+                                <i class="mdi mdi-heart icon icon-left icon-24"></i>
+                                Showcase
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="eq-ui-collapsible-header eq-ui-waves">
+                            <a id="collapsible-nav-exentriq">
+                                <i class="mdi mdi-layers icon icon-left icon-24"></i> 
+                                2023 Elements
+                            </a>
+                        </div>
+                        <div class="eq-ui-collapsible-body">
+                            <a id="collapsible-nav-exentriq-tablenew" href="./tablev2.html">Table</a>
+                            <a id="collapsible-nav-exentriq-cardnew" href="./cardsv2.html">Card</a>
+                            <a id="collapsible-nav-exentriq-buttonsnew" href="./buttonsv2.html">Buttons</a> 
+                        </div>
+                    </li>
+
+                </ul>
+
+                <!-- Collapsible Group Menu -->
+                <ul style="display:none;" class="eq-ui-collapsible eq-ui-collapsible-group" data-collapsible="expandable">
+
+                    <!-- Group 1 -->
+                    <li>
+                        <div class="eq-ui-collapsible-header eq-ui-waves active">
+                            <a id="collapsible-nav-group-1">
+                                <i class="mdi mdi-image-filter-none icon icon-left icon-24"></i>
+                                <i class="mdi mdi-plus icon icon-right icon-24 eq-ui-collapsible-view-close"></i>
+                                <i class="mdi mdi-minus icon icon-right icon-24 eq-ui-collapsible-view-open"></i>
+                                Group 1
+                            </a>
+                        </div>
+                        <div class="eq-ui-collapsible-body">
+
+                            <!-- 1º level menu -->
+                            <ul class="eq-ui-collapsible" data-collapsible="accordion">
+
+                                <!-- 1º level menu 1 -->
+                                <li>
+                                    <div class="eq-ui-collapsible-header eq-ui-waves">
+                                        <a id="collapsible-nav-group-1-menu-1">
+                                            <i class="mdi mdi-folder icon icon-left icon-24"></i>
+                                            First level
+                                        </a>
+                                    </div>
+                                    <div class="eq-ui-collapsible-body">
+
+                                        <!-- 2º level menu 1 -->
+                                        <ul class="eq-ui-collapsible" data-collapsible="accordion">
+
+                                            <!-- 2º level menu 1 sub 1 -->
+                                            <li>
+                                                <div class="eq-ui-collapsible-header eq-ui-waves">
+                                                    <a id="collapsible-nav-group-1-menu-1-sub1">
+                                                        <i class="mdi mdi-folder icon icon-left icon-24"></i>
+                                                        Second level
+                                                    </a>
+                                                </div>
+                                                <div class="eq-ui-collapsible-body">
+
+                                                    <!-- 3º level menu 1 sub 1 -->
+                                                    <a id="collapsible-nav-group-1-menu-1-sub1-sample1" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-1-menu-1-sub1-sample2" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-1-menu-1-sub1-sample3" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-1-menu-1-sub1-sample4" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+
+                                                </div>
+                                            </li><!-- 2º level menu 1 sub 1 -->
+
+                                        </ul><!-- 2º level menu 1 -->
+
+                                    </div>
+                                </li><!-- 1º level menu 1 -->
+
+                                <!-- 1º level menu 2 -->
+                                <li>
+                                    <div class="eq-ui-collapsible-header eq-ui-waves">
+                                        <a id="collapsible-nav-group-1-menu-2">
+                                            <i class="mdi mdi-folder icon icon-left icon-24"></i>
+                                            First level
+                                        </a>
+                                    </div>
+                                    <div class="eq-ui-collapsible-body">
+
+                                        <!-- 2º level menu 2 -->
+                                        <ul class="eq-ui-collapsible" data-collapsible="accordion">
+
+                                            <!-- 2º level menu 2 sub 1 -->
+                                            <li>
+                                                <div class="eq-ui-collapsible-header eq-ui-waves">
+                                                    <a id="collapsible-nav-group-1-menu-2-sub1">
+                                                        <i class="mdi mdi-folder icon icon-left icon-24"></i>
+                                                        Second level
+                                                    </a>
+                                                </div>
+                                                <div class="eq-ui-collapsible-body">
+
+                                                    <!-- 3º level menu 2 sub 1 -->
+                                                    <a id="collapsible-nav-group-1-menu-2-sub1-sample1" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-1-menu-2-sub1-sample2" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-1-menu-2-sub1-sample3" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-1-menu-2-sub1-sample4" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+
+                                                </div>
+                                            </li><!-- 2º level menu 2 sub 1 -->
+
+                                        </ul><!-- 2º level menu 2 -->
+
+                                    </div>
+                                </li><!-- 1º level menu 2 -->
+
+                                <!-- 1º level menu 3 -->
+                                <li>
+                                    <div class="eq-ui-collapsible-header eq-ui-waves">
+                                        <a id="collapsible-nav-group-1-menu-3">
+                                            <i class="mdi mdi-file icon icon-left icon-24"></i>
+                                            First level
+                                        </a>
+                                    </div>
+                                </li><!-- 1º level menu 3 -->
+
+                            </ul><!-- 1º level menu -->
+
+                        </div>
+                    </li><!-- Group 1 -->
+
+                    <!-- Group 2 -->
+                    <li>
+                        <div class="eq-ui-collapsible-header eq-ui-waves active">
+                            <a id="collapsible-nav-group-2">
+                                <i class="mdi mdi-image-filter-none icon icon-left icon-24"></i>
+                                <i class="mdi mdi-plus icon icon-right icon-24 eq-ui-collapsible-view-close"></i>
+                                <i class="mdi mdi-minus icon icon-right icon-24 eq-ui-collapsible-view-open"></i>
+                                Group 2
+                            </a>
+                        </div>
+                        <div class="eq-ui-collapsible-body">
+
+                            <!-- 1º level menu -->
+                            <ul class="eq-ui-collapsible" data-collapsible="accordion">
+
+                                <!-- 1º level menu 1 -->
+                                <li>
+                                    <div class="eq-ui-collapsible-header eq-ui-waves">
+                                        <a id="collapsible-nav-group-2-menu-1">
+                                            <i class="mdi mdi-folder icon icon-left icon-24"></i>
+                                            First level
+                                        </a>
+                                    </div>
+                                    <div class="eq-ui-collapsible-body">
+
+                                        <!-- 2º level menu 1 -->
+                                        <ul class="eq-ui-collapsible" data-collapsible="accordion">
+
+                                            <!-- 2º level menu 1 sub 1 -->
+                                            <li>
+                                                <div class="eq-ui-collapsible-header eq-ui-waves">
+                                                    <a id="collapsible-nav-group-2-menu-1-sub1">
+                                                        <i class="mdi mdi-folder icon icon-left icon-24"></i>
+                                                        Second level
+                                                    </a>
+                                                </div>
+                                                <div class="eq-ui-collapsible-body">
+
+                                                    <!-- 3º level menu 1 sub 1 -->
+                                                    <a id="collapsible-nav-group-2-menu-1-sub1-sample1" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-2-menu-1-sub1-sample2" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-2-menu-1-sub1-sample3" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-2-menu-1-sub1-sample4" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+
+                                                </div>
+                                            </li><!-- 2º level menu 1 sub 1 -->
+
+                                        </ul><!-- 2º level menu 1 -->
+
+                                    </div>
+                                </li><!-- 1º level menu 1 -->
+
+                                <!-- 1º level menu 2 -->
+                                <li>
+                                    <div class="eq-ui-collapsible-header eq-ui-waves">
+                                        <a id="collapsible-nav-group-2-menu-2">
+                                            <i class="mdi mdi-folder icon icon-left icon-24"></i>
+                                            First level
+                                        </a>
+                                    </div>
+                                    <div class="eq-ui-collapsible-body">
+
+                                        <!-- 2º level menu 2 -->
+                                        <ul class="eq-ui-collapsible" data-collapsible="accordion">
+
+                                            <!-- 2º level menu 2 sub 1 -->
+                                            <li>
+                                                <div class="eq-ui-collapsible-header eq-ui-waves">
+                                                    <a id="collapsible-nav-group-2-menu-2-sub1">
+                                                        <i class="mdi mdi-folder icon icon-left icon-24"></i>
+                                                        Second level
+                                                    </a>
+                                                </div>
+                                                <div class="eq-ui-collapsible-body">
+
+                                                    <!-- 3º level menu 2 sub 1 -->
+                                                    <a id="collapsible-nav-group-2-menu-2-sub1-sample1" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-2-menu-2-sub1-sample2" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-2-menu-2-sub1-sample3" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+                                                    <a id="collapsible-nav-group-2-menu-2-sub1-sample4" href="./">
+                                                        <i class="mdi mdi-file icon icon-left icon-24"></i>Third level
+                                                    </a>
+
+                                                </div>
+                                            </li><!-- 2º level menu 2 sub 1 -->
+
+                                        </ul><!-- 2º level menu 2 -->
+
+                                    </div>
+                                </li><!-- 1º level menu 2 -->
+
+                                <!-- 1º level menu 3 -->
+                                <li>
+                                    <div class="eq-ui-collapsible-header eq-ui-waves">
+                                        <a id="collapsible-nav-group-2-menu-3">
+                                            <i class="mdi mdi-file icon icon-left icon-24"></i>
+                                            First level
+                                        </a>
+                                    </div>
+                                </li><!-- 1º level menu 3 -->
+
+                            </ul><!-- 1º level menu -->
+
+                        </div>
+                    </li><!-- Group 2 -->
+
+                </ul><!-- Group Menu -->
+
+            </nav>
         </div>
-      </div>
+
+        <div class="footer">
+            <a target="_blank" href="https://github.com/ExentriqLtd/Bootstrap-Material-UI"><i class="mdi mdi-github-circle icon icon-left icon-18"></i></a><p class="copyright">&copy; Exentriq</p>
+            <a target="_blank" href="http://opensource.org/licenses/MIT">Free & Open Source (MIT)</a>
+        </div>
+
     </div>
-  </div>
+
+</div>

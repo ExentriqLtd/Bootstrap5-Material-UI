@@ -1,39 +1,367 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top border-bottom shadow-sm">
-	<div class="container-fluid">
-		<a class="navbar-brand toggleDocSidebar" href="#">Navbar</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#">Home</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Link</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Dropdown
-					</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">Action</a></li>
-						<li><a class="dropdown-item" href="#">Another action</a></li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-						<li><a class="dropdown-item" href="#">Something else here</a></li>
-					</ul>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link disabled">Disabled</a>
-				</li>
-			</ul>
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form>
-		</div>
-	</div>
-</nav>
+<!--[if lt IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Primary Layout -->
+<header class="eq-ui-layout-header-primary-off" style="display: none;">
+
+    <div class="eq-ui-tool-bar-system eq-ui-tool-bar-system-inverted">
+        <div class="container-fluid">
+
+            <!-- Title -->
+            <!--div class="header-title">
+                <span class="section-title">System Bar</span>
+            </div-->
+
+            <!-- Left Nav Menu -->
+            <ul class="left eq-ui-nav-menu">
+                <li class="eq-ui-nav-menu-item-icon">
+                    <a
+                        class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves eq-ui-top-search-show">
+                        <i class="material-icons eq-ui-icon">search</i>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Right Nav Menu -->
+            <ul class="right eq-ui-nav-menu">
+                <li class="eq-ui-nav-menu-item-icon">
+                    <a href="./" class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves">
+                        <i class="material-icons eq-ui-icon">home</i>
+                    </a>
+                </li>
+                <li class="eq-ui-nav-menu-item-icon">
+                    <a target="_blank" href="https://github.com/ExentriqLtd/Bootstrap-Material-UI/blob/master/README.md"
+                        class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves">
+                        <i class="material-icons eq-ui-icon">settings</i>
+                    </a>
+                </li>
+                <li class="eq-ui-nav-menu-item-icon">
+                    <a href="https://github.com/ExentriqLtd/Bootstrap-Material-UI/archive/master.zip"
+                        class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves download-in-git-hub-href">
+                        <i class="material-icons eq-ui-icon">download</i>
+                    </a>
+                </li>
+                <li class="eq-ui-nav-menu-item-icon">
+                    <a href="./showcase.html"
+                        class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves">
+                        <i class="material-icons eq-ui-icon">heart</i>
+                    </a>
+                </li>
+                <li>
+                    <!-- Dropdown Structure -->
+                    <a style="text-decoration: none;" data-target="doc-dropdown-user" data-hover="true"
+                        data-below-origin="true" href="#!" class="dropdown-trigger">user</a>
+                    <!-- Dropdown Structure -->
+                    <ul id="doc-dropdown-user" class="eq-ui-dropdown eq-ui-dropdown-right-top">
+                        <li><a href="#!">Profile</a></li>
+                        <li><a href="#!">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Top Search -->
+            <div class="eq-ui-top-search" style="display: none;">
+                <i class="eq-ui-top-search-close mdi mdi-arrow-left icon icon-left"></i>
+                <!-- Search -->
+                <div class="eq-ui-search">
+                    <input type="text" placeholder="Search">
+                    <i class="eq-ui-search-icon-left material-icons eq-ui-icon eq-ui-icon-left">search</i>
+                    <i class="eq-ui-search-clear material-icons eq-ui-icon eq-ui-icon-right">close</i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="eq-ui-tool-bar-primary" style="display: none;">
+        <div class="container-fluid">
+
+            <!-- Title -->
+            <div class="header-title">
+                <span class="section-title">Tool Bar</span>
+            </div>
+
+        </div>
+    </div>
+
+</header>
+
+<!-- Secondary Layout -->
+<header class="eq-ui-layout-header">
+
+    <div id="main-eq-ui-app-bar" class="eq-ui-app-bar">
+        <div class="container-fluid">
+
+            <!-- Toggle -->
+            <div class="eq-ui-side-nav-toggle"><i class="material-icons mdi mdi-menu icon icon-left icon-24">menu</i>
+            </div>
+
+            <!-- Title -->
+            <!--div class="header-title">
+                <span class="section-title">Exentriq</span>
+                <i class="mdi mdi-chevron-right icon icon-left icon-24"></i>
+                <span class="chapter-title">App Bar</span>
+            </div-->
+
+            <!-- Breadcrumb -->
+            <div class="eq-ui-breadcrumb" data-only-one="true">
+                <a href="./" class="eq-ui-breadcrumb-item"><span>Home</span></a>
+                <a href="./" class="eq-ui-breadcrumb-item"><span>Exentriq</span></a>
+                <a href="./" class="eq-ui-breadcrumb-item"><span>App Bar</span></a>
+            </div>
+
+            <!-- Nav Menu -->
+            <ul class="right eq-ui-nav-menu">
+                <li class="eq-ui-nav-menu-item-icon eq-ui-hidden-xs">
+                    <a
+                        class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves eq-ui-top-search-show">
+                        <i class="material-icons eq-ui-icon">search</i>
+                    </a>
+                </li>
+                <li class="eq-ui-nav-menu-item-icon eq-ui-hidden-xs">
+                    <a data-target="eq-ui-modal-header-doc-1"
+                        class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves eq-ui-modal-trigger">
+                        <i class="material-icons eq-ui-icon">apps</i>
+                    </a>
+                </li>
+                <li class="eq-ui-nav-menu-item-icon">
+                    <a data-target="eq-ui-modal-header-doc-1"
+                        class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves eq-ui-modal-trigger">
+                        <i class="material-icons eq-ui-icon">notifications</i>
+
+                    </a>
+                    <span class="eq-ui-badge eq-ui-badge-overlap" data-badge="12"></span>
+                </li>
+                <li class="eq-ui-nav-menu-item-icon">
+                    <a data-target="eq-ui-modal-header-doc-1"
+                        class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves eq-ui-modal-trigger">
+                        <i class="material-icons eq-ui-icon">comment</i>
+                    </a>
+                </li>
+                <li class="eq-ui-nav-menu-item-icon last-item-before-mobile">
+                    <a href="#" id="doc-dropdown-app-bar-user"
+                        class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="material-icons eq-ui-icon">person</i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end eq-ui-dropdown eq-ui-dropdown-right-top"
+                        aria-labelledby="doc-dropdown-app-bar-user">
+                        <li><a class="dropdown-item" href="#!">Profile</a></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </ul>
+                </li>
+
+                <li class="eq-ui-nav-menu-item-icon hide eq-ui-visible-xs-block">
+                    <a data-target="doc-dropdown-app-bar" data-gutter="-48" data-hover="false"
+                        class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves dropdown-trigger">
+                        <i class="material-icons eq-ui-icon">more_vert</i>
+
+                    </a>
+                    <!-- Dropdown Structure -->
+                    <ul id="doc-dropdown-app-bar" class="eq-ui-dropdown eq-ui-dropdown-right-top">
+                        <li><a class="eq-ui-top-search-show"><i class="mdi mdi-magnify icon"></i> Search</a></li>
+                        <li><a href="./"><i class="material-icons eq-ui-icon">apps</i> Apps</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Top Search -->
+            <div class="eq-ui-top-search">
+                <i class="eq-ui-top-search-close material-icons eq-ui-icon eq-ui-icon-left">arrow_back</i>
+                <!-- Search -->
+                <div id="doc-eq-ui-top-search-autocomplete" class="eq-ui-search">
+                    <input type="text" placeholder="Search">
+                    <i class="eq-ui-search-icon-left material-icons eq-ui-icon eq-ui-icon-left">search</i>
+                    <i class="eq-ui-search-clear material-icons eq-ui-icon eq-ui-icon-right">close</i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="eq-ui-tool-bar doc-show-in-layout-struture-1">
+        <div class="container-fluid">
+            <div class="header-title">
+                <span class="section-title">Tool Bar</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Btn -->
+    <div class="eq-ui-btn-fab-floating doc-show-in-layout-struture-1">
+        <a class="btn btn-primary eq-ui-btn-fab eq-ui-waves-light"><i class="material-icons">add</i></a>
+    </div>
+
+</header>
+
+
+
+<!-- Modal Right (Notifications) -->
+<div id="eq-ui-modal-header-doc-1" class="eq-ui-modal eq-ui-modal-fixed eq-ui-modal-right-sheet">
+
+    <!-- Header -->
+    <div class="eq-ui-modal-header">
+        <div class="header-title">
+            <!--i class="mdi mdi-close icon icon-left icon-24 eq-ui-modal-close"></i-->
+            <span class="section-title">Notifications</span>
+        </div>
+        <ul class="right eq-ui-nav-menu">
+            <li class="eq-ui-nav-menu-item-icon">
+                <a
+                    class="btn btn-default eq-ui-btn-flat eq-ui-btn-fab eq-ui-btn-menu-fab eq-ui-waves eq-ui-modal-close">
+                    <i class="mdi mdi-close eq-ui-icon"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Content -->
+    <div class="eq-ui-modal-content">
+
+        <ul class="eq-ui-list eq-ui-hoverable">
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_1.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_2.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_3.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_1.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_2.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_3.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_1.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_2.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_3.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_1.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_2.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+            <li class="eq-ui-list-item eq-ui-list-avatar eq-ui-list-secondary-content">
+                <img class="circle"
+                    src="https://www.exentriq.com/templates/exentriqManager3/static/img/avatar/avatar_3.jpg">
+                <div class="eq-ui-list-body">
+                    <h6 class="eq-ui-list-title">Title</h6>
+                    Duis bibendum nisl quis tellus rutrum, ut aliquet massa interdum.
+                </div>
+                <a class="eq-ui-list-secondary-content-body shades-text-black-hover"><i
+                        class="mdi mdi-close-circle icon icon-18"></i></a>
+            </li>
+
+
+
+        </ul>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="eq-ui-modal-footer">
+        <a href="#" class="btn btn-default eq-ui-btn-flat eq-ui-waves eq-ui-modal-close">View All</a>
+    </div>
+
+</div>

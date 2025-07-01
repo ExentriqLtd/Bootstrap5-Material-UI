@@ -215,8 +215,14 @@
   bottom: -28px;
   z-index: $eq-ui-zindex-app-bar-fab;
   a {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     position: relative;
   }
+}
+
+.dropdown-toggle::after {
+  display: none;
 }
 
