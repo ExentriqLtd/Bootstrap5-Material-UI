@@ -16,7 +16,7 @@ To start the development environment with file watchers and hot reload:
 npm run dev
 
 This command:
-- Watches SCSS files and compiles them into dist/css/exentriq-boostrap-ui-5.css
+- Watches SCSS files and compiles them into dist/css/exentriq-bootstrap-ui-5.css
 - Watches JS files and compiles them into dist/js/exentriq-bootstrap-ui-5.min.js without minification
 - Generates all static HTML pages from views/page.pug + views/modules/*.html
 - Automatically watches .html and .pug files
@@ -31,7 +31,7 @@ npm run build
 This will:
 - Clean and prepare the dist/ directory
 - Compile SCSS and apply Autoprefixer
-- Minify the final CSS (dist/css/exentriq-boostrap-ui-5.css)
+- Minify the final CSS (dist/css/exentriq-bootstrap-ui-5.css)
 - Bundle and minify JS (dist/js/exentriq-bootstrap-ui-5.min.js)
 - Copy Bootstrap's minified bundle JS to dist/js/
 - Generate all HTML documentation pages

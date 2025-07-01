@@ -1,4 +1,4 @@
-import { $ } from ".";
+import $ from 'jquery';
 var EqUI = window.EqUI 
 
 

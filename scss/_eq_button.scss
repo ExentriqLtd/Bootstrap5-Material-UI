@@ -152,7 +152,6 @@
   position: fixed;
   right: 24px;
   bottom: 24px;
-  padding-top: 16px;
   margin-bottom: 0;
   z-index: $eq-ui-zindex-app-bar-fab;
 
@@ -176,10 +175,7 @@
       margin-bottom: 16px;
       width: 100%;
       opacity: 0;
-
-      a{
-
-      }
+      position: relative;
 
       .tooltip-buttons {
 

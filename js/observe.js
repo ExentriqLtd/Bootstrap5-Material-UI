@@ -1,4 +1,3 @@
-import { $ } from ".";
 (function() {
   var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || null;
 
