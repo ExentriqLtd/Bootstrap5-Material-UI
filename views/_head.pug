@@ -12,7 +12,12 @@ link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+I
 link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined")
 
 // CSS
-link(href='../dist/css/styles.css', rel='stylesheet')
-
+if isDev
+    link(href='../dist/css/styles.css', rel='stylesheet')
+else
+    link(href='../dist/css/styles.min.css', rel='stylesheet')
 //JS
-script(src='../dist/js/bootstrap.bundle.min.js')
+if isDev
+  script(src='../dist/js/exentriq-bootstrap-ui-5.js')
+else
+  script(src='../dist/js/exentriq-bootstrap-ui-5.min.js')

@@ -7,9 +7,10 @@
     "clean-dist": "rm -rf dist/*",
     "prepare-dist": "mkdir -p dist/css dist/js",
 
-    "build-css": "sass --no-source-map --load-path=node_modules scss/styles.scss dist/css/styles.css",
-    "autoprefixer": "postcss dist/css/styles.css --use autoprefixer -o dist/css/styles.css",
-    "minify-css": "postcss dist/css/styles.css --use cssnano -o dist/css/styles.css",
+    "build-css": "sass --no-source-map --load-path=node_modules scss/styles.scss dist/css/styles.prefixed.css",
+    "autoprefixer": "postcss dist/css/styles.prefixed.css -o dist/css/styles.prefixed.css",
+    "minify-css": "postcss dist/css/styles.prefixed.css --use cssnano -o dist/css/styles.min.css",
+    "clean-temp-css": "rm -f dist/css/styles.prefixed.css",
 
     "build-js-dev": "esbuild js/index.js --bundle --outfile=dist/js/exentriq-bootstrap-ui-5.js",
     "build-js": "esbuild js/index.js --bundle --minify --outfile=dist/js/exentriq-bootstrap-ui-5.min.js",
@@ -19,10 +20,11 @@
     "watch-css": "sass --watch --no-source-map --load-path=node_modules scss/styles.scss dist/css/styles.css",
     "watch-js": "esbuild js/index.js --bundle --outfile=dist/js/exentriq-bootstrap-ui-5.js --watch",
 
-    "build-assets": "npm run clean-dist && npm run prepare-dist && npm run build-css && npm run autoprefixer && npm run minify-css && npm run build-js && npm run copy-bootstrap",
+    "build-assets": "npm run clean-dist && npm run prepare-dist && npm run build-css && npm run autoprefixer && npm run minify-css && npm run clean-temp-css && npm run build-js && npm run copy-bootstrap",
     "build": "npm run build-assets && npm run build-pug",
+    "build-assets-dev": "npm run clean-dist && npm run prepare-dist && npm run build-css && npm run autoprefixer && npm run build-js-dev && npm run copy-bootstrap && npm run clean-temp-css",
 
-    "dev": "concurrently -n \"CSS,JS,PUG,SERVER\" -c \"green,cyan,blue,magenta\" \"npm run watch-css\" \"npm run watch-js\" \"npm run build-pug -- --watch\" \"npm run start-server\"",
+    "dev": "concurrently -n \"CSS,JS,PUG,SERVER\" -c \"green,cyan,blue,magenta\" \"npm run watch-css\" \"npm run watch-js\" \"npm run build-pug -- --watch --dev\" \"npm run start-server\"",
 
     "build-pug": "node scripts/build-pug.js",
     "start-server": "PORT=8000 nodemon server.js --config nodemon.json"

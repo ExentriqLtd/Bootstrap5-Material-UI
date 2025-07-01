@@ -7,6 +7,7 @@ const { exec } = require('child_process');
 const modulesDir = path.resolve(__dirname, '../views/modules');
 const templatePath = path.resolve(__dirname, '../views/page.pug');
 const outputDir = path.resolve(__dirname, '../public');
+const isDev = process.argv.includes('--dev');
 
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -27,6 +28,7 @@ function compilePage(file) {
   try {
     const html = pug.renderFile(templatePath, {
       pretty: true,
+      isDev,
       ...data
     });
 
@@ -53,8 +55,11 @@ function buildAllPages() {
 }
 
 function rebuildAll() {
+  const isDev = process.argv.includes('--dev');
+  const cmd = isDev ? 'npm run build-assets-dev' : 'npm run build-assets';
+
   console.log('🔄 Ricompilazione completa...');
-  exec('npm run build-assets', (err, stdout, stderr) => {
+  exec(cmd, (err, stdout, stderr) => {
     if (err) {
       console.error(`❌ Errore compilazione ASSETS:\n${stderr}`);
       return;
