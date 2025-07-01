@@ -6,17 +6,26 @@
   "scripts": {
     "clean-dist": "rm -rf dist/*",
     "prepare-dist": "mkdir -p dist/css dist/js",
+
     "build-css": "sass --no-source-map --load-path=node_modules scss/styles.scss dist/css/styles.css",
     "autoprefixer": "postcss dist/css/styles.css --use autoprefixer -o dist/css/styles.css",
     "minify-css": "postcss dist/css/styles.css --use cssnano -o dist/css/styles.css",
-    "copy-bootstrap": "cpx \"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js\" dist/js/",
-    "build-assets": "npm run clean-dist && npm run prepare-dist && npm run build-css && npm run autoprefixer && npm run build-js && npm run copy-bootstrap",
-    "watch-css": "sass --watch --no-source-map --load-path=node_modules scss/styles.scss dist/css/styles.css",
-    "build-pug": "node scripts/build-pug.js",
-    "start-server": "PORT=8000 nodemon server.js --config nodemon.json",
-    "start-pug": "concurrently -n \"CSS,JS,PUG,SERVER\" -c \"green,cyan,blue,magenta\" \"npm run watch-css\" \"npm run watch-js\" \"npm run build-pug -- --watch\" \"npm run start-server\"",
+
+    "build-js-dev": "esbuild js/index.js --bundle --outfile=dist/js/exentriq-bootstrap-ui-5.js",
     "build-js": "esbuild js/index.js --bundle --minify --outfile=dist/js/exentriq-bootstrap-ui-5.min.js",
-    "watch-js": "esbuild js/index.js --bundle --minify --outfile=dist/js/exentriq-bootstrap-ui-5.min.js --watch"
+
+    "copy-bootstrap": "cpx \"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js\" dist/js/",
+
+    "watch-css": "sass --watch --no-source-map --load-path=node_modules scss/styles.scss dist/css/styles.css",
+    "watch-js": "esbuild js/index.js --bundle --outfile=dist/js/exentriq-bootstrap-ui-5.js --watch",
+
+    "build-assets": "npm run clean-dist && npm run prepare-dist && npm run build-css && npm run autoprefixer && npm run minify-css && npm run build-js && npm run copy-bootstrap",
+    "build": "npm run build-assets && npm run build-pug",
+
+    "dev": "concurrently -n \"CSS,JS,PUG,SERVER\" -c \"green,cyan,blue,magenta\" \"npm run watch-css\" \"npm run watch-js\" \"npm run build-pug -- --watch\" \"npm run start-server\"",
+
+    "build-pug": "node scripts/build-pug.js",
+    "start-server": "PORT=8000 nodemon server.js --config nodemon.json"
   },
   "author": "",
   "license": "ISC",
