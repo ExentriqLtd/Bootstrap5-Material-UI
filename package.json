@@ -8,12 +8,9 @@
     "autoprefixer": "postcss dist/styles.css --use autoprefixer -o dist/styles.css",
     "build-css-autoprefixer": "npm run build-css && npm run autoprefixer",
     "build-pug": "node scripts/build-pug.js",
-    "build-js": "node scripts/concat-js.js",
-    "build": "npm-run-all build-css-autoprefixer build-pug build-js",
     "start-server": "PORT=8000 nodemon server.js --config nodemon.json",
-    "start-pug": "npm run build-js && concurrently -n \"CSS,PUG,JS,SERVER\" -c \"green,blue,yellow,magenta\" \"npm run watch-css\" \"npm run build-pug -- --watch\" \"npm run watch-js\" \"npm run start-server\"",
-    "watch-css": "sass --watch --load-path=node_modules scss/styles.scss dist/styles.css",
-    "watch-js": "nodemon --watch js --exec \"node scripts/concat-js.js\""
+    "start-pug": "concurrently -n \"CSS,PUG,SERVER\" -c \"green,blue,magenta\" \"npm run watch-css\" \"npm run build-pug -- --watch\" \"npm run start-server\"",
+    "watch-css": "sass --watch --load-path=node_modules scss/styles.scss dist/styles.css"
   },
   "author": "",
   "license": "ISC",
