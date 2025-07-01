@@ -54,9 +54,9 @@ function buildAllPages() {
 
 function rebuildAll() {
   console.log('🔄 Ricompilazione completa...');
-  exec('npm run build-css-autoprefixer', (err, stdout, stderr) => {
+  exec('npm run build-assets', (err, stdout, stderr) => {
     if (err) {
-      console.error(`❌ Errore compilazione CSS:\n${stderr}`);
+      console.error(`❌ Errore compilazione ASSETS:\n${stderr}`);
       return;
     }
     console.log(stdout);

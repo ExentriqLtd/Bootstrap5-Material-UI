@@ -10,11 +10,13 @@
     "autoprefixer": "postcss dist/css/styles.css --use autoprefixer -o dist/css/styles.css",
     "minify-css": "postcss dist/css/styles.css --use cssnano -o dist/css/styles.css",
     "copy-bootstrap": "cpx \"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js\" dist/js/",
-    "build-css-autoprefixer": "npm run clean-dist && npm run prepare-dist && npm run build-css && npm run autoprefixer && npm run minify-css && npm run copy-bootstrap",
+    "build-assets": "npm run clean-dist && npm run prepare-dist && npm run build-css && npm run autoprefixer && npm run build-js && npm run copy-bootstrap",
     "watch-css": "sass --watch --no-source-map --load-path=node_modules scss/styles.scss dist/css/styles.css",
     "build-pug": "node scripts/build-pug.js",
     "start-server": "PORT=8000 nodemon server.js --config nodemon.json",
-    "start-pug": "concurrently -n \"CSS,PUG,SERVER\" -c \"green,blue,magenta\" \"npm run watch-css\" \"npm run build-pug -- --watch\" \"npm run start-server\""
+    "start-pug": "concurrently -n \"CSS,JS,PUG,SERVER\" -c \"green,cyan,blue,magenta\" \"npm run watch-css\" \"npm run watch-js\" \"npm run build-pug -- --watch\" \"npm run start-server\"",
+    "build-js": "esbuild js/index.js --bundle --minify --outfile=dist/js/exentriq-bootstrap-ui-5.min.js",
+    "watch-js": "esbuild js/index.js --bundle --minify --outfile=dist/js/exentriq-bootstrap-ui-5.min.js --watch"
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +37,7 @@
     "connect-livereload": "^0.6.1",
     "cpx": "^1.5.0",
     "cssnano": "^7.0.7",
+    "esbuild": "^0.25.5",
     "livereload": "^0.9.3",
     "nodemon": "^2.0.22"
   }
