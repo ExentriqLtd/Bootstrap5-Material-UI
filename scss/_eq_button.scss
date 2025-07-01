@@ -76,6 +76,10 @@
   padding: $eq-ui-button-padding;
   height: $eq-ui-button-height;
   line-height: $eq-ui-button-line-height;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 
   &.btn-lg {
     font-size: $eq-ui-button-large-font-size;
@@ -96,8 +100,6 @@
     min-width: 56px;
     height: 56px;
     padding: 0;
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
   }
 
