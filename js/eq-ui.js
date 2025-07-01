@@ -1,0 +1,1 @@
+var EqUI = EqUI || {};
