@@ -1,7 +1,13 @@
 import $ from 'jquery';
 export { $ };
-import './global.js';
 
+import Velocity from 'velocity-animate';
+import 'velocity-animate/velocity.ui';
+
+// collega velocity a jquery come plugin: $.fn.velocity diventa disponibile
+$.fn.velocity = Velocity;
+
+import './global.js';
 // js/index.js
 import 'bootstrap'; // carica jQuery internamente, se serve
 
