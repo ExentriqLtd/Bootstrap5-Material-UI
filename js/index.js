@@ -15,3 +15,4 @@ import './dropdown.js';
 import './tabs.js';
 import './layout/side-nav.js';
 import './_init.js'
+import './modals.js'

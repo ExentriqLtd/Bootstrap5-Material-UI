@@ -114,17 +114,22 @@ $.fn.extend({
             });
         } // Right Sheet
         else if ($modal.hasClass(EqUI.modals.right_sheet_class)) {
-            $modal.velocity({ right: "0", opacity: 1 }, {
-                duration: options.in_duration,
-                queue: false,
-                ease: "easeOutCubic",
-                // Handle modal ready callback
-                complete: function () {
-                    if (typeof (options.ready) === "function") {
-                        options.ready();
+            $modal.velocity(
+                {
+                    right: "0px",
+                    opacity: 1
+                },
+                {
+                    duration: options.in_duration,
+                    easing: "easeOutCubic",
+                    complete: function () {
+                        if (typeof options.ready === "function") {
+                            options.ready();
+                        }
                     }
                 }
-            });
+            );
+
         } // Normal
         else {
             $.Velocity.hook($modal, "scaleX", 0.7);
@@ -225,22 +230,26 @@ $.fn.extend({
             });
         } // Right Sheet
         else if ($modal.hasClass(EqUI.modals.right_sheet_class)) {
-            $modal.velocity({ right: "-100%", opacity: 0 }, {
-                duration: options.out_duration,
-                queue: false,
-                ease: "easeOutCubic",
-                // Handle modal ready callback
-                complete: function () {
-                    $overlay.css({ display: "none" });
+            $modal.velocity(
+                {
+                    right: "-100%",
+                    opacity: 0
+                },
+                {
+                    duration: options.out_duration,
+                    easing: "easeOutCubic",
+                    complete: function () {
+                        $overlay.css({ display: "none" });
 
-                    // Call complete callback
-                    if (typeof (options.complete) === "function") {
-                        options.complete();
+                        if (typeof options.complete === "function") {
+                            options.complete();
+                        }
+                        $overlay.remove();
+                        EqUI.modals.stack--;
                     }
-                    $overlay.remove();
-                    EqUI.modals.stack--;
                 }
-            });
+            );
+
         } // Normal
         else {
             $modal.velocity(
