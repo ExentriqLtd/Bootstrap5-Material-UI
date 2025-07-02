@@ -21,7 +21,6 @@ app.get('/', (req, res) => {
 });
 
 // Serve static HTML
-// Serve static HTML
 app.get('*', (req, res, next) => {
   if (req.path.includes('.well-known')) {
     return res.status(404).end(); // ignora silenziosamente
