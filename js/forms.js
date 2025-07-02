@@ -1,4 +1,7 @@
 EqUI.forms = {};
+autosize = window.autosize;
+autosize = window.autosize;
+Dropzone = window.Dropzone;
 
 EqUI.forms.validateLib = 'parsley'; // parsley | html5 | custom
 

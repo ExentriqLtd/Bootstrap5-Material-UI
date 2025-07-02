@@ -1,11 +1,20 @@
 import $ from 'jquery';
-import Waves from 'node-waves'; // Importa Waves
 
 window.$ = $;
 window.jQuery = $;
-export default $;
 
+import Waves from 'node-waves';
+import autosize from 'autosize';
+import Parsley from 'parsleyjs';
+import Dropzone from 'dropzone';
+import 'dropzone/dist/dropzone.css';  
+
+window.Dropzone = Dropzone;
+window.Parsley = Parsley;
+window.autosize = autosize;
 window.Waves = Waves;
+
+
 
 window.EqUI = window.EqUI || {};
 window.EqUI.init = window.EqUI.init || {}; // ✅ AGGIUNGI QUESTA RIGA
@@ -62,3 +71,5 @@ if ($) {
 else {
     Vel = Velocity;
 }
+
+export default $;

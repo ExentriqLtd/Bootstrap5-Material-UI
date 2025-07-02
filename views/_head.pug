@@ -21,3 +21,10 @@ if isDev
   script(src='../dist/js/exentriq-bootstrap-ui-5.js')
 else
   script(src='../dist/js/exentriq-bootstrap-ui-5.min.js')
+
+//DOC
+script.
+  var _doc_route = !{JSON.stringify(doc_route)};
+  console.log('_doc_route::',_doc_route)
+link(href='/doc/doc.css', rel='stylesheet')
+script(src='/doc/doc.js')

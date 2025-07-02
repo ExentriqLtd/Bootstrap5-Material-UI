@@ -13,15 +13,71 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+const sectionsMap = {
+  // index.html non ha root_path e name_section (home)
+  "index": { root_path: "", name_section: "" },
+
+  // Getting Started è link esterno, lo escludo perché non punta a file locale
+
+  // Layout (css)
+  "grid": { root_path: "css", name_section: "Layout" },
+  "spacing-methods": { root_path: "css", name_section: "Layout" },
+  "typography": { root_path: "css", name_section: "Layout" },
+  "color": { root_path: "css", name_section: "Layout" },
+  "icons": { root_path: "css", name_section: "Layout" },
+  "helpers": { root_path: "css", name_section: "Layout" },
+
+  // Components
+  "buttons": { root_path: "components", name_section: "Components" },
+  "cards": { root_path: "components", name_section: "Components" },
+  "list": { root_path: "components", name_section: "Components" },
+  "table": { root_path: "components", name_section: "Components" },
+  "sticky-table": { root_path: "components", name_section: "Components" },
+  "forms": { root_path: "components", name_section: "Components" },
+  "form-validation": { root_path: "components", name_section: "Components" },
+  "badges": { root_path: "components", name_section: "Components" },
+  "loader": { root_path: "components", name_section: "Components" },
+
+  // JavaScript
+  "collapsible": { root_path: "java-script", name_section: "JavaScript" },
+  "dropdown": { root_path: "java-script", name_section: "JavaScript" },
+  "modals": { root_path: "java-script", name_section: "JavaScript" },
+  "tabs": { root_path: "java-script", name_section: "JavaScript" },
+
+  // Showcase
+  "showcase": { root_path: "", name_section: "" },
+
+  // 2023 Elements (exentriq)
+  "tablev2": { root_path: "exentriq", name_section: "2023 Elements" },
+  "cardsv2": { root_path: "exentriq", name_section: "2023 Elements" },
+  "buttonsv2": { root_path: "exentriq", name_section: "2023 Elements" },
+};
+
 function compilePage(file) {
-  const name = path.basename(file, '.html');
+  var name = path.basename(file, '.html');
   const content = fs.readFileSync(path.join(modulesDir, file), 'utf8');
+
+  let root_path = '';
+  let name_section = '';
+
+  if (name !== 'index') {
+    if (sectionsMap[name]) {
+      root_path = sectionsMap[name].root_path;
+      name_section = sectionsMap[name].name_section;
+    } else {
+      // fallback se non trovato
+      root_path = '';
+      name_section = '';
+    }
+  }
 
   const data = {
     doc_route: {
       path: name,
-      name_chapter: capitalize(name),
-      content: content
+      name_chapter: name == 'index' ? 'Home' : capitalize(name),
+      content: content,
+      root_path,
+      name_section
     }
   };
 
