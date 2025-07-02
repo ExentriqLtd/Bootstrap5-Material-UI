@@ -122,8 +122,29 @@ function rebuildAll() {
     }
     console.log(stdout);
 
-    copyFonts();       // <--- AGGIUNGI QUI
     buildAllPages();
+  });
+}
+
+function copyDocs() {
+  const srcDir = path.resolve(__dirname, '../doc');
+  const destDir = path.resolve(__dirname, '../public/doc');
+
+  if (!fs.existsSync(srcDir)) {
+    console.warn('⚠️  La cartella doc/ non esiste. Nessun file copiato.');
+    return;
+  }
+
+  fs.mkdirSync(destDir, { recursive: true });
+
+  fs.readdirSync(srcDir).forEach(file => {
+    const srcFile = path.join(srcDir, file);
+    const destFile = path.join(destDir, file);
+
+    if (fs.lstatSync(srcFile).isFile()) {
+      fs.copyFileSync(srcFile, destFile);
+      console.log(`📄 Copiato ${file} → public/doc/`);
+    }
   });
 }
 
@@ -168,24 +189,37 @@ console.log('[DEBUG] cwd:', path.resolve(__dirname, '..'));
 
 if (process.argv.includes('--watch')) {
   // Prima compilazione
-  rebuildAll();
+  const isDev = process.argv.includes('--dev');
+  const cmd = isDev ? 'npm run build-assets-dev' : 'npm run build-assets';
 
-  console.log('👀 Watch mode attivo con node-watch');
-
-  // Watch HTML in views/modules
-  watch(modulesDir, { recursive: true, filter: /\.html$/ }, (evt, name) => {
-    console.log(`[WATCH] Evento ${evt} su ${name}`);
-    if (evt === 'remove') {
-      removePage(name);
-    } else {
-      rebuildAll();
+  console.log('🛠️  Compilazione iniziale assets...');
+  exec(cmd, (err, stdout, stderr) => {
+    if (err) {
+      console.error(`❌ Errore iniziale build-assets:\n${stderr}`);
+      return;
     }
-  });
+    console.log(stdout);
 
-  // Watch PUG in views
-  watch(path.resolve(__dirname, '../views'), { recursive: true, filter: /\.pug$/ }, (evt, name) => {
-    console.log(`[WATCH] Evento ${evt} su ${name}`);
-    rebuildAll();
+    copyFonts();   // ← qui, una sola volta e DOPO build-assets
+    copyDocs();    // ← idem, opzionale
+    buildAllPages();
+
+    // Avvia watcher solo dopo prima compilazione completa
+    console.log('👀 Watch mode attivo con node-watch');
+
+    watch(modulesDir, { recursive: true, filter: /\.html$/ }, (evt, name) => {
+      console.log(`[WATCH] Evento ${evt} su ${name}`);
+      if (evt === 'remove') {
+        removePage(name);
+      } else {
+        rebuildAll(); // qui NON ricopi più i font
+      }
+    });
+
+    watch(path.resolve(__dirname, '../views'), { recursive: true, filter: /\.pug$/ }, (evt, name) => {
+      console.log(`[WATCH] Evento ${evt} su ${name}`);
+      rebuildAll(); // qui NON ricopi più i font
+    });
   });
 } else {
   buildAllPages();
