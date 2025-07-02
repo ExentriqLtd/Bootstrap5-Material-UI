@@ -8,6 +8,7 @@ export default $;
 window.Waves = Waves;
 
 window.EqUI = window.EqUI || {};
+window.EqUI.init = window.EqUI.init || {}; // ✅ AGGIUNGI QUESTA RIGA
 
 window.EqUI.site = window.EqUI.site || {
     isTouch: 'ontouchstart' in window || navigator.maxTouchPoints > 0

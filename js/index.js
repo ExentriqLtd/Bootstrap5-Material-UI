@@ -10,5 +10,8 @@ import './helps/observe.js';
 import './buttons.js';
 import './collapsible.js';
 import './site.js';
+import './layout/breadcrumb.js';
+import './dropdown.js';
+import './tabs.js';
 import './layout/side-nav.js';
 import './_init.js'

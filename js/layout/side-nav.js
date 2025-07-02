@@ -1,4 +1,3 @@
-var EqUI = window.EqUI;
 EqUI.side_nav = {};
 
 EqUI.side_nav.element = $('.eq-ui-side-nav');
