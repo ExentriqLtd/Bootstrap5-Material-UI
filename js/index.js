@@ -6,7 +6,7 @@ import 'velocity-animate/velocity.ui';
 
 $.fn.velocity = Velocity;
 
-import './observe.js';
+import './helps/observe.js';
 import './buttons.js';
 import './collapsible.js';
 import './site.js';
