@@ -11,20 +11,21 @@
 	@include eq-ui-transition(padding-left);
 
     .container-fluid {
-        padding-left: 16px;
-        padding-right: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .header-title {
         font-size: 20px;
         .section-title {
-            float: left;
+            // float: left;
         }
         i {
             margin: 0 10px;
         }
         .chapter-title {
-            float: left;
+            // float: left;
         }
     }
 }

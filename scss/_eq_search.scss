@@ -5,6 +5,8 @@
     border: 1px solid #e1e1e1;
     border-radius: 2px;
     padding: 0 14px;
+    display: flex;
+    align-items: center;
 
     // Hide clear
     .eq-ui-search-clear {

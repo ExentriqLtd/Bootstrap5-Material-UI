@@ -4,13 +4,14 @@
     margin: 0;
     padding: 0;
     height: $eq-ui-tool-bar-height;
+    display: flex;
+    gap: 16px;
 
     >li {
         position: relative;
         color: inherit;
-        margin-right: 16px;
         line-height: inherit;
-        float: left;
+        // float: left;
 
         &:last-child {
             margin-right: 0;

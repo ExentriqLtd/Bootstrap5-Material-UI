@@ -103,7 +103,7 @@ p.last-commit-in-git-hub-p {
 .doc-card-head-image .eq-ui-card-title {
     color: #fff;
     height: 176px;
-    background: url('../img/doc/welcome_card.jpg') center / cover;
+    background: url('../doc/welcome_card.jpg') center / cover;
 }
 .doc-card-head-image .eq-ui-card-menu i {
     color: #fff;
@@ -113,7 +113,7 @@ p.last-commit-in-git-hub-p {
 .doc-card-image {
     width: 256px;
     height: 256px;
-	background: url('../img/doc/image_card.jpg') center / cover;
+	background: url('../doc/image_card.jpg') center / cover;
 }
 
 /* Cards -> Event */

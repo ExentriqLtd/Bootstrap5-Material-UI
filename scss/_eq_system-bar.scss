@@ -7,6 +7,13 @@
     height: $eq-ui-tool-bar-system-height;
     line-height: $eq-ui-tool-bar-system-height;
 
+    .container-fluid,
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
     .header-title {
         font-size: 18px;
     }

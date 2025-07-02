@@ -1,21 +1,23 @@
 /* Breadcrumb */
 
 .eq-ui-breadcrumb {
-    display: inline-block;
+    display: flex;
     position: relative;
     line-height: inherit;
-    float: left;
+    gap: 4px;
+    // float: left;
 
     .eq-ui-breadcrumb-item {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         position: relative;
         line-height: inherit;
         color: #fff;
         font-size: 20px;
         text-decoration: none;
-        float: left;
+        // float: left;
 
-       &:not(.eq-ui-breadcrumb-item-hide):not(:first-of-type):after {
+       &:not(.eq-ui-breadcrumb-item-hide):not(:first-of-type):before {
             font-family: 'Material Icons';   
             content: "chevron_right";       
             font-weight: normal;
@@ -23,7 +25,7 @@
             font-size: 24px;                
             line-height: inherit;
             margin: 0 4px;
-            float: left;
+            // float: left;
         }
 
         &.eq-ui-breadcrumb-item-hide {
@@ -39,7 +41,7 @@
     // Hide first divider
     .eq-ui-breadcrumb-item-hide + .eq-ui-breadcrumb-item {
 
-        &:after {
+        &::before {
             content: "";
             display: none;
         }
@@ -53,7 +55,7 @@
             display: none;
         }
 
-       &:after {
+       &::before {
             display: inline-block;
             font-family: 'Material Icons';  
             content: "arrow_left";          
@@ -62,7 +64,7 @@
             font-size: 24px;                
             line-height: inherit;
             margin: 0 4px;
-            float: left;
+            // float: left;
         }
 
 
