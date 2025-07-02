@@ -4,9 +4,9 @@ const pug = require('pug');
 const watch = require('node-watch');
 const { exec } = require('child_process');
 
-const modulesDir = path.resolve(__dirname, '../views/modules');
-const templatePath = path.resolve(__dirname, '../views/page.pug');
-const outputDir = path.resolve(__dirname, '../public');
+const modulesDir = path.resolve(__dirname, 'views/modules');
+const templatePath = path.resolve(__dirname, 'views/page.pug');
+const outputDir = path.resolve(__dirname, 'public');
 const isDev = process.argv.includes('--dev');
 
 function capitalize(str) {
@@ -127,65 +127,38 @@ function rebuildAll() {
 }
 
 function copyDocs() {
-  const srcDir = path.resolve(__dirname, '../doc');
-  const destDir = path.resolve(__dirname, '../public/doc');
+  const srcDir = path.resolve(__dirname, 'doc');
+  const destDir = path.resolve(__dirname, 'public/doc');
 
   if (!fs.existsSync(srcDir)) {
     console.warn('⚠️  La cartella doc/ non esiste. Nessun file copiato.');
     return;
   }
 
-  fs.mkdirSync(destDir, { recursive: true });
-
-  fs.readdirSync(srcDir).forEach(file => {
-    const srcFile = path.join(srcDir, file);
-    const destFile = path.join(destDir, file);
-
-    if (fs.lstatSync(srcFile).isFile()) {
-      fs.copyFileSync(srcFile, destFile);
-      console.log(`📄 Copiato ${file} → public/doc/`);
-    }
-  });
+  copyRecursive(srcDir, destDir);
+  console.log('📂 Cartella doc copiata in public/doc/');
 }
 
-function copyFonts() {
-  const dest = path.resolve(__dirname, '../dist/fonts');
-
-  // Percorsi font da copiare
-  const fontsToCopy = [
-    {
-      from: path.resolve(__dirname, '../node_modules/@mdi/font/fonts'),
-      files: fs.readdirSync(path.resolve(__dirname, '../node_modules/@mdi/font/fonts')),
-    },
-    {
-      from: path.resolve(__dirname, '../node_modules/material-icons/iconfont'),
-      files: fs.readdirSync(path.resolve(__dirname, '../node_modules/material-icons/iconfont'))
-        .filter(f => f.endsWith('.woff2') || f.endsWith('.woff') || f.endsWith('.ttf')),
-    },
-    {
-      from: path.resolve(__dirname, '../node_modules/material-symbols'),
-      files: fs.readdirSync(path.resolve(__dirname, '../node_modules/material-symbols'))
-        .filter(f => f.endsWith('.woff2')),
-    }
-  ];
-
-  // Crea cartella se non esiste
+function copyRecursive(src, dest) {
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
   }
 
-  fontsToCopy.forEach(({ from, files }) => {
-    files.forEach(file => {
-      const srcFile = path.join(from, file);
-      const destFile = path.join(dest, file);
-      fs.copyFileSync(srcFile, destFile);
-      console.log(`📁 Copiato ${file} → fonts/`);
-    });
+  fs.readdirSync(src).forEach(item => {
+    const srcPath = path.join(src, item);
+    const destPath = path.join(dest, item);
+    const stat = fs.statSync(srcPath);
+
+    if (stat.isDirectory()) {
+      copyRecursive(srcPath, destPath); // ↩️ ricorsione su cartella
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+      console.log(`📄 Copiato ${srcPath} → ${destPath}`);
+    }
   });
 }
 
 console.log('[START] build-pug.js avviato con argomenti:', process.argv);
-console.log('[DEBUG] cwd:', path.resolve(__dirname, '..'));
 
 if (process.argv.includes('--watch')) {
   // Prima compilazione
@@ -200,7 +173,6 @@ if (process.argv.includes('--watch')) {
     }
     console.log(stdout);
 
-    copyFonts();   // ← qui, una sola volta e DOPO build-assets
     copyDocs();    // ← idem, opzionale
     buildAllPages();
 
@@ -216,7 +188,7 @@ if (process.argv.includes('--watch')) {
       }
     });
 
-    watch(path.resolve(__dirname, '../views'), { recursive: true, filter: /\.pug$/ }, (evt, name) => {
+    watch(path.resolve(__dirname, 'views'), { recursive: true, filter: /\.pug$/ }, (evt, name) => {
       console.log(`[WATCH] Evento ${evt} su ${name}`);
       rebuildAll(); // qui NON ricopi più i font
     });

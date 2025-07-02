@@ -77,7 +77,7 @@ var EqUIDoc = {};
         // Create File Upload Drop
         var _dropzone = EqUI.forms.file_upload_drop('.eq-ui-file-upload-drop-zone', {
             url                  : 'http://localhost:8888/upload/',
-            defaultImageThumbnail: "assets/img/doc/files/empty.png"
+            defaultImageThumbnail: "/files/empty.png"
         });
 
         if (_dropzone) {
