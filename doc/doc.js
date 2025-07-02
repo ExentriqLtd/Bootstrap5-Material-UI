@@ -10,6 +10,8 @@ var EqUIDoc = {};
             var _root_path      = $('#collapsible-nav-' + _doc_route.root_path);
             var _root_path_path = $('#collapsible-nav-' + _doc_route.root_path + '-' + _doc_route.path);
 
+            _root_path.trigger('click')
+
             // Set active for links
             _root_path.addClass("active");
             _root_path_path.addClass("active");
