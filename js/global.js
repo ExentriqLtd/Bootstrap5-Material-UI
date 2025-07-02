@@ -8,7 +8,10 @@ import autosize from 'autosize';
 import Parsley from 'parsleyjs';
 import Dropzone from 'dropzone';
 import 'dropzone/dist/dropzone.css';  
+import moment from "moment";
 
+
+window.moment = moment;
 window.Dropzone = Dropzone;
 window.Parsley = Parsley;
 window.autosize = autosize;

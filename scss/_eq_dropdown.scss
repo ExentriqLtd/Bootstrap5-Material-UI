@@ -51,7 +51,7 @@
         }
 
         // Icon menu right
-        i.eq-ui-icon {
+        i.icon.mdi-menu-right, i.eq-ui-icon.mdi-menu-right {
             pointer-events: none;
             position: absolute;
             right: 8px;
