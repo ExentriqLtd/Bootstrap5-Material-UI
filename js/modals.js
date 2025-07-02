@@ -70,28 +70,35 @@ $.fn.extend({
             opacity: 0
         });
 
-        $overlay.velocity({ opacity: options.opacity }, { duration: options.in_duration, queue: false, ease: "easeOutCubic" });
+        $overlay.velocity({ opacity: options.opacity }, { duration: options.in_duration, easing: "easeOutCubic" });
         $modal.data('associated-overlay', $overlay[0]);
 
         // Top and Full Sheet
         if ($modal.hasClass(EqUI.modals.top_sheet_class) || $modal.hasClass(EqUI.modals.full_sheet_class)) {
-            $modal.velocity({ top: "0", opacity: 1 }, {
-                duration: options.in_duration,
-                queue: false,
-                ease: "easeOutCubic",
-                // Handle modal ready callback
-                complete: function () {
-                    if (typeof (options.ready) === "function") {
-                        options.ready();
+            $modal.velocity(
+                {
+                    top: "0px",
+                    opacity: 1
+                },
+                {
+                    duration: options.in_duration,
+                    easing: "easeOutCubic",
+                    complete: function () {
+                        if (typeof options.ready === "function") {
+                            options.ready();
+                        }
                     }
                 }
-            });
+            );
+
+
+
+
         } // Bottom Sheet
         else if ($modal.hasClass(EqUI.modals.bottom_sheet_class)) {
-            $modal.velocity({ bottom: "0", opacity: 1 }, {
+            $modal.velocity({ bottom: "0px", opacity: 1 }, {
                 duration: options.in_duration,
-                queue: false,
-                ease: "easeOutCubic",
+                easing: "easeOutCubic",
                 // Handle modal ready callback
                 complete: function () {
                     if (typeof (options.ready) === "function") {
@@ -99,12 +106,12 @@ $.fn.extend({
                     }
                 }
             });
+            
         } // Left Sheet
         else if ($modal.hasClass(EqUI.modals.left_sheet_class)) {
-            $modal.velocity({ left: "0", opacity: 1 }, {
+            $modal.velocity({ left: "0px", opacity: 1 }, {
                 duration: options.in_duration,
-                queue: false,
-                ease: "easeOutCubic",
+                easing: "easeOutCubic",
                 // Handle modal ready callback
                 complete: function () {
                     if (typeof (options.ready) === "function") {
@@ -136,8 +143,7 @@ $.fn.extend({
             $modal.css({ top: options.starting_top });
             $modal.velocity({ top: "10%", opacity: 1, scaleX: '1' }, {
                 duration: options.in_duration,
-                queue: false,
-                ease: "easeOutCubic",
+                easing: "easeOutCubic",
                 // Handle modal ready callback
                 complete: function () {
                     if (typeof (options.ready) === "function") {
@@ -171,15 +177,14 @@ $.fn.extend({
         $modal.find(EqUI.modals.action_close_selector).off('click.close');
         $(document).off('keyup.leanModal' + overlayID);
 
-        $overlay.velocity({ opacity: 0 }, { duration: options.out_duration, queue: false, ease: "easeOutQuart" });
+        $overlay.velocity({ opacity: 0 }, { duration: options.out_duration, easing: "easeOutQuart" });
 
 
         // Top and Full Sheet
         if ($modal.hasClass(EqUI.modals.top_sheet_class) || $modal.hasClass(EqUI.modals.full_sheet_class)) {
             $modal.velocity({ top: "-100%", opacity: 0 }, {
                 duration: options.out_duration,
-                queue: false,
-                ease: "easeOutCubic",
+                easing: "easeOutCubic",
                 // Handle modal ready callback
                 complete: function () {
                     $overlay.css({ display: "none" });
@@ -196,8 +201,7 @@ $.fn.extend({
         else if ($modal.hasClass(EqUI.modals.bottom_sheet_class)) {
             $modal.velocity({ bottom: "-100%", opacity: 0 }, {
                 duration: options.out_duration,
-                queue: false,
-                ease: "easeOutCubic",
+                easing: "easeOutCubic",
                 // Handle modal ready callback
                 complete: function () {
                     $overlay.css({ display: "none" });
@@ -214,8 +218,7 @@ $.fn.extend({
         else if ($modal.hasClass(EqUI.modals.left_sheet_class)) {
             $modal.velocity({ left: "-100%", opacity: 0 }, {
                 duration: options.out_duration,
-                queue: false,
-                ease: "easeOutCubic",
+                easing: "easeOutCubic",
                 // Handle modal ready callback
                 complete: function () {
                     $overlay.css({ display: "none" });
