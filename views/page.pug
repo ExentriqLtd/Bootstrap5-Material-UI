@@ -3,11 +3,8 @@ html
   head
     include _head.pug
   body(class="vh-100 d-flex flex-column")
-    div.container-fluid
-      div.row.h-100
-        aside.col-12.col-md-3.col-lg-2.bg-white.border-end.p-0
-          include modules/_sidebar.html
-        main.col-12.col-md-9.col-lg-10
-          include modules/_header.html
-          div.content-wrapper.mt-4
-            != doc_route.content || '<!-- Missing HTML content -->'
+    include modules/_header.html
+    include modules/_sidebar.html
+    main.eq-ui-main
+      div.content-wrapper.mt-4
+        != doc_route.content || '<!-- Missing HTML content -->'
