@@ -195,8 +195,8 @@ EqUI.forms.file_upload_drop = function(object, options) {
         '           <div class="eq-ui-determinate" data-dz-uploadprogress></div>'+
         '       </div>'+
         '   </div>'+
-        '<a class="eq-ui-list-secondary-content-body active eq-ui-file-upload-drop-zone-success"><i class="mdi mdi-check eq-ui-icon eq-ui-icon-24"></i></a>'+
-        '<a class="eq-ui-list-secondary-content-body active eq-ui-file-upload-drop-zone-error"><i class="mdi mdi-close eq-ui-icon eq-ui-icon-24"></i></a>'+
+        '<a class="eq-ui-list-secondary-content-body active eq-ui-file-upload-drop-zone-success"><i class="material-symbols-outlined eq-ui-icon eq-ui-icon-24">check</i></a>'+
+        '<a class="eq-ui-list-secondary-content-body active eq-ui-file-upload-drop-zone-error"><i class="material-symbols-outlined eq-ui-icon eq-ui-icon-24">close</i></a>'+
         '</li>';
     }
 
@@ -369,7 +369,7 @@ $.fn.eq_select = function (callback) {
             select_dropdown.append($('' +
             '<li class="' + disabled_class + '">' +
             '<a ' + (is_multiple ? 'data-target="fake"' : '') + ' class="truncate ' + slected_class + '">' +
-            '<i class="mdi mdi-check icon eq-ui-select-icon"></i> <span>' + option.html() + '</span>' +
+            '<i class="material-symbols-outlined icon eq-ui-select-icon">check</i> <span>' + option.html() + '</span>' +
             '</a></li>'));
         };
 

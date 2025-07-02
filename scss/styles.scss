@@ -55,8 +55,11 @@
 // Utilities
 @import "../node_modules/bootstrap/scss/utilities/api";
 
+//Libraries
 @import "../node_modules/node-waves/src/scss/waves.scss";
-
+@import "../node_modules/material-icons/iconfont/material-icons.scss";
+@import "../node_modules/@mdi/font/scss/materialdesignicons";
+@import "../node_modules/material-symbols/index";
 
 // Aggiungi i tuoi stili personalizzati
 @import "./global";
