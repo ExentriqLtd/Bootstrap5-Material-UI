@@ -12,3 +12,4 @@ import './collapsible.js';
 import './site.js';
 import './layout/side-nav.js';
 import './_init.js'
+import './modals.js'
