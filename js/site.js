@@ -294,64 +294,60 @@ EqUI.site.dismissableList = function() {
     var swipeLeft = false;
     var swipeRight = false;
 
-    $('.dismissable').each(function() {
-        $(this).hammer({
-            prevent_default: false
-        }).bind('pan', function(e) {
-            if (e.gesture.pointerType === "touch") {
-                var $this = $(this);
-                var direction = e.gesture.direction;
-                var x = e.gesture.deltaX;
-                var velocityX = e.gesture.velocityX;
-
-                $this.velocity({ translateX: x
-                }, {duration: 50, queue: false, easing: 'easeOutQuad'});
-
-                // Swipe Left
-                if (direction === 4 && (x > ($this.innerWidth() / 2) || velocityX < -0.75)) {
-                    swipeLeft = true;
-                }
-
-                // Swipe Right
-                if (direction === 2 && (x < (-1 * $this.innerWidth() / 2) || velocityX > 0.75)) {
-                    swipeRight = true;
-                }
-            }
-        }).bind('panend', function(e) {
-            // Reset if collection is moved back into original position
-            if (Math.abs(e.gesture.deltaX) < ($(this).innerWidth() / 2)) {
-                swipeRight = false;
-                swipeLeft = false;
-            }
-
-            if (e.gesture.pointerType === "touch") {
-                var $this = $(this);
-                if (swipeLeft || swipeRight) {
-                    var fullWidth;
-                    if (swipeLeft) { fullWidth = $this.innerWidth(); }
-                    else { fullWidth = -1 * $this.innerWidth(); }
-
-                    $this.velocity({ translateX: fullWidth
-                    }, {duration: 100, queue: false, easing: 'easeOutQuad', complete:
-                    function() {
-                        $this.css('border', 'none');
-                        $this.velocity({ height: 0, padding: 0
-                        }, {duration: 200, queue: false, easing: 'easeOutQuad', complete:
-                        function() { $this.remove(); }
-                        });
-                    }
-                    });
-                }
-                else {
-                    $this.velocity({ translateX: 0
-                    }, {duration: 100, queue: false, easing: 'easeOutQuad'});
-                }
-                swipeLeft = false;
-                swipeRight = false;
-            }
+    $('.dismissable').each(function () {
+        const $el = $(this);
+        let startX = 0;
+        let currentX = 0;
+        let touching = false;
+      
+        $el.on('touchstart', function (e) {
+          if (e.originalEvent.touches.length === 1) {
+            startX = e.originalEvent.touches[0].clientX;
+            touching = true;
+          }
         });
-
-    });
+      
+        $el.on('touchmove', function (e) {
+          if (!touching) return;
+      
+          currentX = e.originalEvent.touches[0].clientX;
+          const deltaX = currentX - startX;
+      
+          $el.velocity({ translateX: deltaX }, { duration: 0, queue: false });
+        });
+      
+        $el.on('touchend', function (e) {
+          if (!touching) return;
+      
+          const deltaX = currentX - startX;
+          const threshold = $el.innerWidth() / 2;
+      
+          if (Math.abs(deltaX) > threshold) {
+            const fullWidth = deltaX > 0 ? $el.innerWidth() : -$el.innerWidth();
+      
+            $el.velocity({ translateX: fullWidth }, {
+              duration: 100,
+              easing: 'easeOutQuad',
+              complete: function () {
+                $el.css('border', 'none');
+                $el.velocity({ height: 0, padding: 0 }, {
+                  duration: 200,
+                  easing: 'easeOutQuad',
+                  complete: function () {
+                    $el.remove();
+                  }
+                });
+              }
+            });
+          } else {
+            $el.velocity({ translateX: 0 }, { duration: 100, easing: 'easeOutQuad' });
+          }
+      
+          touching = false;
+          startX = 0;
+          currentX = 0;
+        });
+      });
 };
 
 $(document).ready(function() {
