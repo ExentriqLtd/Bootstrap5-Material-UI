@@ -24,3 +24,4 @@ import './dropdown.js';
 import './tabs.js';
 import './modals.js';
 import './forms.js';
+import './table.js';

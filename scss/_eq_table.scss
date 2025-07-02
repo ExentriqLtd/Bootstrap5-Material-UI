@@ -118,9 +118,13 @@ table {
 		}
 
 		// Striped
-		&.eq-ui-striped > tbody {
-			> tr:nth-child(odd) {
+		&.eq-ui-striped>tbody {
+			>tr:nth-child(odd) {
 				background-color: lighten($table-striped-color, 2.1%);
+
+				>td {
+					background-color: transparent;
+				}
 			}
 		}
 
@@ -129,6 +133,9 @@ table {
 			@include eq-ui-transition(background-color);
 			&:hover {
 				background-color: $table-striped-color;
+				td {
+					background-color: transparent;
+				}
 			}
 		}
 
@@ -189,6 +196,9 @@ table {
         tbody > tr.is-selected {
             @include eq-ui-transition(background-color);
             background-color: transparentize($eq-ui-secondary-color, .95);
+			td {
+				background-color: transparent;
+			}
         }
 
 	}

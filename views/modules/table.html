@@ -1,0 +1,491 @@
+<div class="jumbotron">
+    <div class="container">
+        <h1>Table</h1>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="header">Basic</h2>
+            <p>Basic table for organize data</p>
+            <table class="table eq-ui-data-table z-depth-1">
+                <thead>
+                <tr>
+                    <th class="eq-ui-data-table-cell-non-numeric">Material</th>
+                    <th>Quantity</th>
+                    <th>Unit price</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Acrylic (Transparent)</td>
+                    <td>25</td>
+                    <td>$2.90</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Plywood (Birch)</td>
+                    <td>50</td>
+                    <td>$1.25</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Laminate (Gold on Blue)</td>
+                    <td>10</td>
+                    <td>$2.35</td>
+                </tr>
+                </tbody>
+            </table>
+           <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
+&lt;table class=&quot;table eq-ui-data-table z-depth-1&quot;&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+        &lt;th class=&quot;eq-ui-data-table-cell-non-numeric&quot;&gt;Material&lt;/th&gt;
+        &lt;th&gt;Quantity&lt;/th&gt;
+        &lt;th&gt;Unit price&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+
+    &lt;tbody&gt;
+    &lt;tr&gt;
+        &lt;td class=&quot;eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate&quot;&gt;Acrylic (Transparent)&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+        &lt;td&gt;$2.90&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td class=&quot;eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate&quot;&gt;Plywood (Birch)&lt;/td&gt;
+        &lt;td&gt;50&lt;/td&gt;
+        &lt;td&gt;$1.25&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td class=&quot;eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate&quot;&gt;Laminate (Gold on Blue)&lt;/td&gt;
+        &lt;td&gt;10&lt;/td&gt;
+        &lt;td&gt;$2.35&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+    </div>
+
+    <div class="row">
+            <div class="col-md-12">
+                <h2 class="header">Sortable Table</h2>
+                <p>Sortable Table by clicking on column head</p>
+                <table class="table eq-ui-data-table z-depth-1 eq-ui-table-sort">
+                    <thead>
+                    <tr>
+                        <th class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-sort-column">Material<i class="material-icons">sort</i></th>
+                        <th>Quantity</th>
+                        <th class="eq-ui-data-table-sort-column">Unit price<i class="material-icons">sort</i></th> 
+                    </tr>
+                    </thead>
+    
+                    <tbody>
+                    <tr>
+                        <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Acrylic (Transparent)</td>
+                        <td>25</td>
+                        <td>$2.90</td>
+                    </tr>
+                    <tr>
+                        <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Plywood (Birch)</td>
+                        <td>50</td>
+                        <td>$1.25</td>
+                    </tr>
+                    <tr>
+                        <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Laminate (Gold on Blue)</td>
+                        <td>10</td>
+                        <td>$2.35</td>
+                    </tr>
+                    <tr>
+                        <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Red (Velvet)</td>
+                        <td>15</td>
+                        <td>$3.46</td>
+                    </tr>
+                    <tr>
+                        <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Pink (Rose)</td>
+                        <td>44</td>
+                        <td>$6.31</td>
+                    </tr>
+                    </tbody>
+                </table>
+               <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
+    &lt;table class=&quot;table eq-ui-data-table z-depth-1 eq-ui-table-sort&quot;&gt;
+        &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th class=&quot;eq-ui-data-table-cell-non-numeric eq-ui-data-table-sort-column&quot;&gt;Material&lt;i class=&quot;material-icons&quot;&gt;sort&lt;/i&gt;&lt;/th&gt;
+            &lt;th class=&quot;&quot;&gt;Quantity&lt;/th&gt;
+            &lt;th class=&quot;eq-ui-data-table-sort-column&quot;&gt;Unit price&lt;i class=&quot;material-icons&quot;&gt;sort&lt;/i&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;/thead&gt;
+    
+        &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate&quot;&gt;Acrylic (Transparent)&lt;/td&gt;
+            &lt;td&gt;25&lt;/td&gt;
+            &lt;td&gt;$2.90&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate&quot;&gt;Plywood (Birch)&lt;/td&gt;
+            &lt;td&gt;50&lt;/td&gt;
+            &lt;td&gt;$1.25&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate&quot;&gt;Laminate (Gold on Blue)&lt;/td&gt;
+            &lt;td&gt;10&lt;/td&gt;
+            &lt;td&gt;$2.35&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;</code></pre>
+            </div>
+        </div>
+    
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="header">With Checkbox</h2>
+            <p>For checkbox table mode. We have than add <code class="language-markup">eq-ui-data-table-js eq-ui-with-checkbox</code></p>
+            <table class="table eq-ui-data-table eq-ui-data-table-js eq-ui-with-checkbox eq-ui-hoverable z-depth-1" id="eq-ui-sortable-table">
+                <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" class="eq-ui-input filled-in" id="checkbox-all" />
+                        <label for="checkbox-all"></label>
+                    </th>
+                    <th class="eq-ui-data-table-cell-non-numeric">Material</th>
+                    <th class="sort-column">Quantity</th>
+                    <th class="sort-column">Unit price</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>
+                        <input type="checkbox" class="eq-ui-input filled-in" id="checkbox-1" />
+                        <label for="checkbox-1"></label>
+                    </td>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Acrylic (Transparent)</td>
+                    <td>25</td>
+                    <td>$2.90</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" class="eq-ui-input filled-in" id="checkbox-2" />
+                        <label for="checkbox-2"></label>
+                    </td>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Plywood (Birch)</td>
+                    <td>50</td>
+                    <td>$1.25</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" class="eq-ui-input filled-in" id="checkbox-3" />
+                        <label for="checkbox-3"></label>
+                    </td>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Laminate (Gold on Blue)</td>
+                    <td>10</td>
+                    <td>$2.35</td>
+                </tr>
+                </tbody>
+            </table>
+           <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
+&lt;table class=&quot;table eq-ui-data-table eq-ui-with-checkbox z-depth-1&quot;&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+        &lt;th&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;eq-ui-input filled-in&quot; id=&quot;checkbox-all&quot; /&gt;
+            &lt;label for=&quot;checkbox-all&quot;&gt;&lt;/label&gt;
+        &lt;/th&gt;
+        &lt;th class=&quot;eq-ui-data-table-cell-non-numeric&quot;&gt;Material&lt;/th&gt;
+        &lt;th&gt;Quantity&lt;/th&gt;
+        &lt;th&gt;Unit price&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+
+    &lt;tbody&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;eq-ui-input filled-in&quot; id=&quot;checkbox-1&quot; /&gt;
+            &lt;label for=&quot;checkbox-1&quot;&gt;&lt;/label&gt;
+        &lt;/td&gt;
+        &lt;td class=&quot;eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate&quot;&gt;Acrylic (Transparent)&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+        &lt;td&gt;$2.90&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;eq-ui-input filled-in&quot; id=&quot;checkbox-2&quot; /&gt;
+            &lt;label for=&quot;checkbox-2&quot;&gt;&lt;/label&gt;
+        &lt;/td&gt;
+        &lt;td class=&quot;eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate&quot;&gt;Plywood (Birch)&lt;/td&gt;
+        &lt;td&gt;50&lt;/td&gt;
+        &lt;td&gt;$1.25&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;eq-ui-input filled-in&quot; id=&quot;checkbox-3&quot; /&gt;
+            &lt;label for=&quot;checkbox-3&quot;&gt;&lt;/label&gt;
+        &lt;/td&gt;
+        &lt;td class=&quot;eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate&quot;&gt;Laminate (Gold on Blue)&lt;/td&gt;
+        &lt;td&gt;10&lt;/td&gt;
+        &lt;td&gt;$2.35&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="header">Striped</h2>
+            <p>For striped table mode. We have than add <code class=" language-markup">.eq-ui-striped</code></p>
+            <table class="table eq-ui-data-table eq-ui-striped z-depth-1">
+                <thead>
+                <tr>
+                    <th class="eq-ui-data-table-cell-non-numeric">Material</th>
+                    <th>Quantity</th>
+                    <th>Unit price</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Acrylic (Transparent)</td>
+                    <td>25</td>
+                    <td>$2.90</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Plywood (Birch)</td>
+                    <td>50</td>
+                    <td>$1.25</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Laminate (Gold on Blue)</td>
+                    <td>10</td>
+                    <td>$2.35</td>
+                </tr>
+                </tbody>
+            </table>
+           <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
+&lt;table class=&quot;table eq-ui-data-table eq-ui-striped z-depth-1&quot;&gt;
+    ...
+&lt;/table&gt;</code></pre>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="header">Hoverable</h2>
+            <p>For hoverable table mode. We have than add <code class=" language-markup">.eq-ui-hoverable</code></p>
+            <table class="table eq-ui-data-table eq-ui-hoverable z-depth-1">
+                <thead>
+                <tr>
+                    <th class="eq-ui-data-table-cell-non-numeric">Material</th>
+                    <th>Quantity</th>
+                    <th>Unit price</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Acrylic (Transparent)</td>
+                    <td>25</td>
+                    <td>$2.90</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Plywood (Birch)</td>
+                    <td>50</td>
+                    <td>$1.25</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Laminate (Gold on Blue)</td>
+                    <td>10</td>
+                    <td>$2.35</td>
+                </tr>
+                </tbody>
+            </table>
+           <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
+&lt;table class=&quot;table eq-ui-data-table eq-ui-hoverable z-depth-1&quot;&gt;
+    ...
+&lt;/table&gt;</code></pre>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="header">Centered</h2>
+            <p>For centered table mode. We have than add <code class=" language-markup">.eq-ui-centered</code></p>
+            <table class="table eq-ui-data-table eq-ui-centered z-depth-1">
+                <thead>
+                <tr>
+                    <th class="eq-ui-data-table-cell-non-numeric">Material</th>
+                    <th>Quantity</th>
+                    <th>Unit price</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Acrylic (Transparent)</td>
+                    <td>25</td>
+                    <td>$2.90</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Plywood (Birch)</td>
+                    <td>50</td>
+                    <td>$1.25</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">Laminate (Gold on Blue)</td>
+                    <td>10</td>
+                    <td>$2.35</td>
+                </tr>
+                </tbody>
+            </table>
+           <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
+&lt;table class=&quot;table eq-ui-data-table eq-ui-centered z-depth-1&quot;&gt;
+    ...
+&lt;/table&gt;</code></pre>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 id="header-fixed" class="header">Header Fixed</h2>
+            <p>For fixed header mode. We have than add <code class=" language-markup">.eq-ui-header-fixed</code></p>
+            <table class="table eq-ui-data-table eq-ui-header-fixed z-depth-1">
+                <thead>
+                <tr>
+                    <th class="eq-ui-data-table-cell-non-numeric">Material</th>
+                    <th>Quantity</th>
+                    <th>Unit price</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric"><span class="truncate">Acrylic (Transparent)</span></td>
+                    <td>25</td>
+                    <td>$2.90</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric"><span class="truncate">Plywood (Birch)</span></td>
+                    <td>50</td>
+                    <td>$1.25</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric"><span class="truncate">Laminate (Gold on Blue)</span></td>
+                    <td>10</td>
+                    <td>$2.35</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric"><span class="truncate">Acrylic (Transparent)</span></td>
+                    <td>25</td>
+                    <td>$2.90</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric"><span class="truncate">Plywood (Birch)</span></td>
+                    <td>50</td>
+                    <td>$1.25</td>
+                </tr>
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric"><span class="truncate">Laminate (Gold on Blue)</span></td>
+                    <td>10</td>
+                    <td>$2.35</td>
+                </tr>
+                </tbody>
+            </table>
+           <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
+&lt;table class=&quot;table eq-ui-data-table eq-ui-header-fixed z-depth-1&quot;&gt;
+    ...
+&lt;/table&gt;</code></pre>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 id="table-lazy-load" class="header">Lazy Load</h2>
+            <p>For Lazy Load mode. We have than add <code class=" language-markup">.eq-ui-data-table-lazy-load</code></p>
+            <table id="table-lazy-load-sample1" class="table eq-ui-data-table eq-ui-data-table-lazy-load z-depth-1">
+                <thead>
+                <tr>
+                    <th class="eq-ui-data-table-cell-non-numeric table-fixed-col-100 eq-ui-hidden-xs-">ID</th>
+                    <th class="eq-ui-data-table-cell-non-numeric">Model</th>
+                    <th>Quantity</th>
+                    <th>Unit price</th>
+                </tr>
+                </thead>
+
+                <tbody style="height: 480px;">
+                <tr>
+                    <td class="eq-ui-data-table-cell-non-numeric" style="text-align: center;" >Loading...</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>Example of implementation (HTML):</p>
+           <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
+&lt;table id=&quot;table-lazy-load-sample1&quot; class=&quot;table eq-ui-data-table eq-ui-data-table-lazy-load z-depth-1&quot;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+    &lt;th class=&quot;eq-ui-data-table-cell-non-numeric table-fixed-col-100 eq-ui-hidden-xs&quot;&gt;ID&lt;/th&gt;
+    &lt;th class=&quot;eq-ui-data-table-cell-non-numeric&quot;&gt;Model&lt;/th&gt;
+    &lt;th&gt;Quantity&lt;/th&gt;
+    &lt;th&gt;Unit price&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody style=&quot;height: 480px;&quot;&gt;
+&lt;tr&gt;
+    &lt;td class=&quot;eq-ui-data-table-cell-non-numeric&quot; style=&quot;text-align: center;&quot; &gt;Loading...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+            <p>Example of implementation (JS):</p>
+           <pre class="language-markup mt-3" title="language-markup"><code class="language-javascript">
+var fakeJsonData = "http://192.168.1.20:3500/posts";
+var fakeDataTable = [];
+var EqUILazyLoad_Sample1 = null;
+var EqUILazyLoad_Sample1_Scroll_Content_ID = $('#table-lazy-load-sample1 tbody')[0];
+
+// Load json data
+$.getJSON( fakeJsonData, {
+    _page: 1,
+    _limit: 300000
+})
+.done(function( data ) {
+
+    // Transform data
+    $.each( data, function( i, item ) {
+        fakeDataTable.push(
+        '&lt;tr&gt;\n' +
+        '&lt;td class=&quot;eq-ui-data-table-cell-non-numeric table-fixed-col-100 eq-ui-hidden-xs&quot;&gt;'+(i+1)+'&lt;/td&gt;\n' +
+        '&lt;td class=&quot;eq-ui-data-table-cell-non-numeric&quot;&gt;&lt;span class=&quot;truncate&quot;&gt;'+item.model+'&lt;/span&gt;&lt;/td&gt;\n' +
+        '&lt;td&gt;'+item.quantity+'&lt;/td&gt;\n' +
+        '&lt;td&gt;'+item.price+'&lt;/td&gt;\n' +
+        '&lt;/tr&gt;'
+        );
+    });
+
+    // Run Lazy Load
+    if(EqUILazyLoad_Sample1 === null){
+        EqUILazyLoad_Sample1 = new EqUILazyLoad({
+            rows: fakeDataTable,
+            scrollId: EqUILazyLoad_Sample1_Scroll_Content_ID,
+            contentId: EqUILazyLoad_Sample1_Scroll_Content_ID,
+            callbacks: {
+                clusterWillChange: function(){
+                    console.log('[Table -> Lazy load] clusterWillChange');
+                },
+                clusterChanged: function(){
+                    console.log('[Table -> Lazy load] clusterChanged');
+                },
+                scrollingProgress: function(progress){
+                    // console.log('[Table -> Lazy load] scrollingProgress', progress);
+                }
+            }
+        });
+    }
+});</code></pre>
+        </div>
+    </div>
+
+</div>
