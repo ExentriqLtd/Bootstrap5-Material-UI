@@ -35,7 +35,7 @@
 
         <div class="col-md-12">
             <br>
-            <pre><code class="language-markup">
+            <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
 &lt;div class=&quot;col-md-12&quot;&gt;
     &lt;div class=&quot;eq-ui-scrollbar-wrap eq-ui-scrollbar-wrap-x eq-ui-scrollbar-wrap-hide&quot;&gt;
         &lt;ul class=&quot;eq-ui-tabs&quot;&gt;
@@ -83,7 +83,7 @@
 
         <div class="col-md-12">
             <br>
-            <pre><code class="language-markup">
+            <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
 ...
 &lt;ul class=&quot;eq-ui-tabs eq-ui-tabs-color-inverted eq-ui-tabs-justified&quot;&gt;
 ...</code></pre>
@@ -114,7 +114,7 @@
 
         <div class="col-md-12">
             <br>
-            <pre><code class="language-markup">
+            <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
 ...
 &lt;li class=&quot;eq-ui-tab&quot;&gt;&lt;a href=&quot;/color.html&quot;&gt;Color&lt;/a&gt;&lt;/li&gt;
 &lt;li class=&quot;eq-ui-tab&quot;&gt;&lt;a class=&quot;active&quot; href=&quot;/helpers.html&quot;&gt;Helpers&lt;/a&gt;&lt;/li&gt;
@@ -153,7 +153,7 @@
 
         <div class="col-md-12">
             <br>
-            <pre><code class="language-markup">
+            <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
 ...
 &lt;ul class=&quot;eq-ui-tabs eq-ui-tabs-with-icons eq-ui-tabs-color-inverted eq-ui-tabs-justified&quot;&gt;
     &lt;li class=&quot;eq-ui-tab&quot;&gt;&lt;a href=&quot;#eq-ui-tab-s3-t1&quot;&gt;&lt;i class=&quot;mdi mdi-home icon&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
@@ -194,7 +194,7 @@
 
         <div class="col-md-12">
             <br>
-            <pre><code class="language-markup">
+            <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
 ...
 &lt;ul class=&quot;eq-ui-tabs eq-ui-tabs-with-left-icons eq-ui-tabs-color-inverted eq-ui-tabs-justified&quot;&gt;
     &lt;li class=&quot;eq-ui-tab&quot;&gt;&lt;a href=&quot;#eq-ui-tab-s4-t1&quot;&gt;&lt;i class=&quot;mdi mdi-home icon&quot;&gt;&lt;/i&gt; Home&lt;/a&gt;&lt;/li&gt;
@@ -240,7 +240,7 @@
 
         <div class="col-md-12">
             <br>
-            <pre><code class="language-markup">
+            <pre class="language-markup mt-3" title="language-markup"><code class="language-markup">
 ...
 &lt;ul class=&quot;eq-ui-tabs eq-ui-tabs-with-top-icons eq-ui-tabs-color-inverted eq-ui-tabs-justified&quot;&gt;
     &lt;li class=&quot;eq-ui-tab&quot;&gt;&lt;a href=&quot;#eq-ui-tab-s5-t1&quot;&gt;&lt;i class=&quot;mdi mdi-home icon&quot;&gt;&lt;/i&gt;&lt;br&gt;Home&lt;/a&gt;&lt;/li&gt;
@@ -261,7 +261,7 @@
             <h2 class="header">jQuery Plugin Initialization</h2>
             <p>Tabs are initialized automatically, but if you add tabs dynamically you will have to initialize them like this.</p>
 
-            <pre><code class="language-javascript">
+            <pre class="language-markup mt-3" title="language-markup"><code class="language-javascript">
 $(document).ready(function(){
     $('ul.eq-ui-tabs').tabs();
 });</code></pre>
@@ -273,14 +273,14 @@ $(document).ready(function(){
             <h2 class="header">jQuery Plugin Methods</h2>
             <p>You can programmatically trigger a tab change with our <code class=" language-markup">select_tab</code> method. You have to input the id of the tab you want to switch to. For sample id: <code class=" language-markup">#eq-ui-tab-s3-t1</code></p>
 
-            <pre><code class="language-javascript">
+            <pre class="language-markup mt-3" title="language-markup"><code class="language-javascript">
 $(document).ready(function(){
     $('ul.eq-ui-tabs').tabs('select_tab', 'eq-ui-tab-s3-t1');
 });</code></pre>
 
             <p>Events</p>
 
-            <pre><code class="language-javascript">
+            <pre class="language-markup mt-3" title="language-markup"><code class="language-javascript">
 $('#eq-ui-tab-s3-t1').bind('isShow', function () {
     console.log($(this), 'show...');
 });</code></pre>

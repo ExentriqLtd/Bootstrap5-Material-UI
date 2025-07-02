@@ -416,6 +416,10 @@ pre[class*="language-"] {
   	float: right !important;
 }
 
+.img-responsive {
+    @extend .img-fluid;
+}
+
 // valign-wrapper
 .valign-wrapper {
     display: flex;
