@@ -1,4 +1,3 @@
-var EqUI = window.EqUI;
 
     EqUI.dropdown = {};
 

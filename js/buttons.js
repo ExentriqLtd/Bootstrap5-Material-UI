@@ -1,5 +1,3 @@
-var EqUI = window.EqUI;
-
 EqUI.buttons = {};
 
 // Init

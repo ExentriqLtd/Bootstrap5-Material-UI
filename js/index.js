@@ -10,4 +10,5 @@ import './observe.js';
 import './buttons.js';
 import './collapsible.js';
 import './site.js';
-import './side-nav.js';
+import './layout/side-nav.js';
+import './_init.js'

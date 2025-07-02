@@ -1,4 +1,3 @@
-var EqUI = window.EqUI;
 EqUI.collapsible = {};
 
 EqUI.collapsible.element = $('.eq-ui-collapsible');
@@ -114,7 +113,7 @@ $.fn.eq_collapsible = function (options) {
 
         // Get panel header from a children element
         function getPanelHeader(object) {
-            return object.closest('li > ' + EqUI.collapsible.header_selector);
+            return object.closest('li > '+EqUI.collapsible.header_selector);
         }
 
         /*  End Helper Functions */
@@ -122,7 +121,7 @@ $.fn.eq_collapsible = function (options) {
         if (options.accordion || collapsible_type === "accordion" || collapsible_type === undefined) { // Handle Accordion
 
             // Add click handler to only direct collapsible header children
-            $panel_headers = $this.find('> li > ' + EqUI.collapsible.header_selector);
+            $panel_headers = $this.find('> li > '+EqUI.collapsible.header_selector);
             $panel_headers.on('click.collapse', function (e) {
                 var element = $(e.target);
 
@@ -170,33 +169,32 @@ $.fn.eq_collapsible = function (options) {
 };
 
 // Init
-EqUI.collapsible.init = function () {
+EqUI.collapsible.init = function() {
 
 };
 
 // READY & OBSERVE
 if (EqUI.mutationObserver === null) {
     // Load
-    EqUI.collapsible.init = function () {
-        EqUI.collapsible.element.eq_collapsible();
+    EqUI.collapsible.init = function() {
+    EqUI.collapsible.element.eq_collapsible();
     };
 } else {
     // .EqUIObserve(selector, onAdded, onRemoved)
     $(document).EqUIObserve('.eq-ui-collapsible', function () {
-        $(this).eq_collapsible();
+    $(this).eq_collapsible();
     })
 }
 
 // Update
-EqUI.collapsible.update = function () {
-
+EqUI.collapsible.update = function() {
+    
 };
 
-$(document).ready(function () {
+$(document).ready(function() {
     // Init
     EqUI.collapsible.init();
 
     // Update
     EqUI.collapsible.update();
 });
-
