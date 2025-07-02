@@ -13,7 +13,7 @@
 
         .eq-ui-collapsible-header {
             width: 100%;
-            display: block;
+            display: flex;
             border-bottom: 1px solid $collapsible-border-color;
             height: $collapsible-height;
             background-color: $collapsible-header-color;
@@ -22,6 +22,7 @@
             cursor: pointer;
 
             a {
+                flex: 1;
                 user-select: none;
                 display: block;
                 padding: 0 $collapsible-body-padding;
