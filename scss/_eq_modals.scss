@@ -44,7 +44,9 @@
     // Header
     .eq-ui-modal-header {
         position: relative;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         min-height: $modals-header-height;
         line-height: $modals-header-height;
         width: 100%;
@@ -52,9 +54,6 @@
 
         .header-title {
             font-size: 24px;
-            .section-title {
-                float: left;
-            }
         }
     }
 
