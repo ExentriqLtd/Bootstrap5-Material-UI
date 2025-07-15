@@ -2,9 +2,7 @@ import $ from './global'; // jQuery + librerie caricate
 import 'bootstrap';
 
 import 'jquery-ui/dist/jquery-ui.min';
-import 'jquery-ui/ui/widget';
-import 'jquery-ui/ui/widgets/autocomplete';
-import "jquery-ui/themes/base/autocomplete.css";
+import 'devbridge-autocomplete';
 
 import Velocity from 'velocity-animate';
 import 'velocity-animate/velocity.ui';
