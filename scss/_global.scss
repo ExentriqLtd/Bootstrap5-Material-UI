@@ -451,7 +451,7 @@ pre[class*="language-"] {
 }
 
 .truncate {
-	display: block;
+	display: inline-flex;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

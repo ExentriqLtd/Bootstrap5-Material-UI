@@ -34,117 +34,53 @@ _this.load = function() {
 };
 
 // Render
-_this.render = function() {
+_this.render = function () {
+    $('.' + _this.breadcrumb_class).each(function () {
+        const $breadcrumb = $(this);
+        const $wrapper = $breadcrumb.closest('.eq-ui-breadcrumb-wrapper');
+        const only_one = $breadcrumb.data('onlyOne') === true || $breadcrumb.data('onlyOne') === "true";
 
-    $('.'+_this.breadcrumb_class).each(function(){
-        var origin = $(this);
-        var origin_width = origin.outerWidth(true);
-        var origin_parent = origin.parent();
-        var origin_parent_width = origin.closest('.left-eq-ui-nav-menu').innerWidth();
-        var siblings_width = 0;
-        var _width_diff = origin_parent_width - origin_width;
-        var offset_width = 4;
-        var divider_width = 32;
-        var only_one = origin.data('onlyOne') === true || origin.data('onlyOne') === "true";
-        
-        // Update sizes
-        function updateSizes(){
-            origin_width = origin.outerWidth(true);
-            origin_parent_width = origin.closest('.left-eq-ui-nav-menu').innerWidth();
-            _width_diff = origin_parent_width - origin_width;
+        // 🔧 Reset prima di tutto
+        $breadcrumb.removeClass(_this.breadcrumb_min_class);
+        const items = $breadcrumb.children('.' + _this.breadcrumb_item_class);
+        items.removeClass(_this.breadcrumb_item_hide_class)
+             .removeClass(_this.breadcrumb_item_truncate_class)
+             .removeClass(_this.breadcrumb_item_min_class);
+
+        // 🧪 Misurazione naturale
+        const $clone = $breadcrumb.clone()
+            .css({
+                position: 'absolute',
+                visibility: 'hidden',
+                width: 'auto',
+                maxWidth: 'none',
+                flex: 'none',
+                whiteSpace: 'nowrap'
+            })
+            .appendTo('body');
+
+        const breadcrumbNaturalWidth = $clone.outerWidth(true);
+        $clone.remove();
+
+        const wrapperEl = $wrapper.get(0);
+        const wrapperWidth = wrapperEl.clientWidth;
+        const overflow = breadcrumbNaturalWidth > wrapperWidth;
+
+        if (overflow && only_one && items.length > 1) {
+            console.log('⚠️ Overflow rilevato – riduco a un solo elemento');
+
+            const visibleLast = $(items[items.length - 1]);
+            const indicatorItem = $(items[items.length - 2]);
+
+            $breadcrumb.addClass(_this.breadcrumb_min_class);
+            items.slice(0, -1).addClass(_this.breadcrumb_item_hide_class);
+            indicatorItem.addClass(_this.breadcrumb_item_min_class);
+
+        } else if (items.length === 1) {
+            $(items[0]).addClass(_this.breadcrumb_item_truncate_class);
+        } else {
+            console.log('✅ Nessun overflow – mostro tutti gli elementi');
         }
-        updateSizes();
-
-        // Update children
-        var origin_children = [];
-        var origin_children_hiden = [];
-        function updateChildren(){
-            // Get children
-            origin_children = origin.children('.'+_this.breadcrumb_item_class+':not(.'+_this.breadcrumb_item_hide_class+')');
-            origin_children_hiden = origin.children('.'+_this.breadcrumb_item_class+'.'+_this.breadcrumb_item_hide_class);
-
-            // Is last
-            var _last_children;
-            var _last_children_hiden;
-            if(origin_children.length === 1 && origin_children_hiden.length > 0){
-                // _last_children = $(origin_children[0]);
-                _last_children_hiden = $(origin_children_hiden[origin_children_hiden.length-1]);
-                origin.addClass(_this.breadcrumb_min_class);
-                // Save old last children hiden width
-                if(_this.last_children_hiden_old_width === 0){
-                    _this.last_children_hiden_old_width = _last_children_hiden.innerWidth();
-                }
-                _last_children_hiden.addClass(_this.breadcrumb_item_min_class);
-            } else if(origin_children.length === 1 && origin_children_hiden.length === 0) {
-                _last_children = $(origin_children[0]);
-                _last_children.addClass(_this.breadcrumb_item_truncate_class);
-            } else {
-                origin.removeClass(_this.breadcrumb_min_class);
-                origin.children().removeClass(_this.breadcrumb_item_min_class);
-                origin.children().removeClass(_this.breadcrumb_item_truncate_class);
-                _this.last_children_hiden_old_width = 0;
-            }
-        }
-        updateChildren();
-
-        // Update elements
-        function updateElements(){
-            // Hide children
-            if(_width_diff < 1){
-                // Hide
-                if(origin_children.length > 1){
-
-                    if (only_one) {
-                        _this.last_children_hiden_old_width = 0;
-                        origin_children.slice(0, -1).each(function () {
-                            _this.last_children_hiden_old_width += $(this).innerWidth() + divider_width;
-                        }).addClass(_this.breadcrumb_item_hide_class);
-                    } else {
-                        var _first_children = $(origin_children[0]);
-                        _first_children.addClass(_this.breadcrumb_item_hide_class);
-
-                        // Updates
-                        updateSizes();
-                        updateChildren();
-
-                        if(origin_children.length > 1){updateElements();}
-                    }
-                }
-
-            } else { // Add children
-                // Add
-                if(origin_children_hiden.length) {
-
-                    // Only one
-                    if (only_one) {
-                        if (_width_diff > (_this.last_children_hiden_old_width + offset_width)) {
-                            _this.last_children_hiden_old_width = 0;
-                            origin_children_hiden.removeClass(_this.breadcrumb_item_hide_class);
-                        }
-                    } else {
-                        var _last_children_hiden = $(origin_children_hiden[origin_children_hiden.length-1]);
-                        var _last_children_hiden_width = _last_children_hiden.innerWidth();
-
-                        // Is old width
-                        _last_children_hiden_width = _this.last_children_hiden_old_width !== 0 ? _this.last_children_hiden_old_width:_last_children_hiden_width;
-
-                        if(_width_diff > (_last_children_hiden_width + offset_width + divider_width)){
-                            _last_children_hiden.removeClass(_this.breadcrumb_item_hide_class);
-
-                            // Updates
-                            updateSizes();
-                            updateChildren();
-
-                            if(origin_children_hiden.length){updateElements();}
-                        }
-                    }
-
-                }
-            }
-
-        }
-        updateElements();
-
     });
 };
 

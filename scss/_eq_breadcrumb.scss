@@ -1,5 +1,17 @@
 /* Breadcrumb */
 
+.eq-ui-breadcrumb-wrapper {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+
+    .eq-ui-breadcrumb {
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+    }
+}
+
 .eq-ui-breadcrumb {
     display: flex;
     position: relative;
@@ -19,12 +31,12 @@
         text-overflow: ellipsis;
         max-width: 100%; // o un valore limite ragionevole
 
-       &:not(.eq-ui-breadcrumb-item-hide):not(:first-of-type):before {
-            font-family: 'Material Icons';   
-            content: "chevron_right";       
+        &:not(.eq-ui-breadcrumb-item-hide):not(:first-of-type):before {
+            font-family: 'Material Icons';
+            content: "chevron_right";
             font-weight: normal;
             font-style: normal;
-            font-size: 24px;                
+            font-size: 24px;
             line-height: inherit;
             margin: 0 4px;
         }
@@ -35,12 +47,11 @@
 
         &.eq-ui-breadcrumb-item-truncate {
             @extend .truncate;
-            float: none;
         }
     }
 
     // Hide first divider
-    .eq-ui-breadcrumb-item-hide + .eq-ui-breadcrumb-item {
+    .eq-ui-breadcrumb-item-hide+.eq-ui-breadcrumb-item {
 
         &::before {
             content: "";
@@ -50,32 +61,28 @@
 
     // First min
     .eq-ui-breadcrumb-item.eq-ui-breadcrumb-item-hide.eq-ui-breadcrumb-item-min {
-        display: inline-block;
+        display: inline-flex;
 
         span {
             display: none;
         }
 
-       &::before {
+        &::before {
             display: inline-block;
-            font-family: 'Material Icons';  
-            content: "arrow_left";          
+            font-family: 'Material Icons';
+            content: "arrow_left";
             font-weight: normal;
             font-style: normal;
-            font-size: 24px;                
+            font-size: 24px;
             line-height: inherit;
-            margin: 0 4px;
-            // float: left;
         }
 
 
-        + .eq-ui-breadcrumb-item {
+        +.eq-ui-breadcrumb-item {
             @extend .truncate;
-            float: none;
 
             span {
                 @extend .truncate;
-                float: none;
             }
         }
     }
