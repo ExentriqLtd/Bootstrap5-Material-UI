@@ -7,16 +7,10 @@
     color: eq_color("shades", "white");
     background-color: $eq-ui-primary-color;
     height: $eq-ui-tool-bar-height;
-    line-height: $eq-ui-tool-bar-height;
 
     .eq-ui-side-nav-toggle {
         // Hide nav togglee
         display: none;
-        i {
-           margin-top: 6px;
-           margin-bottom: 0px;
-           line-height: 41px;
-        }
     }
 }
 

@@ -3,9 +3,7 @@
 .eq-ui-breadcrumb {
     display: flex;
     position: relative;
-    line-height: inherit;
     gap: 4px;
-    // float: left;
 
     .eq-ui-breadcrumb-item {
         display: inline-flex;
@@ -15,7 +13,6 @@
         color: #fff;
         font-size: 20px;
         text-decoration: none;
-        // float: left;
 
        &:not(.eq-ui-breadcrumb-item-hide):not(:first-of-type):before {
             font-family: 'Material Icons';   
@@ -25,7 +22,6 @@
             font-size: 24px;                
             line-height: inherit;
             margin: 0 4px;
-            // float: left;
         }
 
         &.eq-ui-breadcrumb-item-hide {
