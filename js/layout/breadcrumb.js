@@ -38,35 +38,20 @@ _this.render = function() {
 
     $('.'+_this.breadcrumb_class).each(function(){
         var origin = $(this);
-        var origin_width = 0;
+        var origin_width = origin.outerWidth(true);
         var origin_parent = origin.parent();
-        var origin_parent_width = 0;
+        var origin_parent_width = origin.closest('.left-eq-ui-nav-menu').innerWidth();
         var siblings_width = 0;
-        var _width_diff = 0;
+        var _width_diff = origin_parent_width - origin_width;
         var offset_width = 4;
         var divider_width = 32;
-        var only_one = origin.data('onlyOne') || false;
-
+        var only_one = origin.data('onlyOne') === true || origin.data('onlyOne') === "true";
+        
         // Update sizes
         function updateSizes(){
-            origin_width = origin.innerWidth();
-            origin_parent_width = origin_parent.width();
-            siblings_width = 0;
-
-            // Get siblings
-            origin.siblings().each(function(){
-                var _sibling = $(this);
-                if(_sibling.css('position') !== 'absolute' && _sibling.css('display') !== 'none'){
-                    siblings_width += _sibling.innerWidth();
-                }
-            });
-
-            _width_diff = origin_parent_width - (origin_width + siblings_width + offset_width);
-
-            // Set max-width
-            var origin_new_width = origin_parent_width - (siblings_width);
-            //origin.css({"max-width": origin_new_width+'px'});
-
+            origin_width = origin.outerWidth(true);
+            origin_parent_width = origin.closest('.left-eq-ui-nav-menu').innerWidth();
+            _width_diff = origin_parent_width - origin_width;
         }
         updateSizes();
 
@@ -109,15 +94,11 @@ _this.render = function() {
                 // Hide
                 if(origin_children.length > 1){
 
-                    if(only_one){ // Only one
+                    if (only_one) {
                         _this.last_children_hiden_old_width = 0;
-                        origin_children.each(function(i){
-                            var _origin_children = $(this);
-                            if((origin_children.length-1) !== i){
-                                _this.last_children_hiden_old_width += _origin_children.innerWidth() + divider_width;
-                                _origin_children.addClass(_this.breadcrumb_item_hide_class);
-                            }
-                        });
+                        origin_children.slice(0, -1).each(function () {
+                            _this.last_children_hiden_old_width += $(this).innerWidth() + divider_width;
+                        }).addClass(_this.breadcrumb_item_hide_class);
                     } else {
                         var _first_children = $(origin_children[0]);
                         _first_children.addClass(_this.breadcrumb_item_hide_class);
@@ -135,12 +116,11 @@ _this.render = function() {
                 if(origin_children_hiden.length) {
 
                     // Only one
-                    if(only_one && _width_diff > (_this.last_children_hiden_old_width + offset_width)){ // Only one
-                        _this.last_children_hiden_old_width = 0;
-                        origin_children_hiden.each(function(i){
-                            var _origin_children_hiden = $(this);
-                            _origin_children_hiden.removeClass(_this.breadcrumb_item_hide_class);
-                        });
+                    if (only_one) {
+                        if (_width_diff > (_this.last_children_hiden_old_width + offset_width)) {
+                            _this.last_children_hiden_old_width = 0;
+                            origin_children_hiden.removeClass(_this.breadcrumb_item_hide_class);
+                        }
                     } else {
                         var _last_children_hiden = $(origin_children_hiden[origin_children_hiden.length-1]);
                         var _last_children_hiden_width = _last_children_hiden.innerWidth();
