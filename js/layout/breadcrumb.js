@@ -65,7 +65,7 @@ _this.render = function() {
 
             // Set max-width
             var origin_new_width = origin_parent_width - (siblings_width);
-            origin.css({"max-width": origin_new_width+'px'});
+            //origin.css({"max-width": origin_new_width+'px'});
 
         }
         updateSizes();

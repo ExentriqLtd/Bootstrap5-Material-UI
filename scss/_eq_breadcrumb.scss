@@ -14,6 +14,11 @@
         font-size: 20px;
         text-decoration: none;
 
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%; // o un valore limite ragionevole
+
        &:not(.eq-ui-breadcrumb-item-hide):not(:first-of-type):before {
             font-family: 'Material Icons';   
             content: "chevron_right";       

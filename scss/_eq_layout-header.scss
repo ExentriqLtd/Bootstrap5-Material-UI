@@ -17,7 +17,16 @@
 
         .left-eq-ui-nav-menu {
             display: flex;
+            align-items: center;
             gap: 16px;
+        
+            .eq-ui-breadcrumb {
+                flex-grow: 1;
+                min-width: 0; // permette il truncamento
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
         }
     }
 
