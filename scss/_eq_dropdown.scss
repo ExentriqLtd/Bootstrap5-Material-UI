@@ -14,6 +14,7 @@
     padding: 8px 0;
     z-index: 999;
     will-change: width, height;
+    color: $dropdown-color !important;
 
     li {
         display: block;
@@ -28,7 +29,7 @@
             display: block;
             cursor: pointer;
             font-size: 16px;
-            color: $dropdown-color;
+            color: inherit;
             height: $dropdown-item-height;
             line-height: $dropdown-item-height;
             padding: 0 16px;
