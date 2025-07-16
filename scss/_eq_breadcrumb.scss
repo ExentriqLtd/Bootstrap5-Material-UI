@@ -46,7 +46,9 @@
         }
 
         &.eq-ui-breadcrumb-item-truncate {
-            @extend .truncate;
+            span {
+                @extend .truncate;
+            }
         }
     }
 
