@@ -385,19 +385,38 @@ $.fn.eq_select = function (callback) {
         select.before(dropdown_icon);
 
         // Init dropdown
-        $('.eq-ui-select-input-'+unique_ID).dropdown({
-            inDuration: 300,
-            outDuration: 225,
-            hover: false,
-            gutter: -62,
-            belowOrigin: false,
-            close: false
+        var $fakeInput = $('.eq-ui-select-input-' + unique_ID);
+        var $dropdown = $('#dropdown-' + unique_ID);
+
+        // Aggiungo classi base se vuoi (non mettere 'show' subito se vuoi chiuso inizialmente)
+        $dropdown.addClass('dropdown-menu'); // senza 'show' o 'active' per chiuso
+
+        $fakeInput.attr({
+            'data-bs-toggle': 'dropdown',
+            'aria-expanded': 'false'
+        });
+
+        // Gestione apertura/chiusura manuale (usando 'active' e 'open')
+        $fakeInput.on('click', function (e) {
+            e.stopPropagation();
+
+            if ($dropdown.hasClass('active') && $dropdown.hasClass('open')) {
+                $dropdown.removeClass('active open');
+            } else {
+                $('.eq-ui-dropdown').removeClass('active open'); // chiudo altri
+                $dropdown.addClass('active open');
+            }
+        });
+
+        // Chiudo quando clicco fuori
+        $(document).on('click', function () {
+            $dropdown.removeClass('active open');
         });
 
         // Add select dropdown events
         select_dropdown.find('li').each(function (i) {
             var curr_select = select;
-            $(this).click(function (e) {
+            $(this).on('click', function (e) {
                 var element = $(e.target);
 
                 if (is_multiple) {
