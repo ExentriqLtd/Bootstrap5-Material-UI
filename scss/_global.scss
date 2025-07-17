@@ -342,7 +342,7 @@ pre[class*="language-"] {
         line-height: 48px;
         font-size: 16px;
         cursor: pointer;
-        @extend .truncate;
+        @extend .truncateBlock;
 
         &.autocomplete-selected {
             background: #e1e1e1;
@@ -453,6 +453,13 @@ pre[class*="language-"] {
 .truncate {
 	display: inline-block;
 	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.truncateBlock {
+    display: block;
+    white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }

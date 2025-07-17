@@ -5,8 +5,12 @@
     border: 1px solid #e1e1e1;
     border-radius: 2px;
     padding: 0 14px;
-    display: flex;
-    align-items: center;
+
+    .eq-ui-search-flex {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
 
     // Hide clear
     .eq-ui-search-clear {
@@ -120,7 +124,8 @@
 
 .eq-ui-top-search {
     position: absolute;
-    display: block;
+    display: flex;
+    align-items: center;
     height: 100%;
     left: 0;
     right: 0;
@@ -146,6 +151,8 @@
         line-height: 50px;
         border: none;
         padding: 0;
+        flex-grow: 1;
+        height: 100%;
 
         input {
             font-size: 18px;
