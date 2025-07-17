@@ -5,6 +5,7 @@
     padding: 0;
     height: $eq-ui-tool-bar-height;
     display: flex;
+    align-items: center;
     gap: 16px;
 
     >li {
@@ -38,18 +39,15 @@
     // Item with icon
     >li.eq-ui-nav-menu-item-icon {
 
-        >a {
-            line-height: 32px;
-            margin: (($eq-ui-tool-bar-height - 36px)/2) 0;
-        }
       a.eq-ui-btn-fab{
         width: 36px;
         min-width: 36px;
         height: 36px;
 
-        i{
-          line-height: 36px;
-        }}
+            i{
+            line-height: 36px;
+            }
+        }
     }
 }
 
@@ -57,15 +55,5 @@
 .eq-ui-tool-bar-system {
     .eq-ui-nav-menu {
         height: $eq-ui-tool-bar-system-height;
-
-        // Item with icon
-        >li.eq-ui-nav-menu-item-icon {
-
-            >a {
-                line-height: 32px;
-                margin: (($eq-ui-tool-bar-system-height - 32px)/2) 0;
-
-            }
-        }
     }
 }
