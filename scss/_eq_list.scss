@@ -24,7 +24,7 @@
             margin: 0;
             font-size: 16px;
             color: $eq-ui-list-primary-line-text-color;
-            @extend .truncate;
+            @extend .truncateBlock;
         }
 
         .eq-ui-list-body {
@@ -72,7 +72,7 @@
         &.eq-ui-list-truncate {
 
             .eq-ui-list-body {
-                @extend .truncate;
+                @extend .truncateBlock;
             }
         }
 

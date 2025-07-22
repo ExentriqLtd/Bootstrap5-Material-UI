@@ -64,6 +64,7 @@
     // First min
     .eq-ui-breadcrumb-item.eq-ui-breadcrumb-item-hide.eq-ui-breadcrumb-item-min {
         display: inline-flex;
+        flex: 1 0 auto;
 
         span {
             display: none;
@@ -81,8 +82,6 @@
 
 
         +.eq-ui-breadcrumb-item {
-            @extend .truncate;
-
             span {
                 @extend .truncate;
             }

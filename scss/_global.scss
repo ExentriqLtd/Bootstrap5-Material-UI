@@ -528,3 +528,69 @@ pre[class*="language-"] {
         display: inline-block !important;
     }
 }
+
+
+/* --------------------------------------- */
+/* Utility Classes from Bootstrap 3 to 5
+/* --------------------------------------- */
+
+// Hidden per breakpoint specifici
+.hidden-xs {
+    @media (max-width: 575.98px) {
+        display: none !important;
+    }
+}
+.hidden-sm {
+  @include media-breakpoint-only(sm) {
+    display: none !important;
+  }
+}
+.hidden-md {
+  @include media-breakpoint-only(md) {
+    display: none !important;
+  }
+}
+.hidden-lg {
+  @include media-breakpoint-only(lg) {
+    display: none !important;
+  }
+}
+.hidden-xl {
+  @include media-breakpoint-only(xl) {
+    display: none !important;
+  }
+}
+
+// Visible solo su breakpoint specifici
+.visible-xs {
+    display: none !important;
+  
+    // Mostra solo sotto i 576px (prima del breakpoint sm)
+    @media (max-width: 575.98px) {
+      display: block !important;
+    }
+  }
+.visible-sm {
+  display: none !important;
+  @include media-breakpoint-only(sm) {
+    display: block !important;
+  }
+}
+.visible-md {
+  display: none !important;
+  @include media-breakpoint-only(md) {
+    display: block !important;
+  }
+}
+.visible-lg {
+  display: none !important;
+  @include media-breakpoint-only(lg) {
+    display: block !important;
+  }
+}
+.visible-xl {
+  display: none !important;
+  @include media-breakpoint-only(xl) {
+    display: block !important;
+  }
+}

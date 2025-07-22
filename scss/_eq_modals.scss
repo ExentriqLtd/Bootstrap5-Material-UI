@@ -47,13 +47,12 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        min-height: $modals-header-height;
-        line-height: $modals-header-height;
         width: 100%;
         padding: 0 16px;
 
         .header-title {
             font-size: 24px;
+            line-height: 20px;
         }
     }
 
