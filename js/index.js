@@ -1,5 +1,6 @@
 import $ from './global'; // jQuery + librerie caricate
-import 'bootstrap';
+import * as bootstrap from 'bootstrap'; // <--- così funziona
+window.bootstrap = bootstrap;
 
 import 'jquery-ui/dist/jquery-ui.min';
 import 'devbridge-autocomplete';
