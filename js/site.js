@@ -30,6 +30,9 @@ EqUI.site.init = function() {
 
     // Search Expandable
     EqUI.site.search_expandable('.eq-ui-search-expandable');
+
+    // 🔴 Elimina tutti i title per evitare tooltip nativi
+    EqUI.site.remove_titles(); // Rimuove subito + osserva
 };
 
 // Update
@@ -348,6 +351,35 @@ EqUI.site.dismissableList = function() {
           currentX = 0;
         });
       });
+};
+
+EqUI.site.remove_titles = function(selector = '[title]') {
+    // Rimuove i title già presenti
+    $(selector).removeAttr('title');
+
+    // Osserva aggiunte future
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            mutation.addedNodes.forEach(node => {
+                if (node.nodeType === 1) { // Element
+                    const $node = $(node);
+
+                    // Se il nodo stesso ha title
+                    if ($node.is('[title]')) {
+                        $node.removeAttr('title');
+                    }
+
+                    // Se ha discendenti con title
+                    $node.find('[title]').removeAttr('title');
+                }
+            });
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 };
 
 $(document).ready(function() {
