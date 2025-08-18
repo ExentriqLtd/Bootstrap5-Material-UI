@@ -1,10 +1,26 @@
 console.log('🔥 vendor-extra index loaded');
+
+// ----- FASTCLICK -----
+import FastClick from 'fastclick';
+
+// l'export moderno è una factory → la assegno comunque su window
+window.FastClick = FastClick;
+
+// se non esiste FastClick.attach (versioni moderne), ricreo l’API legacy
+if (typeof window.FastClick.attach !== 'function') {
+  window.FastClick.attach = function(target) {
+    // la factory moderna restituisce direttamente un'istanza
+    return FastClick(target);
+  };
+}
+console.log('✅ FastClick promoted with legacy .attach support');
+
 // ---- npm + local plugins (initialized *after* jQuery is available) ----
 function initVendorPlugins() {
     console.log('VENDOR-BUNDLE IS BEING USED');
     // npm packages
     require('exif-js');
-    require('fastclick');
+
     // jsonrpc
     require('./jsonrpc.js');
     if (typeof JSONRpcClient === 'function') {
@@ -20,7 +36,12 @@ function initVendorPlugins() {
     require('./jquery.fontselect.min.js');
     require('masonry-layout');
     require('imagesloaded');
-    require('riot');
+    const riotMod = require('riot/riot+compiler.min.js');
+    if (typeof window.riot === 'undefined' && riotMod) {
+      window.riot = riotMod;
+      console.log('✅ Riot promoted to window.riot');
+    }
+
     require('./bootstrap-wysiwyg.js');
     require('jquery-hotkeys');
     require('./jquery-cloneya.js');
