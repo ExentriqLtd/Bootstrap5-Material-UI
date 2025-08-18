@@ -19,6 +19,7 @@ This command:
 - Watches SCSS files and compiles them into dist/css/exentriq-bootstrap-ui-5.css
 - Watches JS files and compiles them into dist/js/exentriq-bootstrap-ui-5.min.js without minification
 - Generates all static HTML pages from views/page.pug + views/modules/*.html
+- Builds and copies all vendor and legacy scripts (vendor-extra folder) into dist/js/vendor/
 - Automatically watches .html and .pug files
 - Starts a static server on port 8000 with hot reload
 
