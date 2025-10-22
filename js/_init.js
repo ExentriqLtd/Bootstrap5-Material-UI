@@ -31,6 +31,10 @@ _this.update = function () {
     EqUI.buttons?.update();
     EqUI.cards?.update();
     EqUI.forms?.update();
+    EqUI.collapsible?.update();
+    EqUI.dropdown?.update();
+    EqUI.modals?.update();
+    EqUI.tabs?.update();
     EqUI.site?.update();
 };
 
@@ -39,6 +43,8 @@ _this.load = function () {
     EqUI.site?.update();
     EqUI.site?.body?.css('visibility', 'visible');
     EqUI.breadcrumb?.load();
+    EqUI.dropdown?.load();
+    EqUI.tabs?.load();
 };
 
 // ⏱ Mutation Observer per elementi dinamici

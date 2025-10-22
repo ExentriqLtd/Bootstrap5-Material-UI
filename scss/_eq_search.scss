@@ -6,10 +6,9 @@
     border-radius: 2px;
     padding: 0 14px;
 
-    .eq-ui-search-flex {
+    &.eq-ui-search-flex {
         display: flex;
         align-items: center;
-        height: 100%;
     }
 
     // Hide clear

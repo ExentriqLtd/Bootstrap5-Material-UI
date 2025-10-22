@@ -294,11 +294,11 @@ EqUI.dropdown.load = function () {
 if (EqUI.mutationObserver === null) {
     // Load
     EqUI.dropdown.load = function () {
-        $('.dropdown-trigger').dropdown();
+        $('.eq-ui-dropdown-trigger').dropdown();
     };
 } else {
     // .EqUIObserve(selector, onAdded, onRemoved)
-    $(document).EqUIObserve('.dropdown-trigger', function () {
+    $(document).EqUIObserve('.eq-ui-dropdown-trigger', function () {
         $(this).dropdown();
     })
 }

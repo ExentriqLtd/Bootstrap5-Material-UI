@@ -55,6 +55,14 @@ table {
                         white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
+
+						.left {
+							float: left;
+						}
+
+						.right {
+							float: right;
+						}
                     }
 				}
 			}
@@ -69,17 +77,24 @@ table {
 			padding: 12px 18px 0;
 			box-sizing: border-box;
 			vertical-align: top;
+			text-align: left;
 
 			&:first-of-type {
 				padding-left: 24px;
 			}
 			&:last-of-type {
 				padding-right: 24px;
+				text-align: right;
 			}
 
 			// Extra options
 			&.eq-ui-data-table-cell-non-numeric {
 				text-align: left;
+			}
+
+			&.item-actions {
+				text-align: right;
+                width: 45px;
 			}
 		}
 
