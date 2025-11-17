@@ -12,6 +12,7 @@ EqUI.modals.full_sheet_class = 'eq-ui-modal-full-sheet';
 
 EqUI.modals.stack = 0;
 EqUI.modals.last_id = 0;
+EqUI.modals.base_zindex = 3000;
 
 EqUI.modals.generate_id = function () {
     EqUI.modals.last_id++;
@@ -21,7 +22,15 @@ EqUI.modals.generate_id = function () {
 // Open Modal
 $.fn.extend({
     openModal: function (options) {
+        var $modal = $(this);
 
+        // AUTO-DETECT: se è modale Bootstrap, usa .modal('show') nativo
+        if ($modal.hasClass('modal') && !$modal.hasClass('eq-ui-modal')) {
+            $modal.modal('show');
+            return;
+        }
+
+        // Altrimenti continua con comportamento EqUI
         EqUI.site.body.css('overflow', 'hidden');
 
         var defaults = {
@@ -32,28 +41,26 @@ $.fn.extend({
             complete: undefined,
             dismissible: true,
             starting_top: '4%'
-        },
-            overlayID = EqUI.modals.generate_id(),
-            $modal = $(this),
+        };
+
+        var overlayID = EqUI.modals.generate_id(),
             $overlay = $('<div class="' + EqUI.modals.overlay_class + '"></div>'),
             lStack = (++EqUI.modals.stack);
 
-        // Store a reference of the overlay
-        $overlay.attr('id', overlayID).css('z-index', 1000 + lStack * 2);
-        $modal.data('overlay-id', overlayID).css('z-index', 1000 + lStack * 2 + 1);
+        $overlay.attr('id', overlayID).css('z-index', EqUI.modals.base_zindex + lStack * 2);
+        $modal.data('overlay-id', overlayID).css('z-index', EqUI.modals.base_zindex + lStack * 2 + 1);
 
         EqUI.site.body.append($overlay);
 
-        // Override defaults
         options = $.extend(defaults, options);
 
         if (options.dismissible) {
-            $overlay.click(function () {
+            $overlay.on('click', function () {
                 $modal.closeModal(options);
             });
-            // Return on ESC
+
             $(document).on('keyup.leanModal' + overlayID, function (e) {
-                if (e.keyCode === 27) {   // ESC key
+                if (e.keyCode === 27) {
                     $modal.closeModal(options);
                 }
             });
@@ -64,213 +71,123 @@ $.fn.extend({
         });
 
         $overlay.css({ display: "block", opacity: 0 });
-
-        $modal.css({
-            display: "block",
-            opacity: 0
-        });
+        $modal.css({ display: "block", opacity: 0 });
 
         $overlay.velocity({ opacity: options.opacity }, { duration: options.in_duration, easing: "easeOutCubic" });
         $modal.data('associated-overlay', $overlay[0]);
 
-        // Top and Full Sheet
+        // Transizioni EqUI
         if ($modal.hasClass(EqUI.modals.top_sheet_class) || $modal.hasClass(EqUI.modals.full_sheet_class)) {
-            $modal.velocity(
-                {
-                    top: "0px",
-                    opacity: 1
-                },
-                {
-                    duration: options.in_duration,
-                    easing: "easeOutCubic",
-                    complete: function () {
-                        if (typeof options.ready === "function") {
-                            options.ready();
-                        }
-                    }
-                }
-            );
-
-
-
-
-        } // Bottom Sheet
-        else if ($modal.hasClass(EqUI.modals.bottom_sheet_class)) {
+            $modal.velocity({ top: "0px", opacity: 1 }, {
+                duration: options.in_duration,
+                easing: "easeOutCubic",
+                complete: options.ready
+            });
+        } else if ($modal.hasClass(EqUI.modals.bottom_sheet_class)) {
             $modal.velocity({ bottom: "0px", opacity: 1 }, {
                 duration: options.in_duration,
                 easing: "easeOutCubic",
-                // Handle modal ready callback
-                complete: function () {
-                    if (typeof (options.ready) === "function") {
-                        options.ready();
-                    }
-                }
+                complete: options.ready
             });
-            
-        } // Left Sheet
-        else if ($modal.hasClass(EqUI.modals.left_sheet_class)) {
+        } else if ($modal.hasClass(EqUI.modals.left_sheet_class)) {
             $modal.velocity({ left: "0px", opacity: 1 }, {
                 duration: options.in_duration,
                 easing: "easeOutCubic",
-                // Handle modal ready callback
-                complete: function () {
-                    if (typeof (options.ready) === "function") {
-                        options.ready();
-                    }
-                }
+                complete: options.ready
             });
-        } // Right Sheet
-        else if ($modal.hasClass(EqUI.modals.right_sheet_class)) {
-            $modal.velocity(
-                {
-                    right: "0px",
-                    opacity: 1
-                },
-                {
-                    duration: options.in_duration,
-                    easing: "easeOutCubic",
-                    complete: function () {
-                        if (typeof options.ready === "function") {
-                            options.ready();
-                        }
-                    }
-                }
-            );
-
-        } // Normal
-        else {
+        } else if ($modal.hasClass(EqUI.modals.right_sheet_class)) {
+            $modal.velocity({ right: "0px", opacity: 1 }, {
+                duration: options.in_duration,
+                easing: "easeOutCubic",
+                complete: options.ready
+            });
+        } else {
             $.Velocity.hook($modal, "scaleX", 0.7);
             $modal.css({ top: options.starting_top });
             $modal.velocity({ top: "10%", opacity: 1, scaleX: '1' }, {
                 duration: options.in_duration,
                 easing: "easeOutCubic",
-                // Handle modal ready callback
-                complete: function () {
-                    if (typeof (options.ready) === "function") {
-                        options.ready();
-                    }
-                }
+                complete: options.ready
             });
         }
-
-
     }
 });
 
 // Close Modal
 $.fn.extend({
     closeModal: function (options) {
+        var $modal = $(this);
+
+        // AUTO-DETECT: se è una modale Bootstrap, chiama direttamente .modal('hide')
+        if ($modal.hasClass('modal') && !$modal.hasClass('eq-ui-modal')) {
+            $modal.modal('hide');
+            return;
+        }
+
+        // Modale EqUI (comportamento originale)
         var defaults = {
             out_duration: 250,
             complete: undefined
-        },
-            $modal = $(this),
-            overlayID = $modal.data('overlay-id'),
-            $overlay = $('#' + overlayID);
+        };
 
         options = $.extend(defaults, options);
 
-        // Enable scrolling only if there no other modals open
-        if ($(EqUI.modals.overlay_selector).length < 2)
+        var overlayID = $modal.data('overlay-id'),
+            $overlay = $('#' + overlayID);
+
+        if ($(EqUI.modals.overlay_selector).length < 2) {
             $('body').css('overflow', '');
+        }
 
         $modal.find(EqUI.modals.action_close_selector).off('click.close');
         $(document).off('keyup.leanModal' + overlayID);
 
         $overlay.velocity({ opacity: 0 }, { duration: options.out_duration, easing: "easeOutQuart" });
 
+        // Chiudi con animazione
+        var closeCallback = function () {
+            $overlay.css({ display: "none" });
 
-        // Top and Full Sheet
+            if (typeof options.complete === "function") {
+                options.complete();
+            }
+
+            $overlay.remove();
+            EqUI.modals.stack--;
+        };
+
         if ($modal.hasClass(EqUI.modals.top_sheet_class) || $modal.hasClass(EqUI.modals.full_sheet_class)) {
             $modal.velocity({ top: "-100%", opacity: 0 }, {
                 duration: options.out_duration,
                 easing: "easeOutCubic",
-                // Handle modal ready callback
-                complete: function () {
-                    $overlay.css({ display: "none" });
-
-                    // Call complete callback
-                    if (typeof (options.complete) === "function") {
-                        options.complete();
-                    }
-                    $overlay.remove();
-                    EqUI.modals.stack--;
-                }
+                complete: closeCallback
             });
-        } // Bottom Sheet
-        else if ($modal.hasClass(EqUI.modals.bottom_sheet_class)) {
+        } else if ($modal.hasClass(EqUI.modals.bottom_sheet_class)) {
             $modal.velocity({ bottom: "-100%", opacity: 0 }, {
                 duration: options.out_duration,
                 easing: "easeOutCubic",
-                // Handle modal ready callback
-                complete: function () {
-                    $overlay.css({ display: "none" });
-
-                    // Call complete callback
-                    if (typeof (options.complete) === "function") {
-                        options.complete();
-                    }
-                    $overlay.remove();
-                    EqUI.modals.stack--;
-                }
+                complete: closeCallback
             });
-        } // Left Sheet
-        else if ($modal.hasClass(EqUI.modals.left_sheet_class)) {
+        } else if ($modal.hasClass(EqUI.modals.left_sheet_class)) {
             $modal.velocity({ left: "-100%", opacity: 0 }, {
                 duration: options.out_duration,
                 easing: "easeOutCubic",
-                // Handle modal ready callback
+                complete: closeCallback
+            });
+        } else if ($modal.hasClass(EqUI.modals.right_sheet_class)) {
+            $modal.velocity({ right: "-100%", opacity: 0 }, {
+                duration: options.out_duration,
+                easing: "easeOutCubic",
+                complete: closeCallback
+            });
+        } else {
+            $modal.velocity({ top: options.starting_top, opacity: 0, scaleX: 0.7 }, {
+                duration: options.out_duration,
                 complete: function () {
-                    $overlay.css({ display: "none" });
-
-                    // Call complete callback
-                    if (typeof (options.complete) === "function") {
-                        options.complete();
-                    }
-                    $overlay.remove();
-                    EqUI.modals.stack--;
+                    $(this).css('display', 'none');
+                    closeCallback();
                 }
             });
-        } // Right Sheet
-        else if ($modal.hasClass(EqUI.modals.right_sheet_class)) {
-            $modal.velocity(
-                {
-                    right: "-100%",
-                    opacity: 0
-                },
-                {
-                    duration: options.out_duration,
-                    easing: "easeOutCubic",
-                    complete: function () {
-                        $overlay.css({ display: "none" });
-
-                        if (typeof options.complete === "function") {
-                            options.complete();
-                        }
-                        $overlay.remove();
-                        EqUI.modals.stack--;
-                    }
-                }
-            );
-
-        } // Normal
-        else {
-            $modal.velocity(
-                { top: options.starting_top, opacity: 0, scaleX: 0.7 }, {
-                duration: options.out_duration,
-                complete:
-                    function () {
-
-                        $(this).css('display', 'none');
-                        // Call complete callback
-                        if (typeof (options.complete) === "function") {
-                            options.complete();
-                        }
-                        $overlay.remove();
-                        EqUI.modals.stack--;
-                    }
-            }
-            );
         }
     }
 });
@@ -306,6 +223,24 @@ EqUI.modals.init = function () {
 EqUI.modals.update = function () {
 
 };
+
+$(document).on('click', '.eq-ui-modal-close', function (e) {
+    e.preventDefault();
+
+    var $btn = $(this);
+    var $modal = $btn.closest('.eq-ui-modal, .modal');
+
+    if ($modal.length === 0) return;
+
+    // Se è una modale EqUI
+    if ($modal.hasClass('eq-ui-modal')) {
+        $modal.closeModal();
+    }
+    // Se è una modale Bootstrap
+    else if ($modal.hasClass('modal')) {
+        $modal.modal('hide');
+    }
+});
 
 $(document).ready(function () {
     // Init

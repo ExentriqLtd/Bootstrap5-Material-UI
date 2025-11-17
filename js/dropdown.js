@@ -15,8 +15,10 @@ $.fn.dropdown = function (option) {
 
     this.each(function () {
         var origin = $(this);
+        console.log('[Dropdown Init]', origin.attr('class'), origin.attr('data-target'));
         var options = $.extend({}, defaults, option);
         var target = $("#" + origin.attr('data-target'));
+        console.log('[Dropdown Target]', target.length ? 'Found' : 'Not found', target.attr('id'));
         var target_auto_align = $("#" + origin.attr('data-auto-align-target'));
         if (!target_auto_align || target_auto_align.length <= 0) {
             target_auto_align = $("." + origin.attr('data-auto-align-target'));
@@ -52,6 +54,7 @@ $.fn.dropdown = function (option) {
         // Is Touch
         if (EqUI.site.isTouch) {
             origin.on('click', function (e) {
+                console.log('[Dropdown Click Triggered]', origin.attr('class'), '->', target.attr('id'));
                 dropdownOpen(target);
             });
 
@@ -115,6 +118,8 @@ $.fn.dropdown = function (option) {
 
         // Dropdown Open
         function dropdownOpen(object) {
+            console.log('[Dropdown Open]', object.attr('id'));
+
             if (is_auto_align) {
                 autoAlign(object);
             }
@@ -137,6 +142,8 @@ $.fn.dropdown = function (option) {
 
         // Dropdown Close
         function dropdownClose(object) {
+            console.log('[Dropdown Close]', object.attr('id'));
+
             if ((options.hover && object.hasClass('active')) || (!options.hover && object.hasClass('open'))) {
 
                 object.removeClass('active');
@@ -286,21 +293,37 @@ EqUI.dropdown.update = function () {
 };
 
 // Load
-EqUI.dropdown.load = function () {
+EqUI.dropdown.load = function (selector) {
+    console.log('[EqUI.dropdown.load]', selector);
+    // Se non viene passato un selettore, usa quello di default
+    selector = selector || '.eq-ui-dropdown-trigger';
 
+    // Inizializza tutti gli elementi corrispondenti
+    $(selector).each(function () {
+        const $el = $(this);
+        console.log('   ↳ found', $el.attr('class'), $el.attr('data-target'));
+        if (!$el.data('dropdown-initialized')) {
+            $el.dropdown();
+            $el.data('dropdown-initialized', true);
+        } else {
+            console.log('   ↳ already initialized');
+        }
+    });
 };
 
 // READY & OBSERVE
 if (EqUI.mutationObserver === null) {
-    // Load
-    EqUI.dropdown.load = function () {
-        $('.eq-ui-dropdown-trigger').dropdown();
-    };
+    // Nessun observer attivo → inizializzazione diretta
+    $(document).ready(function () {
+        EqUI.dropdown.init();
+        EqUI.dropdown.update();
+        EqUI.dropdown.load(); // carica i dropdown standard
+    });
 } else {
-    // .EqUIObserve(selector, onAdded, onRemoved)
-    $(document).EqUIObserve('.eq-ui-dropdown-trigger', function () {
+    // Attiva osservatore per aggiunte dinamiche al DOM
+    $(document).EqUIObserve('[data-target]', function () {
         $(this).dropdown();
-    })
+    });
 }
 
 $(document).ready(function () {
@@ -309,4 +332,49 @@ $(document).ready(function () {
 
     // Update
     EqUI.dropdown.update();
+});
+
+$(document).on('click', '[data-target]', function (e) {
+    const $trigger = $(this);
+    const targetId = $trigger.attr('data-target');
+    const $target = $('#' + targetId);
+
+    if (!$target.length || !$target.hasClass(EqUI.dropdown.element_class)) return;
+
+    // Se il trigger ha data-hover="false" o l'opzione hover era false, gestisci click
+    const hoverDisabled = $trigger.data('hover') === false || $trigger.attr('data-hover') === 'false';
+    if (!hoverDisabled) return; // se hover è true, lascia gestire al mouseenter
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    console.log('[Dropdown Global Click]', targetId);
+
+    // Chiudi eventuali altri dropdown aperti
+    $('.' + EqUI.dropdown.element_class + '.open').not($target).each(function() {
+        $(this).stop(true, false).slideUp(200).removeClass('open active');
+    });
+
+    // Toggle apertura/chiusura
+    if ($target.hasClass('open') || $target.hasClass('active')) {
+        $target.stop(true, false).slideUp(200).removeClass('open active');
+    } else {
+        $target.stop(true, false).slideDown(200).addClass('open active');
+    }
+});
+
+// --- PATCH universale: chiusura dropdown su click esterno ---
+$(document).on('click', function (e) {
+    const $target = $(e.target);
+
+    // Se clicco dentro un dropdown o su un trigger con data-target, non chiudere
+    if ($target.closest('.' + EqUI.dropdown.element_class).length > 0) return;
+    if ($target.closest('[data-target]').length > 0) return;
+
+    // Chiudi tutti i dropdown aperti
+    const $openDropdowns = $('.' + EqUI.dropdown.element_class + '.open, .' + EqUI.dropdown.element_class + '.active');
+    if ($openDropdowns.length) {
+        console.log('[Dropdown Global Close] click esterno → chiudo tutti');
+        $openDropdowns.stop(true, false).slideUp(200).removeClass('open active');
+    }
 });
