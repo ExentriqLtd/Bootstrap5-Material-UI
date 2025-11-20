@@ -13,11 +13,11 @@ if (typeof window.FastClick.attach !== 'function') {
     return FastClick(target);
   };
 }
-console.log('✅ FastClick promoted with legacy .attach support');
+// console.log('✅ FastClick promoted with legacy .attach support');
 
 // ---- npm + local plugins (initialized *after* jQuery is available) ----
 function initVendorPlugins() {
-    console.log('VENDOR-BUNDLE IS BEING USED');
+    // console.log('VENDOR-BUNDLE IS BEING USED');
     // npm packages
     require('exif-js');
 
@@ -25,9 +25,9 @@ function initVendorPlugins() {
     require('./jsonrpc.js');
     if (typeof JSONRpcClient === 'function') {
         window.JSONRpcClient = JSONRpcClient;
-        console.log('✅ JSONRpcClient promoted to window');
+        // console.log('✅ JSONRpcClient promoted to window');
     } else {
-        console.warn('⚠️ JSONRpcClient is not defined yet at this point');
+        // console.warn('⚠️ JSONRpcClient is not defined yet at this point');
     }
 
     require('enquire.js');
@@ -39,7 +39,7 @@ function initVendorPlugins() {
     const riotMod = require('riot/riot+compiler.min.js');
     if (typeof window.riot === 'undefined' && riotMod) {
       window.riot = riotMod;
-      console.log('✅ Riot promoted to window.riot');
+    //   console.log('✅ Riot promoted to window.riot');
     }
 
     require('./bootstrap-wysiwyg.js');
@@ -54,10 +54,10 @@ function initVendorPlugins() {
     require('./jquery.validate.js');
     if (!window.jQuery.fn.validate) {
         if (typeof window.validate === 'function') {
-            console.log('✅ validate export found → invoking with jQuery');
+            // console.log('✅ validate export found → invoking with jQuery');
             window.validate(window.jQuery);
         } else {
-            console.warn('⚠️ validate plugin did not attach → forcing $.fn.validate');
+            // console.warn('⚠️ validate plugin did not attach → forcing $.fn.validate');
             window.jQuery.fn.validate = require('./jquery.validate.js');
         }
     }
@@ -73,10 +73,10 @@ function initVendorPlugins() {
     if (window.jQuery && !window.jQuery.cookie) {
         const pluginJquery = require('jquery'); // <-- la copia "interna"
         if (pluginJquery.cookie) {
-            console.log('✅ copying $.cookie from internal copy to window.jQuery');
+            // console.log('✅ copying $.cookie from internal copy to window.jQuery');
             window.jQuery.cookie = pluginJquery.cookie;
         } else {
-            console.warn('⚠️ $.cookie not found (neither internal nor global)');
+            // console.warn('⚠️ $.cookie not found (neither internal nor global)');
         }
     }
 
@@ -94,10 +94,10 @@ function initVendorPlugins() {
 // Execute only when jQuery is available
 (function waitForjQuery() {
     if (window.jQuery) {
-        console.log('✅ jQuery ready → init vendor');
+        // console.log('✅ jQuery ready → init vendor');
         initVendorPlugins();
     } else {
-        console.log('⏳ waiting for jQuery…');
+        // console.log('⏳ waiting for jQuery…');
         setTimeout(waitForjQuery, 50);
     }
 })();

@@ -67,7 +67,7 @@ _this.render = function () {
         const overflow = breadcrumbNaturalWidth > wrapperWidth;
 
         if (overflow && only_one && items.length > 1) {
-            console.log('⚠️ Overflow rilevato – riduco a un solo elemento');
+            // console.log('⚠️ Overflow rilevato – riduco a un solo elemento');
 
             const visibleLast = $(items[items.length - 1]);
             const indicatorItem = $(items[items.length - 2]);
@@ -79,7 +79,7 @@ _this.render = function () {
         } else if (items.length === 1) {
             $(items[0]).addClass(_this.breadcrumb_item_truncate_class);
         } else {
-            console.log('✅ Nessun overflow – mostro tutti gli elementi');
+            // console.log('✅ Nessun overflow – mostro tutti gli elementi');
         }
     });
 };
