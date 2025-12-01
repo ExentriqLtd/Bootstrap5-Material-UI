@@ -391,11 +391,6 @@ $.fn.eq_select = function (callback) {
         // Aggiungo classi base se vuoi (non mettere 'show' subito se vuoi chiuso inizialmente)
         $dropdown.addClass('dropdown-menu'); // senza 'show' o 'active' per chiuso
 
-        $fakeInput.attr({
-            'data-bs-toggle': 'dropdown',
-            'aria-expanded': 'false'
-        });
-
         // Gestione apertura/chiusura manuale (usando 'active' e 'open')
         $fakeInput.on('click', function (e) {
             e.stopPropagation();
