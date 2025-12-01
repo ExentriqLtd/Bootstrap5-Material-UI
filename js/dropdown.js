@@ -22,7 +22,7 @@ $.fn.dropdown = function (option) {
 
         origin.find('*').each(function() {
             $(this).on('click', function(e) {
-                // console.log('[Dropdown DEBUG] click intercettato su child → rerouted a origin:', this);
+                console.log('[Dropdown DEBUG] click intercettato su child → rerouted a origin:', this);
 
                 e.preventDefault();    // impedisce effetti waves
                 e.stopPropagation();   // impedisce bubble verso html/document
@@ -30,10 +30,39 @@ $.fn.dropdown = function (option) {
                 origin.trigger('click'); // reroute verso il trigger vero
             });
         });
-        // console.log('[Dropdown Init]', origin.attr('class'), origin.attr('data-target'));
+        console.log('[Dropdown Init]', origin.attr('class'), origin.attr('data-target'));
         var options = $.extend({}, defaults, option);
-        var target = $("#" + origin.attr('data-target'));
-        // console.log('[Dropdown Target]', target.length ? 'Found' : 'Not found', target.attr('id'));
+        var targetId = origin.attr('data-target');
+
+        // 1️⃣ Se data-target manca o è vuoto → NON è dropdown
+        if (!targetId || !targetId.trim()) {
+            console.warn("[EqUI Dropdown] Ignorato elemento con data-target vuoto:", origin.get(0));
+            return;
+        }
+
+        var target = $("#" + targetId);
+
+        // 2️⃣ Se l’ID non esiste → NON è dropdown
+        if (!target.length) {
+            console.warn("[EqUI Dropdown] Target inesistente per:", origin.get(0), " → ", targetId);
+            return;
+        }
+
+        // 3️⃣ Se il target NON ha la classe eq-ui-dropdown → NON è dropdown
+        if (!target.hasClass('eq-ui-dropdown')) {
+            console.warn("[EqUI Dropdown] Target NON è un dropdown:", target.get(0));
+            return;
+        }
+
+        // 4️⃣ Se il trigger NON è un tag valido →
+        if (origin.is('input, textarea, select')) {
+            console.warn("[EqUI Dropdown] Ignorato: elemento non valido come trigger dropdown:", origin.get(0));
+            return;
+        }
+
+        console.log('[Dropdown Init] trigger valido:', origin.get(0), ' -> ', targetId);
+        console.log('[Dropdown Target]', target.length ? 'Found' : 'Not found', target.attr('id'));
+        
         var target_auto_align = $("#" + origin.attr('data-auto-align-target'));
         if (!target_auto_align || target_auto_align.length <= 0) {
             target_auto_align = $("." + origin.attr('data-auto-align-target'));
@@ -70,7 +99,7 @@ $.fn.dropdown = function (option) {
         // Is Touch
         if (EqUI.site.isTouch) {
             origin.on('click', function (e) {
-                // console.log('[Dropdown Click Triggered]', origin.attr('class'), '->', target.attr('id'));
+                console.log('[Dropdown Click Triggered]', origin.attr('class'), '->', target.attr('id'));
                 dropdownOpen(target);
             });
 
@@ -128,10 +157,10 @@ $.fn.dropdown = function (option) {
 
         // Dropdown Open
         function dropdownOpen(object) {
-            // console.log(
-            //     '%c[Dropdown DEBUG] OPEN chiamato su ' + object.attr('id'),
-            //     'color:#2196F3; font-weight:bold'
-            // );
+            console.log(
+                '%c[Dropdown DEBUG] OPEN chiamato su ' + object.attr('id'),
+                'color:#2196F3; font-weight:bold'
+            );
 
             // console.log('[Dropdown Open]', object.attr('id'));
 
@@ -157,12 +186,12 @@ $.fn.dropdown = function (option) {
 
         // Dropdown Close
         function dropdownClose(object) {
-            // console.log(
-            //     '%c[Dropdown DEBUG] CLOSE chiamato su',
-            //     'color:#E91E63; font-weight:bold',
-            //     object && object.attr ? object.attr('id') : object,
-            //     ' object=', object
-            // );
+            console.log(
+                '%c[Dropdown DEBUG] CLOSE chiamato su',
+                'color:#E91E63; font-weight:bold',
+                object && object.attr ? object.attr('id') : object,
+                ' object=', object
+            );
 
             // console.log('[Dropdown Close]', object.attr('id'));
 
@@ -363,7 +392,7 @@ if (EqUI.mutationObserver === null) {
 
 // --- PATCH universale: chiusura dropdown su click esterno ---
 $(document).on('click', function (e) {
-    // console.log('%c[Dropdown DEBUG] evento document.click', 'color:#FF9800; font-weight:bold', e.target);
+    console.log('%c[Dropdown DEBUG] evento document.click', 'color:#FF9800; font-weight:bold', e.target);
 
     const $target = $(e.target);
 
@@ -374,7 +403,7 @@ $(document).on('click', function (e) {
     // Chiudi tutti i dropdown aperti
     const $openDropdowns = $('.' + EqUI.dropdown.element_class + '.open, .' + EqUI.dropdown.element_class + '.active');
     if ($openDropdowns.length) {
-        // console.log('[Dropdown Global Close] click esterno → chiudo tutti');
+        console.log('[Dropdown Global Close] click esterno → chiudo tutti');
         $openDropdowns.stop(true, false).slideUp(200).removeClass('open active');
     }
 });
