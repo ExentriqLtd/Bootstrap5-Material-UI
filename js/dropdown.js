@@ -81,15 +81,6 @@ $.fn.dropdown = function (option) {
                 }
             });
         } else {
-            // Close on html click
-            $('html').on('click', function (e) {
-                // console.log('%c[Dropdown DEBUG] html.click su', 'color:#FFC107; font-weight:bold', e.target);
-                var element = $(e.target);
-                if (!element.hasClass(EqUI.dropdown.element_class) && element.parents('.' + EqUI.dropdown.element_class).length !== 1) {
-                    dropdownClose(target);
-                }
-            });
-
             // Hover
             if (options.hover) {
                 var _close_process = false;
@@ -123,24 +114,7 @@ $.fn.dropdown = function (option) {
                     _close_process = false;
                 });
             } else { // CLICK MODE
-                origin.on('click', function (e) {
-                    // console.log(
-                    //     '%c[Dropdown DEBUG] trigger click su', 
-                    //     'color:#4CAF50; font-weight:bold',
-                    //     origin.get(0)
-                    // );
                 
-                    // console.log(
-                    //     '%c → e.isPropagationStopped = ' + e.isPropagationStopped(),
-                    //     'color:#4CAF50'
-                    // );
-                    // 🔥 Patch: impedisce la propagazione del click verso html/document
-                    e.preventDefault();
-                    e.stopPropagation();
-            
-                    dropdownOpen(target);
-                });
-            
                 // 🔥 Patch aggiuntiva: clic sui contenuti interni NON chiude la dropdown
                 target.on('click', function(e){
                     e.stopPropagation();
@@ -341,22 +315,35 @@ EqUI.dropdown.update = function () {
 };
 
 // Load
-EqUI.dropdown.load = function (selector) {
-    console.log('[EqUI.dropdown.load]', selector);
-    // Se non viene passato un selettore, usa quello di default
-    selector = selector || '.eq-ui-dropdown-trigger';
+// Override anche di EqUI.dropdown.load
+// Load (versione neutra se non esiste)
+if (typeof EqUI.dropdown.load !== "function") {
+    EqUI.dropdown.load = function(selector){
+        // versione base non fa nulla
+        return;
+    };
+}
+const originalLoad = EqUI.dropdown.load;
+EqUI.dropdown.load = function(selector) {
+    const result = originalLoad.call(this, selector);
 
-    // Inizializza tutti gli elementi corrispondenti
     $(selector).each(function () {
-        const $el = $(this);
-        // console.log('   ↳ found', $el.attr('class'), $el.attr('data-target'));
-        if (!$el.data('dropdown-initialized')) {
-            $el.dropdown();
-            $el.data('dropdown-initialized', true);
-        } else {
-            // console.log('   ↳ already initialized');
+        const el = $(this);
+
+        // Identifica solo trigger reali
+        const id = el.attr('data-target');
+        if (!id) return;
+        const menu = $('#' + id);
+        if (!menu.length || !menu.hasClass('eq-ui-dropdown')) return;
+
+        // Aggiungi marcatura SOLO se non già fatto
+        if (!el.data('dropdown-initialized')) {
+            el.addClass('eq-ui-dropdown-trigger-auto');
+            el.data('dropdown-initialized', true);
         }
     });
+
+    return result;
 };
 
 // READY & OBSERVE
@@ -373,14 +360,6 @@ if (EqUI.mutationObserver === null) {
         $(this).dropdown();
     });
 }
-
-$(document).ready(function () {
-    // Init
-    EqUI.dropdown.init();
-
-    // Update
-    EqUI.dropdown.update();
-});
 
 // --- PATCH universale: chiusura dropdown su click esterno ---
 $(document).on('click', function (e) {
@@ -401,8 +380,8 @@ $(document).on('click', function (e) {
 });
 
 document.addEventListener('click', function(e) {
-    // Cerca qualsiasi genitore con data-dropdown-initialized="true"
-    const trigger = e.target.closest('[data-target], .eq-ui-dropdown-trigger-auto');
+    // Cerca qualsiasi trigger inizializzato dal plugin
+    const trigger = e.target.closest('[data-target].eq-ui-dropdown-trigger-auto');
     if (!trigger) return;
 
     e.stopPropagation();
@@ -415,6 +394,10 @@ document.addEventListener('click', function(e) {
         const $menu = $('#' + id);
         if (!$menu.length) return;
 
+        // 🔥 SICUREZZA: procedi solo se è un vero dropdown EqUI
+        if (!$menu.hasClass('eq-ui-dropdown')) return;
+
+        // Toggle
         if ($menu.hasClass('open')) {
             $menu.stop(true, false).slideUp(200).removeClass('open active');
         } else {
