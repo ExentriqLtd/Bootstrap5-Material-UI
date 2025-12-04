@@ -62,7 +62,7 @@ $.fn.dropdown = function (option) {
 
         console.log('[Dropdown Init] trigger valido:', origin.get(0), ' -> ', targetId);
         console.log('[Dropdown Target]', target.length ? 'Found' : 'Not found', target.attr('id'));
-        
+
         var target_auto_align = $("#" + origin.attr('data-auto-align-target'));
         if (!target_auto_align || target_auto_align.length <= 0) {
             target_auto_align = $("." + origin.attr('data-auto-align-target'));
@@ -161,6 +161,11 @@ $.fn.dropdown = function (option) {
                 '%c[Dropdown DEBUG] OPEN chiamato su ' + object.attr('id'),
                 'color:#2196F3; font-weight:bold'
             );
+
+            // 🔥 Chiudi tutti gli altri dropdown aperti
+            $('.eq-ui-dropdown.open, .eq-ui-dropdown.active').not(object).each(function () {
+                $(this).stop(true, false).slideUp(200).removeClass('open active');
+            });
 
             // console.log('[Dropdown Open]', object.attr('id'));
 
@@ -333,6 +338,17 @@ $.fn.dropdown = function (option) {
     });
 }; // End dropdown plugin
 
+// Proteggi il plugin EqUI: impedisci sovrascritture successive
+const eqDropdown = $.fn.dropdown;
+Object.defineProperty($.fn, "dropdown", {
+    configurable: false,
+    enumerable: true,
+    get() { return eqDropdown; },
+    set(value) {
+        console.warn("⛔ Tentativo di sovrascrivere $.fn.dropdown bloccato", value);
+    }
+});
+
 // Init
 EqUI.dropdown.init = function () {
 
@@ -392,7 +408,7 @@ if (EqUI.mutationObserver === null) {
 
 // --- PATCH universale: chiusura dropdown su click esterno ---
 $(document).on('click', function (e) {
-    console.log('%c[Dropdown DEBUG] evento document.click', 'color:#FF9800; font-weight:bold', e.target);
+    // console.log('%c[Dropdown DEBUG] evento document.click', 'color:#FF9800; font-weight:bold', e.target);
 
     const $target = $(e.target);
 
@@ -403,7 +419,7 @@ $(document).on('click', function (e) {
     // Chiudi tutti i dropdown aperti
     const $openDropdowns = $('.' + EqUI.dropdown.element_class + '.open, .' + EqUI.dropdown.element_class + '.active');
     if ($openDropdowns.length) {
-        console.log('[Dropdown Global Close] click esterno → chiudo tutti');
+        // console.log('[Dropdown Global Close] click esterno → chiudo tutti');
         $openDropdowns.stop(true, false).slideUp(200).removeClass('open active');
     }
 });

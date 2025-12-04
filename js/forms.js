@@ -396,16 +396,16 @@ $.fn.eq_select = function (callback) {
             e.stopPropagation();
 
             if ($dropdown.hasClass('active') && $dropdown.hasClass('open')) {
-                $dropdown.removeClass('active open');
+                $dropdown.removeClass('active open').css('display', 'none');
             } else {
                 $('.eq-ui-dropdown').removeClass('active open'); // chiudo altri
-                $dropdown.addClass('active open');
+                $dropdown.addClass('active open').css('display', 'block');
             }
         });
 
         // Chiudo quando clicco fuori
         $(document).on('click', function () {
-            $dropdown.removeClass('active open');
+            $dropdown.removeClass('active open').css('display', 'none');
         });
 
         // Add select dropdown events

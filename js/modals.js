@@ -127,7 +127,8 @@ $.fn.extend({
         // Modale EqUI (comportamento originale)
         var defaults = {
             out_duration: 250,
-            complete: undefined
+            complete: undefined,
+            starting_top: '4%',
         };
 
         options = $.extend(defaults, options);
