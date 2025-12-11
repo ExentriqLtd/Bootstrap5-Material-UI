@@ -201,17 +201,31 @@ $.fn.extend({
             var defaults = {
                 starting_top: '4%'
             },
-                // Override defaults
-                options = $.extend(defaults, option);
+            options = $.extend(defaults, option);
 
-            // Close Handlers
             $(this).click(function (e) {
-                options.starting_top = ($(this).offset().top - $(window).scrollTop()) / 1.15;
-                var modal_id = $(this).attr("href") || '#' + $(this).data('target');
-                $(modal_id).openModal(options);
                 e.preventDefault();
-            }); // done set on click
-        }); // done return
+
+                options.starting_top =
+                    ($(this).offset().top - $(window).scrollTop()) / 1.15;
+
+                // 🔥 PRIORITÀ:
+                // 1) data-modal → modale EqUI
+                // 2) href → fallback legacy
+                // 3) data-target → compatibilità vecchio codice
+                var modal_id =
+                    $(this).attr("data-modal") ||
+                    $(this).attr("href") ||
+                    '#' + $(this).attr("data-target");
+
+                if (!modal_id) {
+                    console.warn("leanModal: nessuna modale trovata per", this);
+                    return;
+                }
+
+                $(modal_id).openModal(options);
+            });
+        });
     }
 });
 
