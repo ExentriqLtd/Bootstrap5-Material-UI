@@ -15,50 +15,62 @@ $.fn.dropdown = function (option) {
 
     this.each(function () {
         var origin = $(this);
-        // Permettiamo il click anche sugli elementi figli (es: <i>)
-        // --- PATCH: cattura click sui figli del trigger (icone, span, svg, etc.)
-        origin.addClass('eq-ui-dropdown-trigger-auto');
-        origin.data('dropdown-initialized', true);
 
-        origin.find('*').each(function() {
-            $(this).on('click', function(e) {
-                console.log('[Dropdown DEBUG] click intercettato su child → rerouted a origin:', this);
-
-                e.preventDefault();    // impedisce effetti waves
-                e.stopPropagation();   // impedisce bubble verso html/document
-
-                origin.trigger('click'); // reroute verso il trigger vero
-            });
-        });
-        console.log('[Dropdown Init]', origin.attr('class'), origin.attr('data-target'));
-        var options = $.extend({}, defaults, option);
-        var targetId = origin.attr('data-target');
-
-        // 1️⃣ Se data-target manca o è vuoto → NON è dropdown
-        if (!targetId || !targetId.trim()) {
-            console.warn("[EqUI Dropdown] Ignorato elemento con data-target vuoto:", origin.get(0));
+        // Ignora i fake select generati da eq_select
+        if (origin.is('input.eq-ui-select-fake') || origin.attr('id')?.endsWith('-fake')) {
             return;
         }
 
+        console.log('[Dropdown Init]', origin.attr('class'), origin.attr('data-target'));
+
+        var options = $.extend({}, defaults, option);
+        var targetId = origin.attr('data-target');
+
+        // 1️⃣ Se data-target manca, è vuoto o è "fake" → NON è dropdown
+        if (!targetId || !targetId.trim() || targetId === 'fake') {
+            console.warn("[EqUI Dropdown] Ignorato elemento con data-target non valido:", origin.get(0), '→', targetId);
+            return;
+        }
+
+        // 2️⃣ Recupero il target reale
         var target = $("#" + targetId);
 
-        // 2️⃣ Se l’ID non esiste → NON è dropdown
+        // Escludi completamente i target delle modali EqUI
+        if ($("#" + targetId).is('.modal, .eq-ui-modal, .eq-ui-dialog')) {
+            console.warn("[EqUI Dropdown] Ignorato perché punta a una modale:", targetId);
+            return;
+        }
+
+        // 3️⃣ Se il target non esiste → NON è dropdown
         if (!target.length) {
             console.warn("[EqUI Dropdown] Target inesistente per:", origin.get(0), " → ", targetId);
             return;
         }
 
-        // 3️⃣ Se il target NON ha la classe eq-ui-dropdown → NON è dropdown
+        // 4️⃣ Se il target NON è un dropdown vero
         if (!target.hasClass('eq-ui-dropdown')) {
             console.warn("[EqUI Dropdown] Target NON è un dropdown:", target.get(0));
             return;
         }
 
-        // 4️⃣ Se il trigger NON è un tag valido →
+        // 5️⃣ Se il trigger non è valido
         if (origin.is('input, textarea, select')) {
             console.warn("[EqUI Dropdown] Ignorato: elemento non valido come trigger dropdown:", origin.get(0));
             return;
         }
+
+        // 6️⃣ --- SOLO ORA attacchiamo i listener sui figli ---
+        origin.addClass('eq-ui-dropdown-trigger-auto');
+        origin.data('dropdown-initialized', true);
+
+        origin.find('*').each(function () {
+            $(this).on('click', function (e) {
+                console.log('[Dropdown DEBUG] click intercettato su child → rerouted a origin:', this);
+                e.preventDefault();
+                e.stopPropagation();
+                origin.trigger('click');
+            });
+        });
 
         console.log('[Dropdown Init] trigger valido:', origin.get(0), ' -> ', targetId);
         console.log('[Dropdown Target]', target.length ? 'Found' : 'Not found', target.attr('id'));
@@ -402,7 +414,19 @@ if (EqUI.mutationObserver === null) {
 } else {
     // Attiva osservatore per aggiunte dinamiche al DOM
     $(document).EqUIObserve('[data-target]', function () {
-        $(this).dropdown();
+        const el = $(this);
+        const targetId = el.attr('data-target');
+
+        // NON toccare se manca il targetId
+        if (!targetId || !targetId.trim()) return;
+
+        const $menu = $("#" + targetId);
+
+        // Non è un dropdown? → FERMA TUTTO
+        if (!$menu.length || !$menu.hasClass('eq-ui-dropdown')) return;
+
+        // Se è davvero un dropdown → inizializza
+        el.dropdown();
     });
 }
 
