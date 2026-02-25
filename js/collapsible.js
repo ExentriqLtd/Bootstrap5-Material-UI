@@ -177,12 +177,18 @@ EqUI.collapsible.init = function() {
 if (EqUI.mutationObserver === null) {
     // Load
     EqUI.collapsible.init = function() {
-    EqUI.collapsible.element.eq_collapsible();
+    if ($.fn && typeof $.fn.eq_collapsible === 'function') {
+        EqUI.collapsible.element.eq_collapsible();
+    } else if (typeof console !== 'undefined' && console.warn) {
+        console.warn('[EqUI] eq_collapsible plugin not available at init time');
+    }
     };
 } else {
     // .EqUIObserve(selector, onAdded, onRemoved)
     $(document).EqUIObserve('.eq-ui-collapsible', function () {
-    $(this).eq_collapsible();
+    if ($.fn && typeof $.fn.eq_collapsible === 'function') {
+        $(this).eq_collapsible();
+    }
     })
 }
 

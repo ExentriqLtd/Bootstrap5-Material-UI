@@ -20,16 +20,17 @@ window.Waves = Waves;
 
 
 window.EqUI = window.EqUI || {};
-window.EqUI.init = window.EqUI.init || {}; // ✅ AGGIUNGI QUESTA RIGA
-
+window.EqUI.init = window.EqUI.init || {};
 window.EqUI.site = window.EqUI.site || {
     isTouch: 'ontouchstart' in window || navigator.maxTouchPoints > 0
 };
 
+// Keep local symbol aligned with the global object used by the app.
+EqUI = window.EqUI;
 
 if (typeof Meteor === 'object') { // Meteor
     if (typeof EqUI === "undefined") {
-        EqUI = {};
+        EqUI = window.EqUI || {};
     }
     if (typeof global !== "undefined" && typeof global.EqUI === "undefined") { global.EqUI = EqUI; }
     if (typeof window !== "undefined" && typeof window.EqUI === "undefined") { window.EqUI = EqUI; }

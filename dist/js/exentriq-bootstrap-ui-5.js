@@ -24304,9 +24304,10 @@
   window.EqUI.site = window.EqUI.site || {
     isTouch: "ontouchstart" in window || navigator.maxTouchPoints > 0
   };
+  EqUI = window.EqUI;
   if (typeof Meteor === "object") {
     if (typeof EqUI === "undefined") {
-      EqUI = {};
+      EqUI = window.EqUI || {};
     }
     if (typeof global !== "undefined" && typeof global.EqUI === "undefined") {
       global.EqUI = EqUI;
@@ -28315,11 +28316,17 @@
   };
   if (EqUI.mutationObserver === null) {
     EqUI.collapsible.init = function() {
-      EqUI.collapsible.element.eq_collapsible();
+      if ($.fn && typeof $.fn.eq_collapsible === "function") {
+        EqUI.collapsible.element.eq_collapsible();
+      } else if (typeof console !== "undefined" && console.warn) {
+        console.warn("[EqUI] eq_collapsible plugin not available at init time");
+      }
     };
   } else {
     $(document).EqUIObserve(".eq-ui-collapsible", function() {
-      $(this).eq_collapsible();
+      if ($.fn && typeof $.fn.eq_collapsible === "function") {
+        $(this).eq_collapsible();
+      }
     });
   }
   EqUI.collapsible.update = function() {
@@ -28331,6 +28338,11 @@
 
   // js/forms.js
   EqUI.forms = {};
+  if (typeof $.fn.eq_select !== "function") {
+    $.fn.eq_select = function() {
+      return this;
+    };
+  }
   autosize = window.autosize;
   autosize = window.autosize;
   Dropzone = window.Dropzone;
@@ -28389,7 +28401,15 @@
       Dropzone.autoDiscover = false;
     }
     EqUI.forms.file_input(".eq-ui-input-file");
-    $(EqUI.forms.select_selector).eq_select();
+    var eqSelectPlugin = $.fn && $.fn.eq_select || EqUI.forms._eq_select_plugin;
+    if (typeof eqSelectPlugin === "function") {
+      if (typeof $.fn.eq_select !== "function") {
+        $.fn.eq_select = eqSelectPlugin;
+      }
+      $(EqUI.forms.select_selector).eq_select();
+    } else {
+      console.warn("[EqUI.forms] eq_select plugin not available on current jQuery instance");
+    }
   };
   EqUI.forms.update = function() {
   };
@@ -28642,10 +28662,17 @@
       return value;
     }
   };
+  EqUI.forms._eq_select_plugin = EqUI.forms._eq_select_plugin || $.fn.eq_select;
   if (EqUI.mutationObserver === null) {
   } else {
     $(document).EqUIObserve(".eq-ui-select", function() {
-      $(this).eq_select();
+      var eqSelectPlugin = $.fn && $.fn.eq_select || EqUI.forms._eq_select_plugin;
+      if (typeof eqSelectPlugin === "function") {
+        if (typeof $.fn.eq_select !== "function") {
+          $.fn.eq_select = eqSelectPlugin;
+        }
+        $(this).eq_select();
+      }
     });
   }
   $(document).ready(function() {
@@ -28961,11 +28988,17 @@
   };
   if (EqUI.mutationObserver === null) {
     EqUI.tabs.load = function() {
-      $("ul.eq-ui-tabs").tabs();
+      if ($.fn && typeof $.fn.tabs === "function") {
+        $("ul.eq-ui-tabs").tabs();
+      } else if (typeof console !== "undefined" && console.warn) {
+        console.warn("[EqUI] tabs plugin not available at init time");
+      }
     };
   } else {
     $(document).EqUIObserve("ul.eq-ui-tabs", function() {
-      $(this).tabs();
+      if ($.fn && typeof $.fn.tabs === "function") {
+        $(this).tabs();
+      }
     });
   }
   $(document).ready(function() {
@@ -29387,6 +29420,58 @@
 
   // js/index.js
   global_default.fn.velocity = import_velocity_animate.default;
+  global_default.Velocity = import_velocity_animate.default;
+  function eqUiSyncJQueryPlugins() {
+    const sourceFn = global_default.fn;
+    if (!sourceFn) return;
+    const pluginNames = [
+      "eq_select",
+      "eq_collapsible",
+      "tabs",
+      "openModal",
+      "closeModal",
+      "dropdown"
+    ];
+    const candidates = [];
+    if (typeof window !== "undefined") {
+      candidates.push(window.$, window.jQuery);
+    }
+    if (typeof Package !== "undefined" && Package && Package.jquery) {
+      candidates.push(Package.jquery.$, Package.jquery.jQuery);
+    }
+    candidates.forEach((jq) => {
+      if (!jq || !jq.fn) return;
+      pluginNames.forEach((name) => {
+        if (typeof sourceFn[name] === "function" && typeof jq.fn[name] !== "function") {
+          jq.fn[name] = sourceFn[name];
+        }
+      });
+    });
+  }
+  function eqUiSyncVelocity() {
+    const candidates = [];
+    if (typeof window !== "undefined") {
+      candidates.push(window.$, window.jQuery);
+    }
+    if (typeof Package !== "undefined" && Package && Package.jquery) {
+      candidates.push(Package.jquery.$, Package.jquery.jQuery);
+    }
+    candidates.forEach((jq) => {
+      if (!jq) return;
+      if (typeof jq.Velocity === "undefined") {
+        jq.Velocity = import_velocity_animate.default;
+      }
+      if (jq.fn && typeof jq.fn.velocity !== "function") {
+        jq.fn.velocity = import_velocity_animate.default;
+      }
+    });
+  }
+  eqUiSyncJQueryPlugins();
+  eqUiSyncVelocity();
+  global_default(document).ready(() => {
+    eqUiSyncJQueryPlugins();
+    eqUiSyncVelocity();
+  });
 
   // js/entry.js
   window.bootstrap = bootstrap_esm_exports;

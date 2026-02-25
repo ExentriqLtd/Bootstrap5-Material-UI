@@ -1,4 +1,12 @@
 EqUI.forms = {};
+
+// Guard against load-order issues: keep the app running even if the real plugin
+// is attached later in the bundle.
+if (typeof $.fn.eq_select !== 'function') {
+    $.fn.eq_select = function() {
+        return this;
+    };
+}
 autosize = window.autosize;
 autosize = window.autosize;
 Dropzone = window.Dropzone;
@@ -84,8 +92,16 @@ EqUI.forms.init = function() {
     // Init file inputs
     EqUI.forms.file_input('.eq-ui-input-file');
 
-    // Init select
-    $(EqUI.forms.select_selector).eq_select();
+    // Init select (guard against jQuery instance swaps in Meteor runtime)
+    var eqSelectPlugin = ($.fn && $.fn.eq_select) || EqUI.forms._eq_select_plugin;
+    if (typeof eqSelectPlugin === 'function') {
+        if (typeof $.fn.eq_select !== 'function') {
+            $.fn.eq_select = eqSelectPlugin;
+        }
+        $(EqUI.forms.select_selector).eq_select();
+    } else {
+        console.warn('[EqUI.forms] eq_select plugin not available on current jQuery instance');
+    }
 };
 
 // Update
@@ -469,13 +485,21 @@ $.fn.eq_select = function (callback) {
     }
 };
 
+EqUI.forms._eq_select_plugin = EqUI.forms._eq_select_plugin || $.fn.eq_select;
+
 // READY & OBSERVE
 if (EqUI.mutationObserver === null) {
     // ...
 } else {
     // .EqUIObserve(selector, onAdded, onRemoved)
     $(document).EqUIObserve('.eq-ui-select', function () {
-    $(this).eq_select();
+    var eqSelectPlugin = ($.fn && $.fn.eq_select) || EqUI.forms._eq_select_plugin;
+    if (typeof eqSelectPlugin === 'function') {
+        if (typeof $.fn.eq_select !== 'function') {
+            $.fn.eq_select = eqSelectPlugin;
+        }
+        $(this).eq_select();
+    }
     })
 }
 

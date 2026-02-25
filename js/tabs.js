@@ -167,12 +167,18 @@ EqUI.tabs.load = function () {
 if (EqUI.mutationObserver === null) {
     // Load
     EqUI.tabs.load = function () {
-        $('ul.eq-ui-tabs').tabs();
+        if ($.fn && typeof $.fn.tabs === 'function') {
+            $('ul.eq-ui-tabs').tabs();
+        } else if (typeof console !== 'undefined' && console.warn) {
+            console.warn('[EqUI] tabs plugin not available at init time');
+        }
     };
 } else {
     // .EqUIObserve(selector, onAdded, onRemoved)
     $(document).EqUIObserve('ul.eq-ui-tabs', function () {
-        $(this).tabs();
+        if ($.fn && typeof $.fn.tabs === 'function') {
+            $(this).tabs();
+        }
     })
 }
 
