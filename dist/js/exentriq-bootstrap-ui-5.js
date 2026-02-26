@@ -29132,6 +29132,7 @@
       }
       origin.addClass("eq-ui-dropdown-trigger-auto");
       origin.data("dropdown-initialized", true);
+      origin.attr("data-dropdown-initialized", "true");
       origin.find("*").each(function() {
         $(this).on("click", function(e2) {
           console.log("[Dropdown DEBUG] click intercettato su child \u2192 rerouted a origin:", this);
@@ -29314,6 +29315,9 @@
         if (isRight && isBottom) {
           object.addClass("eq-ui-dropdown-right-bottom");
         }
+        if (!isRight && !isLeft && originPos.left + targetSize.width > window.innerWidth) {
+          object.addClass("eq-ui-dropdown-right-top");
+        }
         setGutter(target);
       }
       function setGutter(object) {
@@ -29384,6 +29388,7 @@
         el.dropdown();
         el.addClass("eq-ui-dropdown-trigger-auto");
         el.data("dropdown-initialized", true);
+        el.attr("data-dropdown-initialized", "true");
       }
     });
     return result;
@@ -29411,6 +29416,7 @@
   document.addEventListener("click", function(e2) {
     const trigger = e2.target.closest("[data-target].eq-ui-dropdown-trigger-auto");
     if (!trigger) return;
+    if (trigger.getAttribute("data-dropdown-initialized") === "true") return;
     e2.stopPropagation();
     e2.preventDefault();
     setTimeout(() => {
