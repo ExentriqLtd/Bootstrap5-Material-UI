@@ -49788,3 +49788,12 @@ html.is-touch .eq-ui-dropdown li > a:not(.active):hover {
 .eq-ui-secondary-color-text {
   color: #1bbc9b;
 }
+
+/* Message menu dropdown alignment fix */
+.message-menu-option.exentriq-material {
+  position: relative;
+}
+.message-menu-option.exentriq-material > .eq-ui-dropdown {
+  left: auto !important;
+  right: 0 !important;
+}
