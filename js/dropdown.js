@@ -235,7 +235,7 @@ $.fn.dropdown = function (option) {
                 const overflowLeft = boundLeft - menuRect.left;
 
                 // Debug: helps verify real bounds used at runtime
-                console.debug('[Dropdown Clamp]', {
+                console.log('[Dropdown Clamp]', {
                     id: object.attr('id'),
                     menuLeft: menuRect.left,
                     menuRight: menuRect.right,
