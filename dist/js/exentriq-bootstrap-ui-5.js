@@ -28347,6 +28347,9 @@
   autosize = window.autosize;
   Dropzone = window.Dropzone;
   EqUI.forms.validateLib = "parsley";
+  EqUI.forms.hasParsley = function(object) {
+    return !!(object && typeof object.parsley === "function");
+  };
   EqUI.forms.init = function() {
     EqUI.forms.element = $(".btn");
     EqUI.forms.select_selector = ".eq-ui-select";
@@ -28415,12 +28418,18 @@
   };
   EqUI.forms.add_form_for_submit_validate = function(object) {
     if (EqUI.forms.validateLib === "parsley") {
+      if (!EqUI.forms.hasParsley(object)) {
+        return null;
+      }
       return object.parsley();
     }
     return null;
   };
   EqUI.forms.validate_form = function(object) {
     if (EqUI.forms.validateLib === "parsley") {
+      if (!EqUI.forms.hasParsley(object)) {
+        return null;
+      }
       var instance = object.parsley();
       return instance.validate();
     }
@@ -28436,6 +28445,9 @@
     return null;
   };
   EqUI.forms.validate_field_parsley = function(object) {
+    if (!EqUI.forms.hasParsley(object)) {
+      return null;
+    }
     var instance = object.parsley();
     return instance.validate();
   };
@@ -29430,7 +29442,8 @@
       "tabs",
       "openModal",
       "closeModal",
-      "dropdown"
+      "dropdown",
+      "parsley"
     ];
     const candidates = [];
     if (typeof window !== "undefined") {

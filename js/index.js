@@ -21,6 +21,7 @@ function eqUiSyncJQueryPlugins() {
         'openModal',
         'closeModal',
         'dropdown',
+        'parsley',
     ];
 
     const candidates = [];

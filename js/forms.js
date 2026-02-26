@@ -12,6 +12,9 @@ autosize = window.autosize;
 Dropzone = window.Dropzone;
 
 EqUI.forms.validateLib = 'parsley'; // parsley | html5 | custom
+EqUI.forms.hasParsley = function(object) {
+    return !!(object && typeof object.parsley === 'function');
+};
 
 // Init
 EqUI.forms.init = function() {
@@ -114,6 +117,9 @@ EqUI.forms.add_form_for_submit_validate = function(object) {
 
     // Validate using a parsley lib
     if (EqUI.forms.validateLib === 'parsley') {
+        if (!EqUI.forms.hasParsley(object)) {
+            return null;
+        }
         return object.parsley();
     }
 
@@ -125,6 +131,9 @@ EqUI.forms.validate_form = function(object) {
 
     // Validate using a parsley lib
     if (EqUI.forms.validateLib === 'parsley') {
+        if (!EqUI.forms.hasParsley(object)) {
+            return null;
+        }
         var instance = object.parsley();
         return instance.validate();
     }
@@ -150,6 +159,9 @@ EqUI.forms.validate_field = function(object) {
 
 // Validate using a parsley lib (http://parsleyjs.org/)
 EqUI.forms.validate_field_parsley = function(object) {
+    if (!EqUI.forms.hasParsley(object)) {
+        return null;
+    }
     var instance = object.parsley();
     return instance.validate();
 };
