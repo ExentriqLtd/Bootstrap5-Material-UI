@@ -382,19 +382,20 @@ if (typeof EqUI.dropdown.load !== "function") {
 }
 const originalLoad = EqUI.dropdown.load;
 EqUI.dropdown.load = function(selector) {
-    const result = originalLoad.call(this, selector);
+    const scanSelector = selector || '[data-target].dropdown-trigger, [data-target].js-dropdown';
+    const result = originalLoad.call(this, scanSelector);
 
-    $(selector).each(function () {
+    $(scanSelector).each(function () {
         const el = $(this);
 
-        // Identifica solo trigger reali
         const id = el.attr('data-target');
-        if (!id) return;
+        if (!id || !id.trim() || id === 'fake') return;
+
         const menu = $('#' + id);
         if (!menu.length || !menu.hasClass('eq-ui-dropdown')) return;
 
-        // Aggiungi marcatura SOLO se non già fatto
         if (!el.data('dropdown-initialized')) {
+            el.dropdown();
             el.addClass('eq-ui-dropdown-trigger-auto');
             el.data('dropdown-initialized', true);
         }
@@ -409,24 +410,12 @@ if (EqUI.mutationObserver === null) {
     $(document).ready(function () {
         EqUI.dropdown.init();
         EqUI.dropdown.update();
-        EqUI.dropdown.load(); // carica i dropdown standard
+        EqUI.dropdown.load('[data-target].dropdown-trigger, [data-target].js-dropdown, [data-target].eq-ui-dropdown-trigger-auto');
     });
 } else {
     // Attiva osservatore per aggiunte dinamiche al DOM
     $(document).EqUIObserve('[data-target]', function () {
-        const el = $(this);
-        const targetId = el.attr('data-target');
-
-        // NON toccare se manca il targetId
-        if (!targetId || !targetId.trim()) return;
-
-        const $menu = $("#" + targetId);
-
-        // Non è un dropdown? → FERMA TUTTO
-        if (!$menu.length || !$menu.hasClass('eq-ui-dropdown')) return;
-
-        // Se è davvero un dropdown → inizializza
-        el.dropdown();
+        EqUI.dropdown.load('[data-target].dropdown-trigger, [data-target].js-dropdown, [data-target].eq-ui-dropdown-trigger-auto');
     });
 }
 
