@@ -29416,7 +29416,6 @@
   document.addEventListener("click", function(e2) {
     const trigger = e2.target.closest("[data-target].eq-ui-dropdown-trigger-auto");
     if (!trigger) return;
-    if (trigger.getAttribute("data-dropdown-initialized") === "true") return;
     e2.stopPropagation();
     e2.preventDefault();
     setTimeout(() => {

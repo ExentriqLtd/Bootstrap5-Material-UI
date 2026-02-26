@@ -464,9 +464,6 @@ document.addEventListener('click', function(e) {
     const trigger = e.target.closest('[data-target].eq-ui-dropdown-trigger-auto');
     if (!trigger) return;
 
-    // Se il trigger è già inizializzato dal plugin principale, lascia gestire ai suoi handler
-    if (trigger.getAttribute('data-dropdown-initialized') === 'true') return;
-
     e.stopPropagation();
     e.preventDefault();
 
