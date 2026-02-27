@@ -29250,7 +29250,7 @@
           }
           const overflowRight = menuRect.right - boundRight;
           const overflowLeft = boundLeft - menuRect.left;
-          console.log("[Dropdown Clamp]", {
+          console.debug("[Dropdown Clamp]", {
             id: object.attr("id"),
             menuLeft: menuRect.left,
             menuRight: menuRect.right,
