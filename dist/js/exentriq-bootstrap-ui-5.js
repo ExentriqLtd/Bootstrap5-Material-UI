@@ -29239,45 +29239,21 @@
       }
       function clampToViewport(object) {
         try {
-          const menuRect = object[0].getBoundingClientRect();
-          const originRect = origin[0] ? origin[0].getBoundingClientRect() : null;
-          let boundLeft = 0;
-          let boundRight = window.innerWidth;
-          if (is_auto_align && target_auto_align && target_auto_align[0]) {
-            const contRect = target_auto_align[0].getBoundingClientRect();
-            boundLeft = contRect.left;
-            boundRight = contRect.right;
-          }
-          const overflowRight = menuRect.right - boundRight;
-          const overflowLeft = boundLeft - menuRect.left;
-          console.debug("[Dropdown Clamp]", {
-            id: object.attr("id"),
-            menuLeft: menuRect.left,
-            menuRight: menuRect.right,
-            boundLeft,
-            boundRight,
-            overflowLeft,
-            overflowRight,
-            originLeft: originRect ? originRect.left : null,
-            originRight: originRect ? originRect.right : null
-          });
-          if (overflowRight > 0) {
-            const currentLeft = parseFloat(object.css("left")) || 0;
+          const rect = object[0].getBoundingClientRect();
+          if (rect.right > window.innerWidth) {
             object.css({
-              left: Math.max(0, currentLeft - overflowRight),
-              right: "auto"
+              left: "auto",
+              right: 0
             });
             object.addClass("eq-ui-dropdown-right-top");
           }
-          if (overflowLeft > 0) {
-            const currentLeft = parseFloat(object.css("left")) || 0;
+          if (rect.left < 0) {
             object.css({
-              left: currentLeft + overflowLeft,
+              left: 0,
               right: "auto"
             });
           }
         } catch (e2) {
-          console.warn("[Dropdown Clamp] error", e2);
         }
       }
 
