@@ -29231,32 +29231,11 @@
               complete: function() {
                 object.addClass("open");
                 $(this).css("height", "");
-                clampToViewport(object);
               }
             });
           }
         }
       }
-      function clampToViewport(object) {
-        try {
-          const rect = object[0].getBoundingClientRect();
-          if (rect.right > window.innerWidth) {
-            object.css({
-              left: "auto",
-              right: 0
-            });
-            object.addClass("eq-ui-dropdown-right-top");
-          }
-          if (rect.left < 0) {
-            object.css({
-              left: 0,
-              right: "auto"
-            });
-          }
-        } catch (e2) {
-        }
-      }
-
       function dropdownClose(object) {
         console.log(
           "%c[Dropdown DEBUG] CLOSE chiamato su",
