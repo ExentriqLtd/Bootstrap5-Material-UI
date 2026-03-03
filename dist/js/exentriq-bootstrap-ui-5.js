@@ -29445,7 +29445,8 @@
       "openModal",
       "closeModal",
       "dropdown",
-      "parsley"
+      "parsley",
+      "autogrow"
     ];
     const candidates = [];
     if (typeof window !== "undefined") {

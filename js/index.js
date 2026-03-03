@@ -22,6 +22,7 @@ function eqUiSyncJQueryPlugins() {
         'closeModal',
         'dropdown',
         'parsley',
+        'autogrow',
     ];
 
     const candidates = [];
